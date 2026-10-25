@@ -34,7 +34,7 @@ Dans les variables de **cet environnement de travail**, ajouter :
 
 | Nom | Type | Valeur / usage |
 |---|---|---|
-| `QDRANT_URL` | variable non secrète | `https://85462729-45d6-473d-b8aa-fc712b1b14c0.eu-west-1-0.aws.cloud.qdrant.io:6333` |
+| `QDRANT_URL` | variable non secrète | `https://85462729-45d6-473d-b8aa-fc712b1b14c0.eu-west-1-0.aws.cloud.qdrant.io:443` |
 | `QDRANT_COLLECTION` | variable non secrète | `lakehouse_docs_multilingual_v1` (nouvel index réservé à la suite) |
 | `QDRANT_PLAN_CONFIRMED_FREE` | variable non secrète | `true`, seulement après confirmation du plan Free dans la console |
 | `QDRANT_WRITE_API_KEY` | secret | clé Database API pour l'indexeur, limitée au cluster dédié |
@@ -93,3 +93,20 @@ Sources vérifiées : [création et limites Free](https://qdrant.tech/documentat
 [Database API keys](https://qdrant.tech/documentation/cloud/authentication/),
 [tarifs Qdrant](https://qdrant.tech/pricing/),
 [Upstash Redis Free — piste pour quotas](https://upstash.com/pricing/redis).
+
+## Diagnostic vérifié après reprise
+
+Les domaines et secrets sont maintenant observés comme `ready`, et la politique réseau
+comme `enforced`. Sur cet environnement, le GET de la collection sur le port 6333 reçoit
+HTTP 403 ; sur **443 explicitement**, le diagnostic officiel retourne `collection_missing`.
+Ne pas déduire de ce 403 que les clés doivent être recréées. Le client Qdrant utilise 6333
+par défaut : retirer simplement le port ne corrige pas le diagnostic. Définir `QDRANT_URL`
+avec `:443`, enregistrer/appliquer la configuration puis relancer le diagnostic.
+
+`collection_missing` est attendu avant indexation ; il ne prouve ni la facturation ni les
+droits read-only de la clé. Aucune écriture n'a été effectuée. La cause précise du refus
+sur 6333 n'est pas établie ; 443 est une correction vérifiée dans cet environnement.
+
+Les robots.txt Databricks, Microsoft Learn et Delta ainsi que le catalogue public
+`https://ai-gateway.vercel.sh/v1/models` répondent HTTP 200. La revue des conditions/licences,
+l'éligibilité gratuite du compte, les embeddings et les quotas durables restent à terminer.

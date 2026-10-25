@@ -47,3 +47,20 @@ Dernier contrôle après publication de la configuration : révision 8 appliqué
 restreinte, liste personnalisée vide et aucun secret/variable lié au runtime. Les GET Qdrant,
 robots Databricks et catalogue AI Gateway restent refusés par le proxy. La connexion cloud
 reste non vérifiée ; voir evidence/cloud-readiness.json.
+
+
+## Dernière reprise — résultats qui remplacent les anciens blocages réseau
+
+- `main` récupérée au commit de départ `59161a9` dans une copie propre.
+- Politique réseau observée `enforced` ; variables et secrets Qdrant `ready`.
+- Diagnostic officiel : HTTP 403 sur 6333 ; `collection_missing` sur **443 explicite**.
+  La collection reste à créer après validation du corpus et du modèle. Aucune écriture.
+- Robots des trois sources et catalogue AI Gateway : HTTP 200 ; revues de droits et
+  éligibilité gratuite du compte encore nécessaires.
+- 45 tests Python réussis (variables Qdrant retirées du processus de test pour rester
+  en local), Ruff et mypy réussis. Ces résultats ne couvrent pas un déploiement cible complet.
+- Aucun appel LLM, achat, ressource supplémentaire ni changement de plan ; coût obligatoire 0 €.
+
+Action opérateur : définir `QDRANT_URL` avec `:443` dans la configuration cloud et l'appliquer.
+Ne pas changer les clés sur la seule base du refus sur 6333. Les gardes d'ingestion et
+serverless restent actives tant que les validations du projet cible ne sont pas terminées.

@@ -25,7 +25,7 @@ Les réglages réellement reçus doivent être revérifiés, sans afficher de va
 ## Raccordement attendu
 
 Le propriétaire confirme un cluster Qdrant **Free dédié existant** :
-`https://85462729-45d6-473d-b8aa-fc712b1b14c0.eu-west-1-0.aws.cloud.qdrant.io:6333`.
+`https://85462729-45d6-473d-b8aa-fc712b1b14c0.eu-west-1-0.aws.cloud.qdrant.io:443`.
 
 Voir docs/CLOUD_SETUP.md pour les domaines et les noms de variables/secrets. Les valeurs des
 clés n'ont pas été communiquées dans la conversation et ne doivent pas l'être. Elles doivent

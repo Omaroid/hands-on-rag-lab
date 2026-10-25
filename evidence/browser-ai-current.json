@@ -43,5 +43,10 @@
     "passed": 14,
     "failed": 0,
     "deployment_id": "dpl_JCKNGkaAVCZUvyy7DiL7U4FKpb6p"
+  },
+  "final_production_deployment_id": "dpl_Axi46Ph72kxaby7MMJheHWgp3nAF",
+  "final_production_ui_tests": {
+    "passed": 14,
+    "failed": 0
   }
 }

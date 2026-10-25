@@ -221,3 +221,16 @@ présents dans les sources. Nouvelle génération réelle sous CSP : « [1] Delt
 des transactions ACID. » Cette phrase est étayée mais peu informative ; ne pas revendiquer
 une qualité technique générale. Les 14 parcours d’interface passent aussi en production.
 Notices Transformers.js et ONNX Runtime distribuées sous frontend/public/licenses.
+
+
+Publication IA locale finale : main poussé ; version interface/worker déployée depuis
+`919693396b2e3926e88e49fc4c2c134b365d2876`, déploiement
+`dpl_Axi46Ph72kxaby7MMJheHWgp3nAF`, production READY. Domaine public HTTP 200,
+CSP identique au test local ; JS, CSS, worker, module et binaire WASM ainsi que notices
+identiques octet pour octet au build testé. Les 14 tests desktop/mobile passent sur ce
+déploiement final. La génération réelle a été testée séparément dans Chromium sur les
+mêmes assets avec la même CSP, pas sur un téléphone physique. Les limites de qualité
+ci-dessus restent applicables. Aucun appel Gateway ni achat ; garde serverless inchangée.
+Utilisation : télécharger/activer (~950 Mo), poser une question, puis « Expliquer ces
+sources avec l’IA ». Ordinateur récent et Wi-Fi recommandés.
+Preuves : evidence/publication-current.json et evidence/browser-ai-current.json.

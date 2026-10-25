@@ -1,20 +1,50 @@
 {
-  "checked_at": "2026-10-25T22:48:01.776647+00:00",
+  "checked_at": "2026-10-25T23:09:57.694486+00:00",
   "site": "https://lakehouse-rag-lab.vercel.app",
   "target": "production",
   "state": "READY",
-  "deployment_id": "dpl_22BfV94vw6QEReEHigbDi6AA6cLt",
-  "source_commit": "57a7b02bc1973c1ad891bbfdb28c12890f675955",
+  "deployment_id": "dpl_Axi46Ph72kxaby7MMJheHWgp3nAF",
+  "source_commit": "919693396b2e3926e88e49fc4c2c134b365d2876",
   "http_status": 200,
-  "assets_identical_to_tested_local_build": true,
+  "assets": {
+    "csp_matches": true,
+    "assets": [
+      {
+        "asset": "/assets/index-BVGBT0D1.js",
+        "matches_local": true
+      },
+      {
+        "asset": "/assets/index-Bc0SvXs0.css",
+        "matches_local": true
+      },
+      {
+        "asset": "/assets/local-ai.worker-C524JbqD.js",
+        "matches_local": true
+      },
+      {
+        "asset": "/onnx/ort-wasm-simd-threaded.asyncify.mjs",
+        "matches_local": true
+      },
+      {
+        "asset": "/onnx/ort-wasm-simd-threaded.asyncify.wasm",
+        "matches_local": true
+      },
+      {
+        "asset": "/third-party-notices.txt",
+        "matches_local": true
+      }
+    ]
+  },
   "production_browser_tests": {
-    "passed": 8,
+    "passed": 14,
     "failed": 0,
     "projects": [
       "desktop",
       "mobile"
     ]
   },
-  "generation_enabled": false,
+  "real_generation_evidence": "evidence/browser-ai-current.json",
+  "remote_generation_enabled": false,
+  "browser_generation_enabled_opt_in": true,
   "serverless_guard_changed": false
 }

@@ -56,3 +56,21 @@ Contraintes absolues : 0 € obligatoire, aucune modification des applications o
 aucun Supabase existant réutilisé, aucune ressource Azure/Kubernetes payante, aucun secret dans
 le chat ou le frontend. Lire README.md, COST.md, SECURITY.md, STATUS.md et les ADR avant de changer
 l'architecture. Ne déclarer réussis que les contrôles réellement exécutés.
+
+## Point de reprise le plus récent
+
+Le propriétaire a appliqué le port 443 : le diagnostic sans override retourne
+`collection_missing`. Les URLs candidates ont été actualisées, le contrôle des 128 tokens
+corrigé et les gardes d'indexation/recherche sémantique renforcées. Une commande offline de
+rechunking est disponible : `scripts/rechunk_semantic.py` ; lire le chapitre embeddings.
+
+Le propriétaire préfère avancer sur les autres composants sans ajouter le domaine des
+conditions Databricks. Cette revue reste pending, sans bloquer le travail local.
+Il a ajouté puis réappliqué `us.aws.cdn.hf.co`, mais les observations du runtime à la révision 9
+restent liées à la version `057bbfbd-5978-40d3-b706-70276f47f466~cecfgver_6ade68afe63c819e9407137a4dc12af8`,
+sans ce domaine. Le proxy refuse encore le téléchargement du tokenizer. Ne pas demander
+encore une simple réapplication ni les clés : une reprise avec la configuration publiée
+contenant effectivement le domaine est nécessaire si le runtime ne se met pas à jour.
+
+L'inférence ONNX et l'évaluation sémantique réelle ne sont donc pas encore exécutées.
+Aucun index distant n'est créé ; la génération distante reste désactivée. Coût obligatoire 0 €.

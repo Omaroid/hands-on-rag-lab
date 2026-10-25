@@ -1,5 +1,8 @@
 # Guide pour reconstruire et présenter le projet
 
+Commencer par la [visite composant par composant](docs/learning/00-project-tour.md),
+avec les schémas et la distinction entre code présent et validations restantes.
+
 ## Parcours
 
 1. Lire `docs/learning/01-embeddings.md`, puis lancer `uv run python -m lakehouse.baseline`.

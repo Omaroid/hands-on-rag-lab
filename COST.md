@@ -80,3 +80,40 @@ n'expose pas cette opération et le CLI n'a pas d'authentification existante. Le
 le solde acheté et l'état d'auto top-up du compte exact restent à vérifier. Aucune clé, achat,
 moyen de paiement ou montée de plan n'a été ajouté. La génération distante demeure désactivée.
 Preuve : `evidence/budget-validation.json`.
+
+
+## Reprise du budget Gateway — contrôle du 25 octobre 2026
+
+Instruction actuelle : régler le budget pertinent à 5 USD, sans achat, auto-recharge,
+ajout de moyen de paiement ni changement de plan ; coût obligatoire 0 €.
+Cette instruction remplace la consigne historique de ne pas reconfigurer le budget.
+
+Réalisé : main récupéré à `f4701e6`, résumé lu. Aucune modification locale préexistante
+observée dans cette session ; les trois changements signalés n'étaient pas présents.
+Les deux variables VERCEL_TOKEN et AI_GATEWAY_API_KEY sont présentes, sans affichage
+ni sauvegarde de leurs valeurs. La configuration réellement attachée, révision 2,
+lie ces secrets aux domaines appropriés. Les observations sont actuelles, mais leurs
+états de préparation et celui de la politique sont `unknown`, donc pas déclarés `ready`.
+L'accès réel via le proxy à api.vercel.com fonctionne au niveau HTTP, sans prouver
+une autorisation de gestion. GET Gateway /v1/credits : HTTP 200, solde 0 USD,
+usage cumulé 0 USD. Guide AI Gateway et référence spend-observability lus ; aide
+actuelle du CLI 65.2.0 consultée pour budgets set/list et api-keys inspect.
+
+Bloqué : GET Vercel /v2/user → 404 User not found ; /v2/teams → 403 ;
+/v5/user/tokens/current → 404 Token not found ; /ai-gateway/directory/keys → 403 ;
+/ai-gateway/budgets/list → 404 AI Gateway Budget not found. Ce dernier résultat
+ne démontre pas l'absence de budget dans l'équipe propriétaire inconnue.
+L'équipe de la clé n'est pas identifiée et n'est pas assimilée à celle du connecteur.
+Aucun budget inspecté avec succès, modifié ou relu : **5 USD reste non vérifié**.
+Il faut rétablir l'autorisation de gestion du jeton via le mécanisme sécurisé de
+configuration de tâche, puis identifier l'équipe de la clé et son budget avant toute écriture.
+Ne jamais fournir un secret en chat.
+
+L'éligibilité gratuite du compte exact et l'auto top-up désactivé restent inconnus.
+La référence AI Gateway indique qu'un moyen de paiement valide est requis pour débloquer
+les crédits gratuits ; aucune carte n'a été ajoutée et aucune éligibilité n'est déduite
+du seul solde. Budget souple : une requête peut franchir la limite, propagation différée,
+BYOK hors compteur. Il ne garantit ni plafond strict de 5 USD ni facture 0 €.
+Aucun appel génératif, achat, recharge, ajout de paiement, changement de plan ou
+modification d'autre projet. La garde serverless reste fermée faute de compteur atomique
+durable gratuit. Preuve actuelle : `evidence/gateway-readiness-current.json`.

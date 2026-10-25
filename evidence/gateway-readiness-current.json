@@ -1,9 +1,7 @@
 {
-  "status": "configuration_missing",
-  "missing": [
-    "AI_GATEWAY_API_KEY"
-  ],
-  "network_contacted": false,
+  "status": "blocked_vercel_management_authentication",
+  "missing": [],
+  "network_contacted": true,
   "budget_modified": false,
   "generation_requests": 0,
   "credits_purchased": false,
@@ -12,6 +10,59 @@
   "zero_cash_spend_guarantee_verified": false,
   "budget_usd_operator_reported": 5,
   "budget_verified_by_api": false,
-  "runtime_binding_observation": "Revision 11 still attaches QDRANT_API_KEY and QDRANT_WRITE_API_KEY only",
-  "user_reports_secret_saved": true
+  "runtime_binding_observation": "Attached spec revision 2 includes both secrets, observed revision 2; observations_current true but secret and network states unknown. API probes below are actual observed results.",
+  "user_reports_secret_saved": true,
+  "checked_at": "2026-10-25T22:32:43.878889+00:00",
+  "budget_requested_usd": 5,
+  "budget_existing_inspected": false,
+  "budget_readback_completed": false,
+  "gateway_key_owner_team_verified": false,
+  "secrets_present_in_process": {
+    "VERCEL_TOKEN": true,
+    "AI_GATEWAY_API_KEY": true
+  },
+  "source_config_version_id": "057bbfbd-5978-40d3-b706-70276f47f466~cecfgver_6ade8186874c819eb89ca3c0f3a7669b",
+  "credits": {
+    "http_status": 200,
+    "balance_usd": "0",
+    "total_used_usd": "0"
+  },
+  "vercel_management_probes": {
+    "GET /v2/user": {
+      "status": 404,
+      "message": "User not found."
+    },
+    "GET /v2/teams": {
+      "status": 403,
+      "message": "You don't have permission to list the team."
+    },
+    "GET /v5/user/tokens/current": {
+      "status": 404,
+      "message": "Token not found."
+    },
+    "GET /ai-gateway/budgets/list": {
+      "status": 404,
+      "message": "AI Gateway Budget not found."
+    },
+    "GET /ai-gateway/directory/keys?limit=1": {
+      "status": 403,
+      "message": "You don't have permission to list the api key."
+    }
+  },
+  "cli_version": "65.2.0",
+  "cli_help_consulted": [
+    "ai-gateway budgets set --help",
+    "ai-gateway budgets list --help",
+    "ai-gateway api-keys inspect --help"
+  ],
+  "auto_topup_enabled_by_this_task": false,
+  "payment_method_added": false,
+  "plan_changed": false,
+  "serverless_guard": "closed; no free durable atomic counter connected",
+  "blockers": [
+    "Management token present but read probes fail; owner team cannot be established. No budget mutation attempted.",
+    "Free credits eligibility and auto top-up setting unverified. Zero balance does not establish either.",
+    "Durable atomic free quota backend missing."
+  ],
+  "local_changes_on_arrival": "No tracked or untracked changes; checkout initially unborn work, main fetched from origin at f4701e6. Prior reported local edits were not present."
 }

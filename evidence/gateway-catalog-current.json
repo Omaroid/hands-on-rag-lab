@@ -1,0 +1,74 @@
+{
+  "source": "https://ai-gateway.vercel.sh/v1/models",
+  "http_status": 200,
+  "models": 480,
+  "zero_list_price_models": [
+    {
+      "id": "baseten/elephant-1",
+      "pricing": {
+        "input": "0",
+        "output": "0"
+      }
+    },
+    {
+      "id": "baseten/mammoth-1",
+      "pricing": {
+        "input": "0",
+        "output": "0"
+      }
+    },
+    {
+      "id": "convaiinnovations/laya",
+      "pricing": {
+        "input": "0",
+        "output": "0"
+      }
+    },
+    {
+      "id": "convaiinnovations/laya-free",
+      "pricing": {
+        "input": "0",
+        "output": "0"
+      }
+    },
+    {
+      "id": "nvidia/nemotron-3.5-lightning-free",
+      "pricing": {
+        "input": "0",
+        "output": "0"
+      }
+    },
+    {
+      "id": "poolside/laguna-s-2.1-free",
+      "pricing": {
+        "input": "0",
+        "output": "0"
+      }
+    },
+    {
+      "id": "reflection/beam",
+      "pricing": {
+        "input": "0",
+        "output": "0",
+        "varies_by_provider": true
+      }
+    },
+    {
+      "id": "reflection/beam-free",
+      "pricing": {
+        "input": "0",
+        "output": "0"
+      }
+    },
+    {
+      "id": "stealth/glyph-cluster",
+      "pricing": {
+        "input": "0",
+        "output": "0"
+      }
+    }
+  ],
+  "account_eligibility_verified": false,
+  "generation_calls": 0,
+  "mandatory_cost_eur": 0
+}

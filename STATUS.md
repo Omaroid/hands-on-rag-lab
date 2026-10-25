@@ -89,3 +89,26 @@ serverless restent actives tant que les validations du projet cible ne sont pas 
 Les prochains travaux sont le test réel des poids/tokenizer, un chunking tenant compte du
 titre et du budget de 128 tokens, l'évaluation FR/EN, puis une ingestion dont les droits sont
 établis. Les 650 tokens estimés du baseline ne conviennent pas à ce petit modèle.
+
+
+## Vérification intégrée du baseline — dernière exécution
+
+- 54 tests Python réussis ; builds React/TypeScript backend et navigateur réussis.
+- 6 parcours Playwright desktop/mobile réussis pour chacun des deux runtimes (12 au total),
+  avec Chromium réel, vérification axe et absence de débordement.
+- Corrigé un défaut de configuration des tests : origine 127.0.0.1 différente du localhost
+  autorisé par l'API. La protection des origines reste stricte.
+- `scripts/verify_web.py` démarre les serveurs locaux et un compteur de quotas neuf, retire
+  les accès cloud des processus de test et arrête les serveurs à la fin. Les limites restent
+  celles de l'application. Le workflow CI utilise désormais ce lanceur ; CI distante non exécutée.
+- Site public et assets HTTP 200 ; JS/CSS identiques au build navigateur testé, en-têtes présents.
+- Docker reconstruit puis démarré sans réseau ; UID 10001, réponse citée et injection refusée.
+- 42 cas × 4 stratégies réévalués, quatre runs MLflow locaux exportés. Ces mesures concernent
+  le hash lexical et les notes éditoriales, pas le futur modèle sémantique.
+- Scan du bundle et secretlint réussis. Audits des dépendances enregistrés séparément.
+- Diagnostic Qdrant sans override : collection_missing, mutations=false.
+
+Preuves : `evidence/integration-current.json`, rapports Playwright, `evidence/evaluation.json`
+et `evidence/mlflow-current.json`. L'ajout réseau demandé pour les poids n'est toujours pas
+observé à la révision 11. Le corpus officiel, l'inférence et le backend cloud complet ne sont
+pas validés. Coût obligatoire conservé à 0 €.

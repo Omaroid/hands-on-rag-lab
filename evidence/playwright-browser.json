@@ -2,11 +2,11 @@
   "config": {
     "argv": [
       "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
-      "/workspace/lakehouse-rag-lab/frontend/node_modules/.bin/playwright",
+      "/workspace/work/lakehouse-rag-lab/frontend/node_modules/.bin/playwright",
       "test"
     ],
-    "configFile": "/workspace/lakehouse-rag-lab/frontend/playwright.config.ts",
-    "rootDir": "/workspace/lakehouse-rag-lab/frontend/tests",
+    "configFile": "/workspace/work/lakehouse-rag-lab/frontend/playwright.config.ts",
+    "rootDir": "/workspace/work/lakehouse-rag-lab/frontend/tests",
     "failOnFlakyTests": false,
     "forbidOnly": false,
     "fullyParallel": false,
@@ -22,7 +22,7 @@
     "preserveOutput": "always",
     "projects": [
       {
-        "outputDir": "/workspace/lakehouse-rag-lab/frontend/test-results",
+        "outputDir": "/workspace/work/lakehouse-rag-lab/frontend/test-results",
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
@@ -30,7 +30,7 @@
         },
         "id": "desktop",
         "name": "desktop",
-        "testDir": "/workspace/lakehouse-rag-lab/frontend/tests",
+        "testDir": "/workspace/work/lakehouse-rag-lab/frontend/tests",
         "testIgnore": [],
         "testMatch": [
           "**/*.@(spec|test).?(c|m)[jt]s?(x)"
@@ -38,7 +38,7 @@
         "timeout": 30000
       },
       {
-        "outputDir": "/workspace/lakehouse-rag-lab/frontend/test-results",
+        "outputDir": "/workspace/work/lakehouse-rag-lab/frontend/test-results",
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
@@ -46,7 +46,7 @@
         },
         "id": "mobile",
         "name": "mobile",
-        "testDir": "/workspace/lakehouse-rag-lab/frontend/tests",
+        "testDir": "/workspace/work/lakehouse-rag-lab/frontend/tests",
         "testIgnore": [],
         "testMatch": [
           "**/*.@(spec|test).?(c|m)[jt]s?(x)"
@@ -58,20 +58,20 @@
       {
         "grep": {},
         "grepInvert": null,
-        "outputDir": "/workspace/lakehouse-rag-lab/frontend/test-results",
+        "outputDir": "/workspace/work/lakehouse-rag-lab/frontend/test-results",
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
           "actualWorkers": 1
         },
         "name": "desktop",
-        "testDir": "/workspace/lakehouse-rag-lab/frontend/tests",
-        "snapshotDir": "/workspace/lakehouse-rag-lab/frontend/tests",
+        "testDir": "/workspace/work/lakehouse-rag-lab/frontend/tests",
+        "snapshotDir": "/workspace/work/lakehouse-rag-lab/frontend/tests",
         "testIgnore": [],
         "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
         "timeout": 30000,
         "use": {
-          "baseURL": "http://127.0.0.1:8000",
+          "baseURL": "http://localhost:8001",
           "trace": "retain-on-failure",
           "launchOptions": {
             "executablePath": "/usr/bin/chromium"
@@ -97,20 +97,20 @@
       {
         "grep": {},
         "grepInvert": null,
-        "outputDir": "/workspace/lakehouse-rag-lab/frontend/test-results",
+        "outputDir": "/workspace/work/lakehouse-rag-lab/frontend/test-results",
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
           "actualWorkers": 1
         },
         "name": "mobile",
-        "testDir": "/workspace/lakehouse-rag-lab/frontend/tests",
-        "snapshotDir": "/workspace/lakehouse-rag-lab/frontend/tests",
+        "testDir": "/workspace/work/lakehouse-rag-lab/frontend/tests",
+        "snapshotDir": "/workspace/work/lakehouse-rag-lab/frontend/tests",
         "testIgnore": [],
         "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
         "timeout": 30000,
         "use": {
-          "baseURL": "http://127.0.0.1:8000",
+          "baseURL": "http://localhost:8001",
           "trace": "retain-on-failure",
           "launchOptions": {
             "executablePath": "/usr/bin/chromium"
@@ -182,12 +182,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1335,
+                  "duration": 635,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-25T20:09:26.605Z",
+                  "startTime": "2026-10-25T21:19:12.547Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -216,12 +216,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1046,
+                  "duration": 678,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-25T20:09:28.336Z",
+                  "startTime": "2026-10-25T21:19:13.326Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -250,12 +250,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1596,
+                  "duration": 844,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-25T20:09:29.404Z",
+                  "startTime": "2026-10-25T21:19:14.014Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -284,12 +284,12 @@
                   "workerIndex": 1,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 965,
+                  "duration": 623,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-25T20:09:31.518Z",
+                  "startTime": "2026-10-25T21:19:15.199Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -318,12 +318,12 @@
                   "workerIndex": 1,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 958,
+                  "duration": 628,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-25T20:09:32.727Z",
+                  "startTime": "2026-10-25T21:19:15.978Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -352,12 +352,12 @@
                   "workerIndex": 1,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1302,
+                  "duration": 872,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-25T20:09:33.700Z",
+                  "startTime": "2026-10-25T21:19:16.613Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -375,8 +375,8 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-10-25T20:09:25.929Z",
-    "duration": 9179.933,
+    "startTime": "2026-10-25T21:19:12.235Z",
+    "duration": 5307.567,
     "expected": 6,
     "skipped": 0,
     "unexpected": 0,

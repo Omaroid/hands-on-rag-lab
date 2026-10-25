@@ -22,10 +22,10 @@ Voir README. Le backend FastAPI et l'interface construite partagent le port 8000
 l'interface avec Vite sur 5173, définir APP_ORIGIN à `http://localhost:5173`, puis lancer le
 backend et le dev server. Pas de wildcard CORS.
 
-## Qdrant Cloud Free (cluster existant, connexion en attente)
+## Qdrant Cloud Free (cluster existant, collection en attente)
 
-Le propriétaire a fourni un cluster **Free dédié** existant. Le raccordement attend encore
-l’application des domaines réseau et des secrets. Suivre [CLOUD_SETUP.md](docs/CLOUD_SETUP.md).
+Le propriétaire a fourni un cluster **Free dédié** existant. Le diagnostic en lecture seule retourne maintenant `collection_missing` sur le port HTTPS
+443 explicite ; aucune collection sémantique n’a encore été créée. Suivre [CLOUD_SETUP.md](docs/CLOUD_SETUP.md).
 Créer uniquement un index isolé. Ne pas accepter un essai qui se convertit en offre
 payante. Vérifier la console avant de définir `QDRANT_PLAN_CONFIRMED_FREE=true` pour l'indexeur.
 Utiliser `QDRANT_WRITE_API_KEY` pour l'indexation, puis une clé read-only différente avec

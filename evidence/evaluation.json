@@ -8,8 +8,8 @@
       "citation_exact_support": 1.0,
       "correct_refusal_rate": 1.0,
       "answerability_accuracy": 1.0,
-      "latency_p50_ms": 2.42,
-      "latency_p95_ms": 3.39,
+      "latency_p50_ms": 1.355,
+      "latency_p95_ms": 1.58,
       "mandatory_cost_eur": 0.0,
       "cases": 42.0
     },
@@ -29,7 +29,7 @@
           "Unity Catalog : gouvernance unifiée"
         ],
         "citations": 3,
-        "latency_ms": 6.13
+        "latency_ms": 3.49
       },
       {
         "id": "f02",
@@ -46,7 +46,7 @@
           "Unity Catalog : privilèges et accès"
         ],
         "citations": 3,
-        "latency_ms": 3.39
+        "latency_ms": 1.89
       },
       {
         "id": "f03",
@@ -63,7 +63,7 @@
           "Lineage : traçabilité des données"
         ],
         "citations": 2,
-        "latency_ms": 2.89
+        "latency_ms": 1.56
       },
       {
         "id": "f04",
@@ -80,7 +80,7 @@
           "Tables managées et tables externes"
         ],
         "citations": 1,
-        "latency_ms": 2.66
+        "latency_ms": 1.49
       },
       {
         "id": "f05",
@@ -97,7 +97,7 @@
           "Volumes Unity Catalog"
         ],
         "citations": 2,
-        "latency_ms": 2.57
+        "latency_ms": 1.51
       },
       {
         "id": "f06",
@@ -114,7 +114,7 @@
           "Delta Lake : transactions ACID"
         ],
         "citations": 2,
-        "latency_ms": 2.42
+        "latency_ms": 1.34
       },
       {
         "id": "f07",
@@ -131,7 +131,7 @@
           "Time travel et historique Delta"
         ],
         "citations": 1,
-        "latency_ms": 2.47
+        "latency_ms": 1.42
       },
       {
         "id": "f08",
@@ -148,7 +148,7 @@
           "VACUUM et rétention des fichiers"
         ],
         "citations": 2,
-        "latency_ms": 2.45
+        "latency_ms": 1.39
       },
       {
         "id": "f09",
@@ -163,7 +163,7 @@
           "MERGE : insertions et mises à jour"
         ],
         "citations": 2,
-        "latency_ms": 2.11
+        "latency_ms": 1.15
       },
       {
         "id": "f10",
@@ -180,7 +180,7 @@
           "Schema enforcement et évolution"
         ],
         "citations": 1,
-        "latency_ms": 2.14
+        "latency_ms": 1.28
       },
       {
         "id": "f11",
@@ -197,7 +197,7 @@
           "Change Data Feed : changements Delta"
         ],
         "citations": 1,
-        "latency_ms": 2.49
+        "latency_ms": 1.44
       },
       {
         "id": "f12",
@@ -214,7 +214,7 @@
           "OPTIMIZE : compaction des fichiers"
         ],
         "citations": 1,
-        "latency_ms": 2.95
+        "latency_ms": 1.4
       },
       {
         "id": "f13",
@@ -231,7 +231,7 @@
           "Lakehouse : lac et entrepôt de données"
         ],
         "citations": 1,
-        "latency_ms": 2.42
+        "latency_ms": 1.49
       },
       {
         "id": "f14",
@@ -248,7 +248,7 @@
           "Architecture médaillon : bronze, silver, gold"
         ],
         "citations": 2,
-        "latency_ms": 2.22
+        "latency_ms": 2.96
       },
       {
         "id": "f15",
@@ -265,7 +265,7 @@
           "Auto Loader : ingestion incrémentale"
         ],
         "citations": 1,
-        "latency_ms": 2.29
+        "latency_ms": 1.39
       },
       {
         "id": "f16",
@@ -281,7 +281,7 @@
           "Structured Streaming et checkpoints"
         ],
         "citations": 1,
-        "latency_ms": 2.08
+        "latency_ms": 1.18
       },
       {
         "id": "f17",
@@ -298,7 +298,7 @@
           "Azure Databricks et identité Entra"
         ],
         "citations": 1,
-        "latency_ms": 2.44
+        "latency_ms": 1.34
       },
       {
         "id": "f18",
@@ -315,7 +315,7 @@
           "Azure : identifiants de stockage et emplacements"
         ],
         "citations": 1,
-        "latency_ms": 2.31
+        "latency_ms": 1.34
       },
       {
         "id": "f19",
@@ -332,7 +332,7 @@
           "Azure Databricks : isolation réseau"
         ],
         "citations": 1,
-        "latency_ms": 2.35
+        "latency_ms": 1.33
       },
       {
         "id": "f20",
@@ -349,7 +349,7 @@
           "Sécurité : filtres de lignes et masquage"
         ],
         "citations": 1,
-        "latency_ms": 2.36
+        "latency_ms": 1.45
       },
       {
         "id": "f21",
@@ -365,7 +365,7 @@
           "Audit : observer les accès et opérations"
         ],
         "citations": 1,
-        "latency_ms": 2.07
+        "latency_ms": 1.19
       },
       {
         "id": "f22",
@@ -382,7 +382,7 @@
           "FinOps : maîtriser le coût du calcul"
         ],
         "citations": 1,
-        "latency_ms": 2.44
+        "latency_ms": 1.37
       },
       {
         "id": "f23",
@@ -399,7 +399,7 @@
           "Delta Sharing : partager des données"
         ],
         "citations": 2,
-        "latency_ms": 5.05
+        "latency_ms": 1.53
       },
       {
         "id": "f24",
@@ -416,7 +416,7 @@
           "Qualité des données et contrats"
         ],
         "citations": 1,
-        "latency_ms": 3.2
+        "latency_ms": 1.58
       },
       {
         "id": "m01",
@@ -434,7 +434,7 @@
           "VACUUM et rétention des fichiers"
         ],
         "citations": 2,
-        "latency_ms": 2.52
+        "latency_ms": 1.46
       },
       {
         "id": "m02",
@@ -452,7 +452,7 @@
           "Unity Catalog : privilèges et accès"
         ],
         "citations": 3,
-        "latency_ms": 2.42
+        "latency_ms": 1.38
       },
       {
         "id": "m03",
@@ -470,7 +470,7 @@
           "Qualité des données et contrats"
         ],
         "citations": 2,
-        "latency_ms": 3.83
+        "latency_ms": 1.51
       },
       {
         "id": "m04",
@@ -487,7 +487,7 @@
           "Schema enforcement et évolution"
         ],
         "citations": 1,
-        "latency_ms": 2.77
+        "latency_ms": 1.42
       },
       {
         "id": "m05",
@@ -505,7 +505,7 @@
           "Lineage : traçabilité des données"
         ],
         "citations": 1,
-        "latency_ms": 2.61
+        "latency_ms": 1.44
       },
       {
         "id": "m06",
@@ -523,7 +523,7 @@
           "MERGE : insertions et mises à jour"
         ],
         "citations": 1,
-        "latency_ms": 2.31
+        "latency_ms": 1.29
       },
       {
         "id": "n01",
@@ -533,7 +533,7 @@
         "retrieved": [],
         "relevant": [],
         "citations": 0,
-        "latency_ms": 1.75
+        "latency_ms": 0.96
       },
       {
         "id": "n02",
@@ -545,7 +545,7 @@
         ],
         "relevant": [],
         "citations": 0,
-        "latency_ms": 1.93
+        "latency_ms": 1.0
       },
       {
         "id": "n03",
@@ -555,7 +555,7 @@
         "retrieved": [],
         "relevant": [],
         "citations": 0,
-        "latency_ms": 1.72
+        "latency_ms": 0.96
       },
       {
         "id": "n04",
@@ -565,7 +565,7 @@
         "retrieved": [],
         "relevant": [],
         "citations": 0,
-        "latency_ms": 1.81
+        "latency_ms": 0.98
       },
       {
         "id": "n05",
@@ -575,7 +575,7 @@
         "retrieved": [],
         "relevant": [],
         "citations": 0,
-        "latency_ms": 1.81
+        "latency_ms": 0.94
       },
       {
         "id": "n06",
@@ -587,7 +587,7 @@
         ],
         "relevant": [],
         "citations": 0,
-        "latency_ms": 2.29
+        "latency_ms": 0.99
       },
       {
         "id": "n07",
@@ -597,7 +597,7 @@
         "retrieved": [],
         "relevant": [],
         "citations": 0,
-        "latency_ms": 2.46
+        "latency_ms": 0.93
       },
       {
         "id": "n08",
@@ -607,7 +607,7 @@
         "retrieved": [],
         "relevant": [],
         "citations": 0,
-        "latency_ms": 2.47
+        "latency_ms": 0.97
       },
       {
         "id": "n09",
@@ -617,7 +617,7 @@
         "retrieved": [],
         "relevant": [],
         "citations": 0,
-        "latency_ms": 2.21
+        "latency_ms": 0.93
       },
       {
         "id": "n10",
@@ -627,7 +627,7 @@
         "retrieved": [],
         "relevant": [],
         "citations": 0,
-        "latency_ms": 2.1
+        "latency_ms": 0.92
       },
       {
         "id": "n11",
@@ -637,7 +637,7 @@
         "retrieved": [],
         "relevant": [],
         "citations": 0,
-        "latency_ms": 2.2
+        "latency_ms": 0.92
       },
       {
         "id": "n12",
@@ -649,7 +649,7 @@
         ],
         "relevant": [],
         "citations": 0,
-        "latency_ms": 1.85
+        "latency_ms": 1.04
       }
     ]
   },
@@ -662,8 +662,8 @@
       "citation_exact_support": 1.0,
       "correct_refusal_rate": 1.0,
       "answerability_accuracy": 1.0,
-      "latency_p50_ms": 3.285,
-      "latency_p95_ms": 4.17,
+      "latency_p50_ms": 1.89,
+      "latency_p95_ms": 2.22,
       "mandatory_cost_eur": 0.0,
       "cases": 42.0
     },
@@ -683,7 +683,7 @@
           "Unity Catalog : gouvernance unifiée"
         ],
         "citations": 3,
-        "latency_ms": 5.4
+        "latency_ms": 3.22
       },
       {
         "id": "f02",
@@ -700,7 +700,7 @@
           "Unity Catalog : privilèges et accès"
         ],
         "citations": 3,
-        "latency_ms": 4.0
+        "latency_ms": 2.24
       },
       {
         "id": "f03",
@@ -717,7 +717,7 @@
           "Lineage : traçabilité des données"
         ],
         "citations": 2,
-        "latency_ms": 3.66
+        "latency_ms": 1.98
       },
       {
         "id": "f04",
@@ -734,7 +734,7 @@
           "Tables managées et tables externes"
         ],
         "citations": 1,
-        "latency_ms": 3.26
+        "latency_ms": 2.15
       },
       {
         "id": "f05",
@@ -751,7 +751,7 @@
           "Volumes Unity Catalog"
         ],
         "citations": 2,
-        "latency_ms": 3.31
+        "latency_ms": 1.96
       },
       {
         "id": "f06",
@@ -768,7 +768,7 @@
           "Delta Lake : transactions ACID"
         ],
         "citations": 2,
-        "latency_ms": 3.36
+        "latency_ms": 2.09
       },
       {
         "id": "f07",
@@ -785,7 +785,7 @@
           "Time travel et historique Delta"
         ],
         "citations": 1,
-        "latency_ms": 5.36
+        "latency_ms": 1.89
       },
       {
         "id": "f08",
@@ -802,7 +802,7 @@
           "VACUUM et rétention des fichiers"
         ],
         "citations": 2,
-        "latency_ms": 3.4
+        "latency_ms": 1.97
       },
       {
         "id": "f09",
@@ -818,7 +818,7 @@
           "MERGE : insertions et mises à jour"
         ],
         "citations": 2,
-        "latency_ms": 2.89
+        "latency_ms": 1.61
       },
       {
         "id": "f10",
@@ -835,7 +835,7 @@
           "Schema enforcement et évolution"
         ],
         "citations": 1,
-        "latency_ms": 3.1
+        "latency_ms": 1.74
       },
       {
         "id": "f11",
@@ -852,7 +852,7 @@
           "Change Data Feed : changements Delta"
         ],
         "citations": 1,
-        "latency_ms": 3.2
+        "latency_ms": 1.89
       },
       {
         "id": "f12",
@@ -869,7 +869,7 @@
           "OPTIMIZE : compaction des fichiers"
         ],
         "citations": 1,
-        "latency_ms": 3.26
+        "latency_ms": 1.94
       },
       {
         "id": "f13",
@@ -886,7 +886,7 @@
           "Lakehouse : lac et entrepôt de données"
         ],
         "citations": 1,
-        "latency_ms": 3.58
+        "latency_ms": 1.7
       },
       {
         "id": "f14",
@@ -903,7 +903,7 @@
           "Architecture médaillon : bronze, silver, gold"
         ],
         "citations": 2,
-        "latency_ms": 3.73
+        "latency_ms": 1.75
       },
       {
         "id": "f15",
@@ -920,7 +920,7 @@
           "Auto Loader : ingestion incrémentale"
         ],
         "citations": 1,
-        "latency_ms": 3.25
+        "latency_ms": 1.78
       },
       {
         "id": "f16",
@@ -937,7 +937,7 @@
           "Structured Streaming et checkpoints"
         ],
         "citations": 1,
-        "latency_ms": 3.03
+        "latency_ms": 1.64
       },
       {
         "id": "f17",
@@ -954,7 +954,7 @@
           "Azure Databricks et identité Entra"
         ],
         "citations": 1,
-        "latency_ms": 3.53
+        "latency_ms": 10.59
       },
       {
         "id": "f18",
@@ -971,7 +971,7 @@
           "Azure : identifiants de stockage et emplacements"
         ],
         "citations": 1,
-        "latency_ms": 3.4
+        "latency_ms": 1.94
       },
       {
         "id": "f19",
@@ -988,7 +988,7 @@
           "Azure Databricks : isolation réseau"
         ],
         "citations": 1,
-        "latency_ms": 3.56
+        "latency_ms": 1.77
       },
       {
         "id": "f20",
@@ -1005,7 +1005,7 @@
           "Sécurité : filtres de lignes et masquage"
         ],
         "citations": 1,
-        "latency_ms": 3.25
+        "latency_ms": 1.98
       },
       {
         "id": "f21",
@@ -1022,7 +1022,7 @@
           "Audit : observer les accès et opérations"
         ],
         "citations": 1,
-        "latency_ms": 2.83
+        "latency_ms": 1.67
       },
       {
         "id": "f22",
@@ -1039,7 +1039,7 @@
           "FinOps : maîtriser le coût du calcul"
         ],
         "citations": 1,
-        "latency_ms": 3.33
+        "latency_ms": 1.94
       },
       {
         "id": "f23",
@@ -1056,7 +1056,7 @@
           "Delta Sharing : partager des données"
         ],
         "citations": 2,
-        "latency_ms": 3.45
+        "latency_ms": 2.22
       },
       {
         "id": "f24",
@@ -1073,7 +1073,7 @@
           "Qualité des données et contrats"
         ],
         "citations": 1,
-        "latency_ms": 3.47
+        "latency_ms": 2.01
       },
       {
         "id": "m01",
@@ -1091,7 +1091,7 @@
           "VACUUM et rétention des fichiers"
         ],
         "citations": 2,
-        "latency_ms": 5.35
+        "latency_ms": 1.95
       },
       {
         "id": "m02",
@@ -1109,7 +1109,7 @@
           "Unity Catalog : privilèges et accès"
         ],
         "citations": 3,
-        "latency_ms": 4.17
+        "latency_ms": 1.95
       },
       {
         "id": "m03",
@@ -1127,7 +1127,7 @@
           "Qualité des données et contrats"
         ],
         "citations": 2,
-        "latency_ms": 3.52
+        "latency_ms": 2.17
       },
       {
         "id": "m04",
@@ -1144,7 +1144,7 @@
           "Schema enforcement et évolution"
         ],
         "citations": 1,
-        "latency_ms": 3.38
+        "latency_ms": 2.08
       },
       {
         "id": "m05",
@@ -1162,7 +1162,7 @@
           "Lineage : traçabilité des données"
         ],
         "citations": 1,
-        "latency_ms": 3.39
+        "latency_ms": 1.89
       },
       {
         "id": "m06",
@@ -1180,7 +1180,7 @@
           "MERGE : insertions et mises à jour"
         ],
         "citations": 1,
-        "latency_ms": 3.52
+        "latency_ms": 1.97
       },
       {
         "id": "n01",
@@ -1195,7 +1195,7 @@
         ],
         "relevant": [],
         "citations": 0,
-        "latency_ms": 2.87
+        "latency_ms": 1.63
       },
       {
         "id": "n02",
@@ -1208,7 +1208,7 @@
         ],
         "relevant": [],
         "citations": 0,
-        "latency_ms": 2.74
+        "latency_ms": 1.48
       },
       {
         "id": "n03",
@@ -1220,7 +1220,7 @@
         ],
         "relevant": [],
         "citations": 0,
-        "latency_ms": 3.14
+        "latency_ms": 1.41
       },
       {
         "id": "n04",
@@ -1234,7 +1234,7 @@
         ],
         "relevant": [],
         "citations": 0,
-        "latency_ms": 3.13
+        "latency_ms": 1.45
       },
       {
         "id": "n05",
@@ -1247,7 +1247,7 @@
         ],
         "relevant": [],
         "citations": 0,
-        "latency_ms": 2.7
+        "latency_ms": 1.49
       },
       {
         "id": "n06",
@@ -1260,7 +1260,7 @@
         ],
         "relevant": [],
         "citations": 0,
-        "latency_ms": 2.93
+        "latency_ms": 1.42
       },
       {
         "id": "n07",
@@ -1270,7 +1270,7 @@
         "retrieved": [],
         "relevant": [],
         "citations": 0,
-        "latency_ms": 1.89
+        "latency_ms": 0.95
       },
       {
         "id": "n08",
@@ -1280,7 +1280,7 @@
         "retrieved": [],
         "relevant": [],
         "citations": 0,
-        "latency_ms": 1.81
+        "latency_ms": 1.0
       },
       {
         "id": "n09",
@@ -1290,7 +1290,7 @@
         "retrieved": [],
         "relevant": [],
         "citations": 0,
-        "latency_ms": 1.96
+        "latency_ms": 0.91
       },
       {
         "id": "n10",
@@ -1300,7 +1300,7 @@
         "retrieved": [],
         "relevant": [],
         "citations": 0,
-        "latency_ms": 1.84
+        "latency_ms": 0.91
       },
       {
         "id": "n11",
@@ -1310,7 +1310,7 @@
         "retrieved": [],
         "relevant": [],
         "citations": 0,
-        "latency_ms": 1.89
+        "latency_ms": 0.91
       },
       {
         "id": "n12",
@@ -1325,7 +1325,7 @@
         ],
         "relevant": [],
         "citations": 0,
-        "latency_ms": 2.77
+        "latency_ms": 1.61
       }
     ]
   },
@@ -1338,8 +1338,8 @@
       "citation_exact_support": 1.0,
       "correct_refusal_rate": 1.0,
       "answerability_accuracy": 1.0,
-      "latency_p50_ms": 3.285,
-      "latency_p95_ms": 4.25,
+      "latency_p50_ms": 2.0300000000000002,
+      "latency_p95_ms": 2.21,
       "mandatory_cost_eur": 0.0,
       "cases": 42.0
     },
@@ -1359,7 +1359,7 @@
           "Unity Catalog : gouvernance unifiée"
         ],
         "citations": 3,
-        "latency_ms": 4.25
+        "latency_ms": 2.88
       },
       {
         "id": "f02",
@@ -1376,7 +1376,7 @@
           "Unity Catalog : privilèges et accès"
         ],
         "citations": 3,
-        "latency_ms": 3.65
+        "latency_ms": 2.24
       },
       {
         "id": "f03",
@@ -1393,7 +1393,7 @@
           "Lineage : traçabilité des données"
         ],
         "citations": 2,
-        "latency_ms": 3.8
+        "latency_ms": 2.44
       },
       {
         "id": "f04",
@@ -1410,7 +1410,7 @@
           "Tables managées et tables externes"
         ],
         "citations": 1,
-        "latency_ms": 3.85
+        "latency_ms": 2.14
       },
       {
         "id": "f05",
@@ -1427,7 +1427,7 @@
           "Volumes Unity Catalog"
         ],
         "citations": 2,
-        "latency_ms": 3.62
+        "latency_ms": 2.15
       },
       {
         "id": "f06",
@@ -1444,7 +1444,7 @@
           "Delta Lake : transactions ACID"
         ],
         "citations": 2,
-        "latency_ms": 3.45
+        "latency_ms": 2.09
       },
       {
         "id": "f07",
@@ -1461,7 +1461,7 @@
           "Time travel et historique Delta"
         ],
         "citations": 1,
-        "latency_ms": 3.55
+        "latency_ms": 2.09
       },
       {
         "id": "f08",
@@ -1478,7 +1478,7 @@
           "VACUUM et rétention des fichiers"
         ],
         "citations": 2,
-        "latency_ms": 3.45
+        "latency_ms": 2.13
       },
       {
         "id": "f09",
@@ -1494,7 +1494,7 @@
           "MERGE : insertions et mises à jour"
         ],
         "citations": 2,
-        "latency_ms": 3.22
+        "latency_ms": 1.79
       },
       {
         "id": "f10",
@@ -1511,7 +1511,7 @@
           "Schema enforcement et évolution"
         ],
         "citations": 1,
-        "latency_ms": 3.3
+        "latency_ms": 1.86
       },
       {
         "id": "f11",
@@ -1528,7 +1528,7 @@
           "Change Data Feed : changements Delta"
         ],
         "citations": 1,
-        "latency_ms": 3.32
+        "latency_ms": 2.06
       },
       {
         "id": "f12",
@@ -1545,7 +1545,7 @@
           "OPTIMIZE : compaction des fichiers"
         ],
         "citations": 1,
-        "latency_ms": 4.18
+        "latency_ms": 2.11
       },
       {
         "id": "f13",
@@ -1562,7 +1562,7 @@
           "Lakehouse : lac et entrepôt de données"
         ],
         "citations": 1,
-        "latency_ms": 3.26
+        "latency_ms": 1.81
       },
       {
         "id": "f14",
@@ -1579,7 +1579,7 @@
           "Architecture médaillon : bronze, silver, gold"
         ],
         "citations": 2,
-        "latency_ms": 3.24
+        "latency_ms": 1.92
       },
       {
         "id": "f15",
@@ -1596,7 +1596,7 @@
           "Auto Loader : ingestion incrémentale"
         ],
         "citations": 1,
-        "latency_ms": 3.23
+        "latency_ms": 1.86
       },
       {
         "id": "f16",
@@ -1613,7 +1613,7 @@
           "Structured Streaming et checkpoints"
         ],
         "citations": 1,
-        "latency_ms": 2.93
+        "latency_ms": 1.78
       },
       {
         "id": "f17",
@@ -1630,7 +1630,7 @@
           "Azure Databricks et identité Entra"
         ],
         "citations": 1,
-        "latency_ms": 3.34
+        "latency_ms": 2.05
       },
       {
         "id": "f18",
@@ -1647,7 +1647,7 @@
           "Azure : identifiants de stockage et emplacements"
         ],
         "citations": 1,
-        "latency_ms": 3.28
+        "latency_ms": 2.12
       },
       {
         "id": "f19",
@@ -1664,7 +1664,7 @@
           "Azure Databricks : isolation réseau"
         ],
         "citations": 1,
-        "latency_ms": 3.12
+        "latency_ms": 2.06
       },
       {
         "id": "f20",
@@ -1681,7 +1681,7 @@
           "Sécurité : filtres de lignes et masquage"
         ],
         "citations": 1,
-        "latency_ms": 3.38
+        "latency_ms": 2.04
       },
       {
         "id": "f21",
@@ -1698,7 +1698,7 @@
           "Audit : observer les accès et opérations"
         ],
         "citations": 1,
-        "latency_ms": 2.98
+        "latency_ms": 1.79
       },
       {
         "id": "f22",
@@ -1715,7 +1715,7 @@
           "FinOps : maîtriser le coût du calcul"
         ],
         "citations": 1,
-        "latency_ms": 3.22
+        "latency_ms": 2.02
       },
       {
         "id": "f23",
@@ -1732,7 +1732,7 @@
           "Delta Sharing : partager des données"
         ],
         "citations": 2,
-        "latency_ms": 3.69
+        "latency_ms": 2.18
       },
       {
         "id": "f24",
@@ -1749,7 +1749,7 @@
           "Qualité des données et contrats"
         ],
         "citations": 1,
-        "latency_ms": 4.38
+        "latency_ms": 2.19
       },
       {
         "id": "m01",
@@ -1767,7 +1767,7 @@
           "VACUUM et rétention des fichiers"
         ],
         "citations": 2,
-        "latency_ms": 4.78
+        "latency_ms": 2.21
       },
       {
         "id": "m02",
@@ -1785,7 +1785,7 @@
           "Unity Catalog : privilèges et accès"
         ],
         "citations": 3,
-        "latency_ms": 5.43
+        "latency_ms": 2.19
       },
       {
         "id": "m03",
@@ -1803,7 +1803,7 @@
           "Qualité des données et contrats"
         ],
         "citations": 2,
-        "latency_ms": 4.02
+        "latency_ms": 2.13
       },
       {
         "id": "m04",
@@ -1820,7 +1820,7 @@
           "Schema enforcement et évolution"
         ],
         "citations": 1,
-        "latency_ms": 3.46
+        "latency_ms": 2.2
       },
       {
         "id": "m05",
@@ -1838,7 +1838,7 @@
           "Lineage : traçabilité des données"
         ],
         "citations": 1,
-        "latency_ms": 3.58
+        "latency_ms": 2.16
       },
       {
         "id": "m06",
@@ -1856,7 +1856,7 @@
           "MERGE : insertions et mises à jour"
         ],
         "citations": 1,
-        "latency_ms": 3.29
+        "latency_ms": 2.0
       },
       {
         "id": "n01",
@@ -1871,7 +1871,7 @@
         ],
         "relevant": [],
         "citations": 0,
-        "latency_ms": 2.77
+        "latency_ms": 1.7
       },
       {
         "id": "n02",
@@ -1884,7 +1884,7 @@
         ],
         "relevant": [],
         "citations": 0,
-        "latency_ms": 2.67
+        "latency_ms": 1.49
       },
       {
         "id": "n03",
@@ -1896,7 +1896,7 @@
         ],
         "relevant": [],
         "citations": 0,
-        "latency_ms": 2.72
+        "latency_ms": 1.52
       },
       {
         "id": "n04",
@@ -1910,7 +1910,7 @@
         ],
         "relevant": [],
         "citations": 0,
-        "latency_ms": 2.71
+        "latency_ms": 1.53
       },
       {
         "id": "n05",
@@ -1923,7 +1923,7 @@
         ],
         "relevant": [],
         "citations": 0,
-        "latency_ms": 2.64
+        "latency_ms": 1.48
       },
       {
         "id": "n06",
@@ -1937,7 +1937,7 @@
         ],
         "relevant": [],
         "citations": 0,
-        "latency_ms": 2.7
+        "latency_ms": 1.52
       },
       {
         "id": "n07",
@@ -1947,7 +1947,7 @@
         "retrieved": [],
         "relevant": [],
         "citations": 0,
-        "latency_ms": 2.02
+        "latency_ms": 0.96
       },
       {
         "id": "n08",
@@ -1957,7 +1957,7 @@
         "retrieved": [],
         "relevant": [],
         "citations": 0,
-        "latency_ms": 1.92
+        "latency_ms": 0.94
       },
       {
         "id": "n09",
@@ -1967,7 +1967,7 @@
         "retrieved": [],
         "relevant": [],
         "citations": 0,
-        "latency_ms": 1.83
+        "latency_ms": 0.99
       },
       {
         "id": "n10",
@@ -1977,7 +1977,7 @@
         "retrieved": [],
         "relevant": [],
         "citations": 0,
-        "latency_ms": 1.68
+        "latency_ms": 0.93
       },
       {
         "id": "n11",
@@ -1987,7 +1987,7 @@
         "retrieved": [],
         "relevant": [],
         "citations": 0,
-        "latency_ms": 1.7
+        "latency_ms": 0.94
       },
       {
         "id": "n12",
@@ -2002,7 +2002,7 @@
         ],
         "relevant": [],
         "citations": 0,
-        "latency_ms": 2.99
+        "latency_ms": 1.68
       }
     ]
   },
@@ -2015,8 +2015,8 @@
       "citation_exact_support": 1.0,
       "correct_refusal_rate": 1.0,
       "answerability_accuracy": 1.0,
-      "latency_p50_ms": 3.83,
-      "latency_p95_ms": 4.38,
+      "latency_p50_ms": 2.39,
+      "latency_p95_ms": 2.76,
       "mandatory_cost_eur": 0.0,
       "cases": 42.0
     },
@@ -2036,7 +2036,7 @@
           "Unity Catalog : gouvernance unifiée"
         ],
         "citations": 3,
-        "latency_ms": 4.7
+        "latency_ms": 3.18
       },
       {
         "id": "f02",
@@ -2053,7 +2053,7 @@
           "Unity Catalog : privilèges et accès"
         ],
         "citations": 3,
-        "latency_ms": 4.28
+        "latency_ms": 2.76
       },
       {
         "id": "f03",
@@ -2070,7 +2070,7 @@
           "Lineage : traçabilité des données"
         ],
         "citations": 2,
-        "latency_ms": 4.15
+        "latency_ms": 2.49
       },
       {
         "id": "f04",
@@ -2087,7 +2087,7 @@
           "Tables managées et tables externes"
         ],
         "citations": 1,
-        "latency_ms": 4.12
+        "latency_ms": 2.45
       },
       {
         "id": "f05",
@@ -2104,7 +2104,7 @@
           "Volumes Unity Catalog"
         ],
         "citations": 2,
-        "latency_ms": 4.05
+        "latency_ms": 2.51
       },
       {
         "id": "f06",
@@ -2121,7 +2121,7 @@
           "Delta Lake : transactions ACID"
         ],
         "citations": 2,
-        "latency_ms": 3.96
+        "latency_ms": 2.51
       },
       {
         "id": "f07",
@@ -2138,7 +2138,7 @@
           "Time travel et historique Delta"
         ],
         "citations": 1,
-        "latency_ms": 3.94
+        "latency_ms": 2.88
       },
       {
         "id": "f08",
@@ -2155,7 +2155,7 @@
           "VACUUM et rétention des fichiers"
         ],
         "citations": 2,
-        "latency_ms": 4.9
+        "latency_ms": 2.52
       },
       {
         "id": "f09",
@@ -2171,7 +2171,7 @@
           "MERGE : insertions et mises à jour"
         ],
         "citations": 2,
-        "latency_ms": 3.47
+        "latency_ms": 2.12
       },
       {
         "id": "f10",
@@ -2188,7 +2188,7 @@
           "Schema enforcement et évolution"
         ],
         "citations": 1,
-        "latency_ms": 3.41
+        "latency_ms": 2.41
       },
       {
         "id": "f11",
@@ -2205,7 +2205,7 @@
           "Change Data Feed : changements Delta"
         ],
         "citations": 1,
-        "latency_ms": 3.99
+        "latency_ms": 2.48
       },
       {
         "id": "f12",
@@ -2222,7 +2222,7 @@
           "OPTIMIZE : compaction des fichiers"
         ],
         "citations": 1,
-        "latency_ms": 4.02
+        "latency_ms": 2.5
       },
       {
         "id": "f13",
@@ -2239,7 +2239,7 @@
           "Lakehouse : lac et entrepôt de données"
         ],
         "citations": 1,
-        "latency_ms": 3.38
+        "latency_ms": 2.16
       },
       {
         "id": "f14",
@@ -2256,7 +2256,7 @@
           "Architecture médaillon : bronze, silver, gold"
         ],
         "citations": 2,
-        "latency_ms": 3.58
+        "latency_ms": 2.56
       },
       {
         "id": "f15",
@@ -2273,7 +2273,7 @@
           "Auto Loader : ingestion incrémentale"
         ],
         "citations": 1,
-        "latency_ms": 3.38
+        "latency_ms": 2.19
       },
       {
         "id": "f16",
@@ -2290,7 +2290,7 @@
           "Structured Streaming et checkpoints"
         ],
         "citations": 1,
-        "latency_ms": 3.25
+        "latency_ms": 2.64
       },
       {
         "id": "f17",
@@ -2307,7 +2307,7 @@
           "Azure Databricks et identité Entra"
         ],
         "citations": 1,
-        "latency_ms": 4.13
+        "latency_ms": 2.46
       },
       {
         "id": "f18",
@@ -2324,7 +2324,7 @@
           "Azure : identifiants de stockage et emplacements"
         ],
         "citations": 1,
-        "latency_ms": 4.1
+        "latency_ms": 2.46
       },
       {
         "id": "f19",
@@ -2341,7 +2341,7 @@
           "Azure Databricks : isolation réseau"
         ],
         "citations": 1,
-        "latency_ms": 3.57
+        "latency_ms": 2.15
       },
       {
         "id": "f20",
@@ -2358,7 +2358,7 @@
           "Sécurité : filtres de lignes et masquage"
         ],
         "citations": 1,
-        "latency_ms": 3.81
+        "latency_ms": 2.26
       },
       {
         "id": "f21",
@@ -2375,7 +2375,7 @@
           "Audit : observer les accès et opérations"
         ],
         "citations": 1,
-        "latency_ms": 3.82
+        "latency_ms": 1.94
       },
       {
         "id": "f22",
@@ -2392,7 +2392,7 @@
           "FinOps : maîtriser le coût du calcul"
         ],
         "citations": 1,
-        "latency_ms": 4.25
+        "latency_ms": 2.3
       },
       {
         "id": "f23",
@@ -2409,7 +2409,7 @@
           "Delta Sharing : partager des données"
         ],
         "citations": 2,
-        "latency_ms": 4.38
+        "latency_ms": 2.78
       },
       {
         "id": "f24",
@@ -2426,7 +2426,7 @@
           "Qualité des données et contrats"
         ],
         "citations": 1,
-        "latency_ms": 4.03
+        "latency_ms": 2.54
       },
       {
         "id": "m01",
@@ -2444,7 +2444,7 @@
           "VACUUM et rétention des fichiers"
         ],
         "citations": 2,
-        "latency_ms": 4.29
+        "latency_ms": 2.54
       },
       {
         "id": "m02",
@@ -2462,7 +2462,7 @@
           "Unity Catalog : privilèges et accès"
         ],
         "citations": 3,
-        "latency_ms": 4.09
+        "latency_ms": 2.43
       },
       {
         "id": "m03",
@@ -2480,7 +2480,7 @@
           "Qualité des données et contrats"
         ],
         "citations": 2,
-        "latency_ms": 4.05
+        "latency_ms": 2.5
       },
       {
         "id": "m04",
@@ -2497,7 +2497,7 @@
           "Schema enforcement et évolution"
         ],
         "citations": 1,
-        "latency_ms": 3.84
+        "latency_ms": 2.36
       },
       {
         "id": "m05",
@@ -2515,7 +2515,7 @@
           "Lineage : traçabilité des données"
         ],
         "citations": 1,
-        "latency_ms": 4.06
+        "latency_ms": 2.46
       },
       {
         "id": "m06",
@@ -2533,7 +2533,7 @@
           "MERGE : insertions et mises à jour"
         ],
         "citations": 1,
-        "latency_ms": 5.22
+        "latency_ms": 2.37
       },
       {
         "id": "n01",
@@ -2548,7 +2548,7 @@
         ],
         "relevant": [],
         "citations": 0,
-        "latency_ms": 3.36
+        "latency_ms": 1.84
       },
       {
         "id": "n02",
@@ -2561,7 +2561,7 @@
         ],
         "relevant": [],
         "citations": 0,
-        "latency_ms": 2.77
+        "latency_ms": 1.6
       },
       {
         "id": "n03",
@@ -2573,7 +2573,7 @@
         ],
         "relevant": [],
         "citations": 0,
-        "latency_ms": 2.71
+        "latency_ms": 1.5
       },
       {
         "id": "n04",
@@ -2587,7 +2587,7 @@
         ],
         "relevant": [],
         "citations": 0,
-        "latency_ms": 3.65
+        "latency_ms": 1.63
       },
       {
         "id": "n05",
@@ -2600,7 +2600,7 @@
         ],
         "relevant": [],
         "citations": 0,
-        "latency_ms": 3.11
+        "latency_ms": 1.58
       },
       {
         "id": "n06",
@@ -2614,7 +2614,7 @@
         ],
         "relevant": [],
         "citations": 0,
-        "latency_ms": 3.0
+        "latency_ms": 1.73
       },
       {
         "id": "n07",
@@ -2624,7 +2624,7 @@
         "retrieved": [],
         "relevant": [],
         "citations": 0,
-        "latency_ms": 1.83
+        "latency_ms": 1.01
       },
       {
         "id": "n08",
@@ -2634,7 +2634,7 @@
         "retrieved": [],
         "relevant": [],
         "citations": 0,
-        "latency_ms": 1.69
+        "latency_ms": 0.96
       },
       {
         "id": "n09",
@@ -2644,7 +2644,7 @@
         "retrieved": [],
         "relevant": [],
         "citations": 0,
-        "latency_ms": 2.37
+        "latency_ms": 0.93
       },
       {
         "id": "n10",
@@ -2654,7 +2654,7 @@
         "retrieved": [],
         "relevant": [],
         "citations": 0,
-        "latency_ms": 1.75
+        "latency_ms": 0.92
       },
       {
         "id": "n11",
@@ -2664,7 +2664,7 @@
         "retrieved": [],
         "relevant": [],
         "citations": 0,
-        "latency_ms": 2.0
+        "latency_ms": 0.96
       },
       {
         "id": "n12",
@@ -2679,7 +2679,7 @@
         ],
         "relevant": [],
         "citations": 0,
-        "latency_ms": 3.28
+        "latency_ms": 1.82
       }
     ]
   }

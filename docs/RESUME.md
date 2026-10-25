@@ -74,3 +74,18 @@ contenant effectivement le domaine est nécessaire si le runtime ne se met pas �
 
 L'inférence ONNX et l'évaluation sémantique réelle ne sont donc pas encore exécutées.
 Aucun index distant n'est créé ; la génération distante reste désactivée. Coût obligatoire 0 €.
+
+
+## Baseline désormais revérifié de bout en bout
+
+Lire `evidence/integration-current.json` et la dernière section de STATUS.md : 54 tests Python,
+12 parcours navigateur, assets publics identiques au build testé, Docker non-root sans réseau
+et 42 cas × 4 stratégies réévalués. Le lanceur reproductible est `scripts/verify_web.py`.
+Les audits et scans sont conservés dans evidence. La CI privée reste fermée pour préserver 0 €.
+
+Le runtime observé à la révision 11 reste sans `us.aws.cdn.hf.co`. Une nouvelle tâche doit
+être attachée à la configuration publiée contenant ce domaine si cette conversation conserve
+son ancienne version. Ne pas redemander les secrets ni une réapplication identique.
+Continuer ensuite par téléchargement des poids à révision fixée, inférence CPU, rechunking
+et évaluation sémantique locale. La revue Databricks reste volontairement différée par le
+propriétaire ; ne pas l'approuver artificiellement pour débloquer l'ingestion.

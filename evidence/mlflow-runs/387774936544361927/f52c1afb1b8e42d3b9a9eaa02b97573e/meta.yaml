@@ -1,0 +1,14 @@
+artifact_uri: file:///workspace/lakehouse-rag-lab/work/mlruns/387774936544361927/f52c1afb1b8e42d3b9a9eaa02b97573e/artifacts
+end_time: 1792957898619
+entry_point_name: ''
+experiment_id: '387774936544361927'
+lifecycle_stage: active
+run_id: f52c1afb1b8e42d3b9a9eaa02b97573e
+run_name: dense
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1792957898614
+status: 3
+tags: []
+user_id: agent

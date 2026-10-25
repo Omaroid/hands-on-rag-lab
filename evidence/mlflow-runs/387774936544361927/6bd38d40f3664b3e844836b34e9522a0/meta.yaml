@@ -1,0 +1,14 @@
+artifact_uri: file:///workspace/lakehouse-rag-lab/work/mlruns/387774936544361927/6bd38d40f3664b3e844836b34e9522a0/artifacts
+end_time: 1792957898965
+entry_point_name: ''
+experiment_id: '387774936544361927'
+lifecycle_stage: active
+run_id: 6bd38d40f3664b3e844836b34e9522a0
+run_name: hybrid_rerank
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1792957898958
+status: 3
+tags: []
+user_id: agent

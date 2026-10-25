@@ -5,77 +5,77 @@
   "delay_seconds": 2,
   "sources": [
     {
-      "url": "https://docs.databricks.com/en/data-governance/unity-catalog/index.html",
+      "url": "https://docs.databricks.com/aws/en/data-governance/unity-catalog",
       "product": "Unity Catalog",
       "title": "Unity Catalog : gouvernance unifiée"
     },
     {
-      "url": "https://docs.databricks.com/en/data-governance/unity-catalog/manage-privileges/index.html",
+      "url": "https://docs.databricks.com/aws/en/data-governance/unity-catalog/manage-privileges",
       "product": "Unity Catalog",
       "title": "Unity Catalog : privilèges et accès"
     },
     {
-      "url": "https://docs.databricks.com/en/data-governance/unity-catalog/data-lineage.html",
+      "url": "https://docs.databricks.com/aws/en/data-governance/unity-catalog/data-lineage",
       "product": "Unity Catalog",
       "title": "Lineage : traçabilité des données"
     },
     {
-      "url": "https://docs.databricks.com/en/tables/managed.html",
+      "url": "https://docs.databricks.com/aws/en/tables/managed",
       "product": "Unity Catalog",
       "title": "Tables managées et tables externes"
     },
     {
-      "url": "https://docs.databricks.com/en/volumes/index.html",
+      "url": "https://docs.databricks.com/aws/en/volumes",
       "product": "Unity Catalog",
       "title": "Volumes Unity Catalog"
     },
     {
-      "url": "https://docs.delta.io/latest/introduction.html",
+      "url": "https://docs.delta.io/",
       "product": "Delta Lake",
       "title": "Delta Lake : transactions ACID"
     },
     {
-      "url": "https://docs.delta.io/latest/delta-batch.html",
+      "url": "https://docs.delta.io/delta-batch/",
       "product": "Delta Lake",
       "title": "Schema enforcement et évolution"
     },
     {
-      "url": "https://docs.delta.io/latest/delta-utility.html",
+      "url": "https://docs.delta.io/delta-utility/",
       "product": "Delta Lake",
       "title": "VACUUM et rétention des fichiers"
     },
     {
-      "url": "https://docs.delta.io/latest/delta-update.html",
+      "url": "https://docs.delta.io/delta-update/",
       "product": "Delta Lake",
       "title": "MERGE : insertions et mises à jour"
     },
     {
-      "url": "https://docs.delta.io/latest/delta-change-data-feed.html",
+      "url": "https://docs.delta.io/delta-change-data-feed/",
       "product": "Delta Lake",
       "title": "Change Data Feed : changements Delta"
     },
     {
-      "url": "https://docs.delta.io/latest/optimizations-oss.html",
+      "url": "https://docs.delta.io/optimizations-oss/",
       "product": "Delta Lake",
       "title": "OPTIMIZE : compaction des fichiers"
     },
     {
-      "url": "https://docs.databricks.com/en/lakehouse/index.html",
+      "url": "https://docs.databricks.com/aws/en/lakehouse",
       "product": "Databricks",
       "title": "Lakehouse : lac et entrepôt de données"
     },
     {
-      "url": "https://docs.databricks.com/en/lakehouse/medallion.html",
+      "url": "https://docs.databricks.com/aws/en/lakehouse/medallion",
       "product": "Gouvernance",
       "title": "Qualité des données et contrats"
     },
     {
-      "url": "https://docs.databricks.com/en/ingestion/cloud-object-storage/auto-loader/index.html",
+      "url": "https://docs.databricks.com/aws/en/ingestion/cloud-object-storage/auto-loader",
       "product": "Databricks",
       "title": "Auto Loader : ingestion incrémentale"
     },
     {
-      "url": "https://docs.databricks.com/en/structured-streaming/index.html",
+      "url": "https://docs.databricks.com/aws/en/structured-streaming/concepts",
       "product": "Databricks",
       "title": "Structured Streaming et checkpoints"
     },
@@ -95,22 +95,22 @@
       "title": "Azure Databricks : isolation réseau"
     },
     {
-      "url": "https://docs.databricks.com/en/data-governance/unity-catalog/filters-and-masks/index.html",
+      "url": "https://docs.databricks.com/aws/en/data-governance/unity-catalog/filters-and-masks",
       "product": "Gouvernance",
       "title": "Sécurité : filtres de lignes et masquage"
     },
     {
-      "url": "https://docs.databricks.com/en/admin/system-tables/audit-logs.html",
+      "url": "https://docs.databricks.com/aws/en/admin/system-tables/audit-logs",
       "product": "Gouvernance",
       "title": "Audit : observer les accès et opérations"
     },
     {
-      "url": "https://docs.databricks.com/en/admin/account-settings/usage.html",
+      "url": "https://docs.databricks.com/aws/en/admin/account-settings/usage",
       "product": "Gouvernance",
       "title": "FinOps : maîtriser le coût du calcul"
     },
     {
-      "url": "https://docs.databricks.com/en/delta-sharing/index.html",
+      "url": "https://docs.databricks.com/aws/en/opensharing",
       "product": "Databricks",
       "title": "Delta Sharing : partager des données"
     }

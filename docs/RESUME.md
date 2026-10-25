@@ -94,3 +94,13 @@ Les changements ont été poussés sur main ; le compagnon a été redéployé �
 build navigateur testé. Le navigateur distant du sandbox refuse la CA du proxy ; aucune
 vérification TLS n'a été désactivée. Les tests locaux réels totalisent 18 parcours réussis,
 dont 6 sur le chemin Qdrant Cloud. La synthèse actuelle est `evidence/integration-current.json`.
+
+
+## Dernier contrôle budget gratuit
+
+Voir `evidence/budget-validation.json` et la dernière section de COST.md. Compte utilisateur
+Hobby confirmé ; solde AI Gateway gratuit et auto top-up non vérifiés. Le CLI 65.2.0 annonce
+un budget minimum de 1 USD et les budgets Gateway sont souples (pas une garantie de facture
+0 €). Aucun budget fournisseur n'a été modifié. Le CLI n'a pas d'identifiants existants et
+le connecteur ne propose pas l'opération budget. Ne pas inventer un budget 0 activé, ni
+relever le plafond pour débloquer. Aucun appel génératif, achat ou changement de plan.

@@ -63,3 +63,20 @@ solde gratuit, absence d'achat antérieur modifiant l'éligibilité, auto top-up
 carte/fallback activant une facturation, budget fournisseur qui coupe réellement, compteurs
 atomiques et réserve maximale de tokens en concurrence. Tant que l'un de ces éléments est
 inconnu, rester fermé. Ne jamais promettre qu'un compteur Python local empêche une facture cloud.
+
+
+## Contrôle du budget AI Gateway — 25 octobre 2026
+
+Le plan du compte utilisateur connecté est confirmé Hobby. Cela ne prouve pas le solde ni
+l'éligibilité gratuite de l'équipe AI Gateway. Le CLI Vercel 65.2.0 a été consulté :
+`ai-gateway budgets set --help` indique un minimum de **1 USD**, donc aucun budget 0 USD
+ne peut être réglé par cette commande. Un budget Gateway mesure la consommation ; ce n'est
+pas un plafond strict d'argent facturé : la requête qui franchit la limite peut se terminer,
+et BYOK est exclu de ce compteur. Ne pas régler automatiquement 1 ou 5 USD pour satisfaire
+une contrainte de facturation strictement nulle.
+
+Aucune modification du budget fournisseur n'a été exécutée : le connecteur disponible
+n'expose pas cette opération et le CLI n'a pas d'authentification existante. Le solde gratuit,
+le solde acheté et l'état d'auto top-up du compte exact restent à vérifier. Aucune clé, achat,
+moyen de paiement ou montée de plan n'a été ajouté. La génération distante demeure désactivée.
+Preuve : `evidence/budget-validation.json`.

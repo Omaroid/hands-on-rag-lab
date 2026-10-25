@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-25",
+  "project": "lakehouse-rag-lab",
+  "project_id": "prj_bx0b78VzJb6VNA2OyyIOElDnBiEE",
+  "team_id": "team_0yx8bLSbYEsadJbCiwOd28l6",
+  "user_billing_plan_verified": "hobby",
+  "gateway_free_account_balance_verified": false,
+  "auto_topup_verified_disabled": false,
+  "cli_version": "65.2.0",
+  "budget_help_verified": true,
+  "cli_minimum_budget_usd": 1,
+  "budget_is_hard_cash_cap": false,
+  "budget_semantics": "Soft cap; the request crossing the limit may complete; BYOK is not counted",
+  "budget_mutation_executed": false,
+  "blocked_by": [
+    "Connected Vercel tools expose no AI Gateway budget write endpoint",
+    "CLI has no existing authenticated credentials",
+    "CLI cannot set a zero-dollar budget; minimum is 1 USD"
+  ],
+  "remote_generation_enabled": false,
+  "paid_generation_requests": 0,
+  "credits_purchased": false,
+  "plan_changed": false,
+  "sources": [
+    "https://vercel.com/docs/ai-gateway/observability-and-spend/budgets",
+    "https://vercel.com/docs/cli/ai-gateway",
+    "https://vercel.com/docs/ai-gateway/pricing"
+  ],
+  "required_next_step": "Inspect the exact team Gateway free-credit balance, paid balance and top-up settings through authenticated account access. Do not activate generation based only on a soft budget."
+}

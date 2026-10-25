@@ -1,0 +1,18 @@
+Browser AI components
+
+Transformers.js 4.3.1 — Hugging Face — Apache-2.0
+License: /licenses/transformers-js-APACHE-2.0.txt
+https://github.com/huggingface/transformers.js
+
+ONNX Runtime Web — Microsoft — MIT
+License: /licenses/onnxruntime-MIT.txt
+Third-party notices: /licenses/onnxruntime-third-party.txt
+https://github.com/microsoft/onnxruntime
+
+Qwen3-0.6B model — Qwen / Alibaba Cloud — Apache-2.0
+Weights are downloaded from Hugging Face on explicit activation; not hosted by this site.
+https://huggingface.co/Qwen/Qwen3-0.6B/blob/main/LICENSE
+ONNX conversion: onnx-community/Qwen3-0.6B-ONNX
+Pinned revision: 58ca03a5e7b354b480b1a82b34bde8dc7b854cc0
+
+This application configures the browser runtime and provides its own retrieval and UI code.

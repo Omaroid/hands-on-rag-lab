@@ -12,10 +12,12 @@
     "production_csp_applied": true,
     "completed": true,
     "question": "Comment Delta Lake fournit des transactions ACID ?",
-    "answer": "[1] Delta Lake fournit des transactions ACID grâce à son système d'accompagnement des transactions.",
-    "quality": "Technically generated French, but wording is imprecise and not fully supported by excerpts. Not a validated factual answer.",
+    "answer": "[1] Delta Lake fournit des transactions ACID.",
+    "quality": "Latest output is a source-supported but underinformative statement; does not explain the full mechanism. No general factual quality guarantee.",
     "scope": "One real desktop generation, not a benchmark or a physical-mobile inference validation.",
-    "cache_observation": "Browser cache write failed; model still loaded and generated. No offline guarantee."
+    "cache_observation": "Browser cache write failed; model still loaded and generated. No offline guarantee.",
+    "previous_repetition_penalty": 1.1,
+    "repetition_penalty": 1.0
   },
   "ui_tests": {
     "passed": 14,
@@ -36,5 +38,10 @@
     "gateway_requests": 0,
     "serverless_guard_changed": false
   },
-  "superseded_candidate": "Qwen2.5-0.5B-Instruct: two inadequate French outputs; not selected."
+  "superseded_candidate": "Qwen2.5-0.5B-Instruct: two inadequate French outputs; not selected.",
+  "production_ui_tests_initial_deployment": {
+    "passed": 14,
+    "failed": 0,
+    "deployment_id": "dpl_JCKNGkaAVCZUvyy7DiL7U4FKpb6p"
+  }
 }

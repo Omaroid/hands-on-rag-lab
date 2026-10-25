@@ -215,3 +215,9 @@ Le cache navigateur du sandbox a refusé les poids, sans empêcher l’inférenc
 le mode hors ligne. 14 tests d’interface passent sur desktop/mobile, y compris compatibilité,
 arrêt et échec simulé du worker ; aucun test d’inférence sur téléphone physique.
 Preuve : evidence/browser-ai-current.json. Build et détection de secrets réussis.
+
+Dernier réglage de fidélité : repetition_penalty=1.0, pour ne pas pénaliser les mots
+présents dans les sources. Nouvelle génération réelle sous CSP : « [1] Delta Lake fournit
+des transactions ACID. » Cette phrase est étayée mais peu informative ; ne pas revendiquer
+une qualité technique générale. Les 14 parcours d’interface passent aussi en production.
+Notices Transformers.js et ONNX Runtime distribuées sous frontend/public/licenses.

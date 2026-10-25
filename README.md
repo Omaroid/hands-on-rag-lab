@@ -92,17 +92,21 @@ uv run pip-audit
 npm audit --prefix frontend
 VITE_RUNTIME=browser npm run build --prefix frontend
 uv run python scripts/check_bundle.py
-# Avec le serveur local déjà démarré :
-cd frontend
-npx playwright install chromium
-npm run test:e2e
+# Vérifier les deux runtimes avec serveurs et quotas de test isolés :
+(cd frontend && npx playwright install chromium)
+uv run --group semantic python scripts/verify_web.py
+# Avec Chromium système : préfixer la commande par CHROMIUM_PATH=/usr/bin/chromium
 ```
 
 La CI versionnée répète ces contrôles, ajoute la détection de secrets et le build Docker.
 Le dépôt étant actuellement privé, son job reste désactivé pour éviter toute minute facturable ;
 il s'exécute uniquement sur un dépôt public avec runner standard.
 Les résultats exécutés ici sont conservés dans [evidence](evidence/), sans déclarer qu'une CI
-GitHub a réussi avant son exécution distante. Les tests ne consomment aucun jeton payant.
+GitHub a réussi avant son exécution distante. Les tests ne consomment aucun jeton payant. Le lanceur `scripts/verify_web.py` construit puis
+vérifie les éditions backend et navigateur, démarre ses propres serveurs locaux et utilise
+un compteur de test neuf par exécution. Il retire les accès Qdrant cloud de ses sous-processus
+et conserve les protections et quotas de l’application. Ne pas lancer ces tests sur un
+serveur de développement déjà utilisé : ses quotas peuvent légitimement être épuisés.
 
 ## Mesures
 

@@ -24,7 +24,7 @@ jobs:
       - name: Install exact uv
         run: python -m pip install uv==0.12.23
       - name: Install Python lockfile
-        run: uv sync --frozen --group evaluation
+        run: uv sync --frozen --group evaluation --group semantic
       - name: Format, lint, types, schemas
         run: |
           uv run ruff format --check backend tests scripts app.py
@@ -32,7 +32,7 @@ jobs:
           uv run mypy backend
           uv run python scripts/check_schema.py
       - name: Unit, retrieval, refusal, injection, quota and MCP tests
-        run: uv run pytest -q
+        run: uv run --group semantic pytest -q
       - name: Evaluation and local MLflow
         run: uv run --group evaluation python scripts/evaluate.py --mlflow
       - name: Audit Python
@@ -57,9 +57,7 @@ jobs:
           cd frontend
           npx playwright install --with-deps chromium
           cd ..
-          uv run uvicorn app:app --host 127.0.0.1 --port 8000 --no-access-log &
-          for attempt in $(seq 1 30); do curl -fsS http://127.0.0.1:8000/api/health && break; sleep 1; done
-          npm run test:e2e --prefix frontend
+          uv run python scripts/verify_web.py
       - name: Docker build and schema validation
         run: |
           ANONYMIZATION_SECRET=ci-placeholder-never-use-in-production docker compose config --quiet

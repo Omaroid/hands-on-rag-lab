@@ -170,4 +170,16 @@ proviennent des résultats réels ; aucune progression de pipeline simulée. Pro
 éditoriale/officielle et fonctionnement extractif conservés. Aucun backend ni garde modifié.
 Validation : build TypeScript/Vite réussi, 8 tests Playwright desktop/mobile réussis,
 contrôle axe et absence de débordement, captures du rendu inspectées. Rapports temporaires
-sous work/. Changements non publiés, non poussés.
+sous work/. Publication effectuée, voir ci-dessous.
+
+
+## Publication de l’interface guidée
+
+Tous les changements ont été poussés sur main. Interface déployée en production depuis
+`57a7b02bc1973c1ad891bbfdb28c12890f675955`, déploiement
+`dpl_22BfV94vw6QEReEHigbDi6AA6cLt`, READY, domaine
+https://lakehouse-rag-lab.vercel.app. HTTP 200 ; JS et CSS identiques au build testé.
+Les 8 tests Playwright passent aussi sur le domaine public, desktop et mobile,
+avec parcours guidé, citations, refus, filtres, comparaison, architecture, axe et débordement.
+Aucune génération distante ni modification de la garde serverless. Les blocages Gateway
+restent ceux documentés ci-dessus. Preuve : evidence/publication-current.json.

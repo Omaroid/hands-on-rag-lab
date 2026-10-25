@@ -1,0 +1,5 @@
+{
+  "docs.databricks.com": {"status": "pending", "reason": "robots.txt and terms require network access and review"},
+  "learn.microsoft.com": {"status": "pending", "terms_url": "https://learn.microsoft.com/en-us/legal/termsofuse", "reason": "robots inspected through web connector; page-specific content license and redistribution scope remain to verify"},
+  "docs.delta.io": {"status": "pending", "reason": "robots.txt and terms require network access and review"}
+}

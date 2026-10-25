@@ -11,11 +11,16 @@ from lakehouse.models import Mode, Question
 from lakehouse.retrieval import Store, load_chunks
 
 
-def evaluate(mode: Mode, k: int = 4) -> tuple[dict[str, float], list[dict[str, object]]]:
-    corpus_path = Path("corpus/official.json")
-    engine = Engine(
-        Store(load_chunks(corpus_path if corpus_path.exists() else Path("corpus/editorial.json")))
-    )
+def evaluate(
+    mode: Mode, k: int = 4, *, engine: Engine | None = None
+) -> tuple[dict[str, float], list[dict[str, object]]]:
+    if engine is None:
+        corpus_path = Path("corpus/official.json")
+        engine = Engine(
+            Store(
+                load_chunks(corpus_path if corpus_path.exists() else Path("corpus/editorial.json"))
+            )
+        )
     cases = json.loads(Path("config/evaluation.json").read_text())
     recalls, precisions, reciprocal, found = [], [], [], []
     rows = []

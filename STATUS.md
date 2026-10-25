@@ -112,3 +112,43 @@ Preuves : `evidence/integration-current.json`, rapports Playwright, `evidence/ev
 et `evidence/mlflow-current.json`. L'ajout réseau demandé pour les poids n'est toujours pas
 observé à la révision 11. Le corpus officiel, l'inférence et le backend cloud complet ne sont
 pas validés. Coût obligatoire conservé à 0 €.
+
+
+## Reprise du 25 octobre — inférence multilingue CPU exécutée
+
+- Départ : `main`, commit `80fd9f1`. Dépendances installées avec `uv sync --locked --group semantic`.
+- Les cinq fichiers Qdrant ONNX à la révision `faf4aa4225822f3bc6376869cb1164e8e3feedd0`
+  ont été téléchargés via le proxy autorisé, y compris `us.aws.cdn.hf.co`.
+  Tailles et SHA-256 sont dans `evidence/semantic-integration.json` ; les poids restent dans
+  `work/`, hors Git. Le vérificateur refuse des fichiers dont les sommes diffèrent.
+- Inférence réelle ONNX CPU : 384 dimensions finies ; proximité FR/EN supérieure au témoin
+  hors sujet. Dépassement de 128 tokens effectivement refusé.
+- Rechunking du corpus éditorial : 24 passages ; chaque titre et texte tient dans 128 tokens.
+  Ce corpus reste éditorial, sans ingestion ni indexation cloud.
+- Intégration réelle locale du modèle, Qdrant en mémoire et des neuf nœuds LangGraph :
+  42 cas × 4 stratégies exécutés. Hybride : Recall@4 = 0,9833, MRR = 0,9778 ;
+  citations exactes = 1,0 et refus attendus = 1,0. Jeu synthétique proche du corpus,
+  sans démonstration de généralisation à des données tenues à part.
+- Ruff et mypy passent ; 50 tests Python passent, 4 tests HTTP désélectionnés après blocage
+  de TestClient dans ce sandbox (attente du portail AnyIO). Les 54 tests ne sont donc pas
+  déclarés repassés sur cette reprise. Aucun nouveau résultat navigateur ou Docker.
+- La tentative du diagnostic Qdrant read-only a été empêchée avant exécution : revue
+  automatique d'approbation indisponible pour limite d'usage. Aucun nouveau statut Qdrant
+  ne peut être déduit. Aucun secret consulté, aucune mutation distante, aucun achat.
+- Génération distante et API serverless restent fermées. Revue Databricks toujours différée.
+  Coût obligatoire conservé à 0 €.
+
+Commande reproductible locale (ne contacte pas Qdrant Cloud) :
+
+```bash
+.venv/bin/python scripts/verify_semantic.py \
+  --model-dir work/models/multilingual-minilm \
+  --output work/semantic-integration.json
+```
+
+Ajouter `--http` seulement dans un environnement où TestClient/AnyIO fonctionne pour vérifier
+réponse citée, NDJSON, refus des injections/origines et maintien de la fermeture serverless.
+Cette option est implémentée, mais son exécution actuelle n'a pas abouti.
+Prochaine étape : rétablir la capacité d'exécution approuvée pour les contrôles HTTP/cloud,
+relancer le diagnostic Qdrant, puis poursuivre uniquement les sources dont les droits sont
+validés. Aucun contournement des gardes, aucun appel facturable pour débloquer l'intégration.

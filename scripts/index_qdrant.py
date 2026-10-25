@@ -27,12 +27,20 @@ def main() -> None:
     collection = os.getenv("QDRANT_COLLECTION", "lakehouse_rag_lab_v1")
     if not collection.startswith("lakehouse_"):
         raise ValueError("Only dedicated lakehouse_ collections may be modified")
+    if collection.startswith("lakehouse_docs_multilingual_"):
+        if os.getenv("EMBEDDING_BACKEND") != "multilingual-minilm":
+            raise ValueError("Semantic collections require EMBEDDING_BACKEND=multilingual-minilm")
     chunks = load_chunks(args.corpus)
+    if collection.startswith("lakehouse_docs_multilingual_") and (
+        not chunks or any(chunk.provenance != "official" for chunk in chunks)
+    ):
+        raise ValueError("Semantic collections require a nonempty reviewed official corpus")
+    embedder = configured_embedder()
     client = QdrantClient(url=url, api_key=os.getenv("QDRANT_WRITE_API_KEY"), timeout=10)
     store = Store(
         chunks,
         client=client,
-        embedder=configured_embedder(),
+        embedder=embedder,
         collection=collection,
         initialize=False,
     )

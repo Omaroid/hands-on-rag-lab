@@ -104,3 +104,21 @@ un budget minimum de 1 USD et les budgets Gateway sont souples (pas une garantie
 0 €). Aucun budget fournisseur n'a été modifié. Le CLI n'a pas d'identifiants existants et
 le connecteur ne propose pas l'opération budget. Ne pas inventer un budget 0 activé, ni
 relever le plafond pour débloquer. Aucun appel génératif, achat ou changement de plan.
+
+
+## Reprise suivante — diagnostic de crédits prêt, secret non injecté
+
+Le propriétaire demande de conserver le budget existant de 5 USD, sans le reconfigurer.
+Il indique avoir enregistré la nouvelle clé dans les secrets de cette tâche. Le runtime
+observé à la révision 11 est toutefois toujours lié à la configuration publiée
+`057bbfbd-5978-40d3-b706-70276f47f466~cecfgver_6ade6e3982ec819e8215c67d00a946d8`,
+qui ne lie que les deux secrets Qdrant ; `AI_GATEWAY_API_KEY` est absent du processus.
+Le projet Vercel dédié ne contient aucune variable non plus. Ne pas rechercher la valeur
+dans les fichiers ou réutiliser la clé précédemment publiée en chat.
+
+`python -m lakehouse.gateway_setup --connect` est maintenant prêt : GET borné du solde,
+aucun appel génératif, aucune modification de budget, aucun achat. La lecture du solde ne
+prouve pas la gratuité des crédits ni l'état de l'auto top-up. Quinze tests couvrent la clé
+manquante, les erreurs, les redirections, les montants invalides et l'absence de fuite.
+Voir `evidence/gateway-readiness-current.json` et la fin de docs/CLOUD_SETUP.md pour le
+raccordement du nouveau secret dans une nouvelle version de configuration.

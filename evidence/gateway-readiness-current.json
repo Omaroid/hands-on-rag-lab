@@ -1,0 +1,17 @@
+{
+  "status": "configuration_missing",
+  "missing": [
+    "AI_GATEWAY_API_KEY"
+  ],
+  "network_contacted": false,
+  "budget_modified": false,
+  "generation_requests": 0,
+  "credits_purchased": false,
+  "free_credit_eligibility_verified": false,
+  "auto_topup_disabled_verified": false,
+  "zero_cash_spend_guarantee_verified": false,
+  "budget_usd_operator_reported": 5,
+  "budget_verified_by_api": false,
+  "runtime_binding_observation": "Revision 11 still attaches QDRANT_API_KEY and QDRANT_WRITE_API_KEY only",
+  "user_reports_secret_saved": true
+}

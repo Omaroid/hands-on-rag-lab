@@ -110,3 +110,29 @@ sur 6333 n'est pas établie ; 443 est une correction vérifiée dans cet environ
 Les robots.txt Databricks, Microsoft Learn et Delta ainsi que le catalogue public
 `https://ai-gateway.vercel.sh/v1/models` répondent HTTP 200. La revue des conditions/licences,
 l'éligibilité gratuite du compte, les embeddings et les quotas durables restent à terminer.
+
+
+## Secret AI Gateway et diagnostic de crédit en lecture seule
+
+Conserver le budget de 5 USD indiqué par le propriétaire ; ce diagnostic ne le modifie pas.
+Créer une clé dans AI Gateway ou un secret dans un coffre ne suffit pas à le transmettre au
+runtime. Dans la configuration de cette tâche, attacher le secret à la variable
+`AI_GATEWAY_API_KEY`, avec `ai-gateway.vercel.sh` comme domaine autorisé pour cette clé.
+Publier cette nouvelle version de configuration et l'attacher à la tâche. Ne jamais afficher
+la valeur, la mettre dans Git, le frontend ou le chat. Si le runtime reste lié à une ancienne
+version malgré une nouvelle publication, reprendre avec cette nouvelle version plutôt que
+réappliquer à répétition une configuration identique.
+
+```bash
+# Sans requête réseau :
+.venv/bin/python -m lakehouse.gateway_setup
+# Une seule lecture HTTPS bornée du solde, sans génération ni achat :
+.venv/bin/python -m lakehouse.gateway_setup --connect
+```
+
+`configuration_missing` signifie que la variable n'est pas injectée ; le diagnostic ne fait
+alors aucune requête. `balance_verified` prouve seulement que la lecture authentifiée du
+solde fonctionne. Il ne démontre ni la provenance gratuite du crédit, ni l'absence de recharge
+automatique, ni la garantie d'une facture à 0 €. Les corps d'erreur et exceptions ne sont pas
+imprimés ; seules les valeurs numériques documentées du solde/usage sont rendues.
+Les redirections sont refusées pour ne pas transmettre la clé à un autre hôte.

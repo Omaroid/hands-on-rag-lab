@@ -31,3 +31,16 @@ def test_semantic_collection_rejects_editorial_corpus_before_loading_model(monke
     assert Path("corpus/editorial.json").exists()
     with pytest.raises(ValueError, match="official"):
         index_qdrant.main()
+
+
+def test_cloud_store_rejects_hash_queries_against_semantic_collection(monkeypatch):
+    from lakehouse import retrieval
+
+    monkeypatch.setenv("QDRANT_URL", "https://dedicated.eu.aws.cloud.qdrant.io:443")
+    monkeypatch.setenv("QDRANT_COLLECTION", "lakehouse_docs_multilingual_v1")
+    monkeypatch.setenv("EMBEDDING_BACKEND", "local-hash")
+    clients = []
+    monkeypatch.setattr(retrieval, "QdrantClient", lambda **kwargs: clients.append(kwargs))
+    with pytest.raises(ValueError, match="matching multilingual"):
+        retrieval.build_store([])
+    assert not clients

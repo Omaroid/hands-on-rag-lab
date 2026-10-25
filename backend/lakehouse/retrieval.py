@@ -170,18 +170,24 @@ def load_chunks(path: Path) -> list[Chunk]:
 
 
 def build_store(chunks: list[Chunk]) -> Store:
-    from lakehouse.embeddings import configured_embedder
+    from lakehouse.embeddings import MULTILINGUAL_MODEL, configured_embedder
 
     embedder = configured_embedder()
     url = os.getenv("QDRANT_URL")
     if url:
+        collection = os.environ["QDRANT_COLLECTION"]
+        if (
+            collection.startswith("lakehouse_docs_multilingual_")
+            and embedder.name != MULTILINGUAL_MODEL
+        ):
+            raise ValueError("Semantic collections require the matching multilingual embedder")
         # No startup writes to remote collection; use a read-only cloud API key.
         client = QdrantClient(url=url, api_key=os.getenv("QDRANT_API_KEY"), timeout=5)
         return Store(
             chunks,
             embedder=embedder,
             client=client,
-            collection=os.environ["QDRANT_COLLECTION"],
+            collection=collection,
             initialize=False,
         )
     return Store(chunks, embedder=embedder)

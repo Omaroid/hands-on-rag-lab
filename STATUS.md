@@ -64,3 +64,28 @@ reste non vérifiée ; voir evidence/cloud-readiness.json.
 Action opérateur : définir `QDRANT_URL` avec `:443` dans la configuration cloud et l'appliquer.
 Ne pas changer les clés sur la seule base du refus sur 6333. Les gardes d'ingestion et
 serverless restent actives tant que les validations du projet cible ne sont pas terminées.
+
+
+## Avancement après correction du port 443
+
+- Configuration opérateur appliquée et diagnostic officiel relancé sans override :
+  `collection_missing`, aucune écriture.
+- Liste de 22 sources mise à jour : 19 URLs redirigeaient ; l'introduction Delta était
+  introuvable et pointe maintenant vers l'accueil documentaire vérifié. Destinations
+  contrôlées HTTP 200, preuve dans `evidence/source-url-review.json`.
+- FastEmbed 0.9.1 installé en local. Métadonnées amont vérifiées : MiniLM multilingue,
+  Apache-2.0, 384 dimensions, limite Sentence Transformers 128 tokens.
+- Contrôle du tokenizer corrigé : comptage exact, tokens spéciaux inclus, sans troncature
+  ni inférence pour un lot trop long. Trois tests de régression passent.
+- CLI d'indexation protégée : la collection `lakehouse_docs_multilingual_*` refuse le hash
+  et le corpus éditorial avant d'ouvrir un client distant. Deux tests ciblés passent.
+- Poids et inférence non validés : le téléchargement du tokenizer redirige vers
+  `us.aws.cdn.hf.co`, refusé par le proxy. Pas de modèle actif ni d'index créé.
+- Revues des sources toujours pending, avec motifs actualisés dans la configuration.
+  `www.databricks.com` est nécessaire pour lire les conditions liées depuis les pages.
+- Catalogue AI Gateway disponible, mais éligibilité du compte et coupure à 0 € non
+  vérifiées. Génération distante et API serverless restent fermées.
+
+Les prochains travaux sont le test réel des poids/tokenizer, un chunking tenant compte du
+titre et du budget de 128 tokens, l'évaluation FR/EN, puis une ingestion dont les droits sont
+établis. Les 650 tokens estimés du baseline ne conviennent pas à ce petit modèle.

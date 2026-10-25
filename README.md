@@ -140,7 +140,8 @@ et le LLM distant sont des étapes distinctes, pas des fonctionnalités simulée
 ## Limites et roadmap
 
 1. Finaliser la revue des conditions et robots, puis ingérer 20–50 pages officielles.
-2. Provisionner un index Qdrant Cloud Free isolé avec clé de lecture limitée à la collection.
+2. Raccorder le cluster Qdrant Cloud Free dédié fourni par le propriétaire ; suivre
+   [le guide de configuration](docs/CLOUD_SETUP.md), puis créer un index isolé avec clé read-only.
 3. Évaluer de vrais embeddings multilingues, le chunking associé et un reranker éventuel.
 4. Vérifier le catalogue AI Gateway, l'éligibilité gratuite du compte, le non-rechargement et
    la coupure fournisseur avant d'implémenter un fournisseur distant.

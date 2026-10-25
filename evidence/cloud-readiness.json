@@ -1,0 +1,21 @@
+{
+  "status": "configuration_missing",
+  "missing": [
+    "QDRANT_URL",
+    "QDRANT_API_KEY"
+  ],
+  "read_key_present": false,
+  "indexing_key_present": false,
+  "free_plan_operator_confirmed": false,
+  "billing_verified_by_api": false,
+  "network_contacted": false,
+  "mutations": false,
+  "tests": {
+    "total_python_passed": 45,
+    "new_cloud_setup_tests_passed": 11,
+    "mypy_modules": 14,
+    "ruff": "passed"
+  },
+  "operator_declared_free_dedicated_cluster": true,
+  "cloud_connection_verified": false
+}

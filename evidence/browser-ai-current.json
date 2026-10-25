@@ -1,0 +1,40 @@
+{
+  "checked_at": "2026-10-25T23:03:57.013679+00:00",
+  "runtime": "browser WASM, single thread, dedicated worker",
+  "model": "onnx-community/Qwen3-0.6B-ONNX",
+  "revision": "58ca03a5e7b354b480b1a82b34bde8dc7b854cc0",
+  "dtype": "q4",
+  "weights_bytes": 919096585,
+  "transformers_js": "4.3.1",
+  "generation_test": {
+    "real_weights_downloaded": true,
+    "browser": "Chromium /usr/bin/chromium",
+    "production_csp_applied": true,
+    "completed": true,
+    "question": "Comment Delta Lake fournit des transactions ACID ?",
+    "answer": "[1] Delta Lake fournit des transactions ACID grâce à son système d'accompagnement des transactions.",
+    "quality": "Technically generated French, but wording is imprecise and not fully supported by excerpts. Not a validated factual answer.",
+    "scope": "One real desktop generation, not a benchmark or a physical-mobile inference validation.",
+    "cache_observation": "Browser cache write failed; model still loaded and generated. No offline guarantee."
+  },
+  "ui_tests": {
+    "passed": 14,
+    "failed": 0,
+    "projects": [
+      "desktop",
+      "mobile"
+    ],
+    "worker_error_test": "simulated worker failure, distinct from real-generation test"
+  },
+  "controls": {
+    "download_opt_in": true,
+    "stop_terminates_worker": true,
+    "load_timeout_minutes": 10,
+    "generation_timeout_minutes": 3,
+    "max_new_tokens": 160,
+    "source_char_limit_each": 1600,
+    "gateway_requests": 0,
+    "serverless_guard_changed": false
+  },
+  "superseded_candidate": "Qwen2.5-0.5B-Instruct: two inadequate French outputs; not selected."
+}

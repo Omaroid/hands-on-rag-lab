@@ -10,9 +10,9 @@
   "zero_cash_spend_guarantee_verified": false,
   "budget_usd_operator_reported": 5,
   "budget_verified_by_api": false,
-  "runtime_binding_observation": "Attached spec revision 2 includes both secrets, observed revision 2; observations_current true but secret and network states unknown. API probes below are actual observed results.",
+  "runtime_binding_observation": "Attached and observed spec revision 5; observations_current true; both Gateway and Vercel secrets ready, network enforced. Actual authenticated requests still return Vercel user 404, teams 403 and Gateway credits 200 with zero balance.",
   "user_reports_secret_saved": true,
-  "checked_at": "2026-10-25T22:32:43.878889+00:00",
+  "checked_at": "2026-10-25T22:49:49.444443+00:00",
   "budget_requested_usd": 5,
   "budget_existing_inspected": false,
   "budget_readback_completed": false,
@@ -64,5 +64,11 @@
     "Free credits eligibility and auto top-up setting unverified. Zero balance does not establish either.",
     "Durable atomic free quota backend missing."
   ],
-  "local_changes_on_arrival": "No tracked or untracked changes; checkout initially unborn work, main fetched from origin at f4701e6. Prior reported local edits were not present."
+  "local_changes_on_arrival": "No tracked or untracked changes; checkout initially unborn work, main fetched from origin at f4701e6. Prior reported local edits were not present.",
+  "runtime_observed_revision": "5",
+  "runtime_secret_states": {
+    "VERCEL_TOKEN": "ready",
+    "AI_GATEWAY_API_KEY": "ready"
+  },
+  "runtime_network_state": "enforced"
 }

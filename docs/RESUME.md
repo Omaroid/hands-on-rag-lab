@@ -183,3 +183,35 @@ Les 8 tests Playwright passent aussi sur le domaine public, desktop et mobile,
 avec parcours guidé, citations, refus, filtres, comparaison, architecture, axe et débordement.
 Aucune génération distante ni modification de la garde serverless. Les blocages Gateway
 restent ceux documentés ci-dessus. Preuve : evidence/publication-current.json.
+
+
+## Demande d’activation IA — nouveau contrôle
+
+La configuration attachée est maintenant observée à la révision 5 : secrets Gateway et
+Vercel ready, politique réseau enforced. Cela ne résout pas l’autorisation effective :
+GET /v2/user renvoie toujours 404 User not found, /v2/teams 403 ; GET Gateway /v1/credits
+renvoie 200, balance 0 et total_used 0. Aucune génération lancée, garde serverless fermée.
+Le site publié reste extractif. Choix demandé entre poursuivre Gateway sous les contraintes
+existantes et intégrer un modèle exécuté sur l’appareil du visiteur ; cette seconde voie
+nécessite de vérifier téléchargement, licence, mémoire, compatibilité et qualité FR.
+
+
+## IA exécutée dans le navigateur
+
+Le propriétaire a choisi une génération sur l’appareil du visiteur. Intégration Qwen3 0,6B
+ONNX q4, révision épinglée, Transformers.js 4.3.1, WASM dans un worker à un thread.
+Activation explicite après annonce d’environ 950 Mo, progression, arrêt/déchargement,
+timeouts, contexte borné et 160 nouveaux tokens. Aucun Gateway, clé frontend ou backend
+serverless activé. La recherche extractive reste indépendante et disponible en cas d’échec.
+Les réponses générées sont distinctes des passages sources, sans garantie d’exactitude.
+Le candidat précédent Qwen2.5 0,5B a été écarté après deux réponses françaises inadéquates.
+Voir docs/BROWSER_AI.md pour l’utilisation, la provenance, la licence et les limites.
+
+Validation IA locale : poids réels chargés, génération Qwen3 terminée en français dans
+Chromium sous la CSP de production. La phrase produite reste imprécise (« système
+d’accompagnement des transactions »), ce n’est pas une réponse factuellement validée.
+Le modèle compact n’a pas de garantie de qualité ; références et avertissement sont visibles.
+Le cache navigateur du sandbox a refusé les poids, sans empêcher l’inférence : ne pas promettre
+le mode hors ligne. 14 tests d’interface passent sur desktop/mobile, y compris compatibilité,
+arrêt et échec simulé du worker ; aucun test d’inférence sur téléphone physique.
+Preuve : evidence/browser-ai-current.json. Build et détection de secrets réussis.

@@ -54,3 +54,35 @@ test('guided journey explains actual results and next search settings',async({pa
  await page.getByRole('button',{name:'Rechercher une réponse'}).click();
  await expect(page.locator('#journey-detail')).toContainText('aucune réponse n’est inventée');
 });
+test('local AI downloads only after consent and can be stopped',async({page})=>{
+ const downloads:string[]=[];
+ await page.route('https://huggingface.co/**',async route=>{downloads.push(route.request().url());await new Promise(resolve=>setTimeout(resolve,3000));await route.abort();});
+ await page.goto('/');
+ await expect(page.getByRole('heading',{name:'Une IA pour relier les idées'})).toBeVisible();
+ await expect(page.locator('.ai-download')).toContainText('950 Mo');
+ expect(downloads).toHaveLength(0);
+ await page.getByRole('button',{name:'Télécharger et activer'}).click();
+ await expect(page.getByRole('button',{name:'Arrêter',exact:true})).toBeVisible();
+ await page.getByRole('button',{name:'Arrêter',exact:true}).click();
+ await expect(page.getByRole('button',{name:'Télécharger et activer'})).toBeVisible();
+ await expect(page.locator('.ai-answer')).toHaveCount(0);
+});
+test('unsupported local AI leaves source search available',async({page})=>{
+ await page.addInitScript(()=>Object.defineProperty(window,'Worker',{value:undefined}));
+ await page.goto('/');
+ await expect(page.getByRole('button',{name:'Télécharger et activer'})).toBeDisabled();
+ await expect(page.locator('.local-ai')).toContainText('ne prend pas en charge');
+ await page.getByLabel('Votre question Lakehouse').fill('Comment Delta Lake fournit des transactions ACID ?');
+ await page.getByRole('button',{name:'Rechercher une réponse'}).click();
+ await expect(page.getByRole('heading',{name:'Ce que les sources permettent de dire'})).toBeVisible();
+});
+test('local AI failure is visible and preserves source search',async({page})=>{
+ await page.route('**/assets/local-ai.worker-*.js',route=>route.fulfill({contentType:'text/javascript',body:"self.onmessage=()=>self.postMessage({type:'error'});"}));
+ await page.goto('/');
+ await page.getByRole('button',{name:'Télécharger et activer'}).click();
+ await expect(page.locator('.local-ai [role=alert]')).toContainText('chargement a échoué');
+ await expect(page.getByRole('button',{name:'Télécharger et activer'})).toBeEnabled();
+ await page.getByLabel('Votre question Lakehouse').fill('Comment Delta Lake fournit des transactions ACID ?');
+ await page.getByRole('button',{name:'Rechercher une réponse'}).click();
+ await expect(page.getByRole('heading',{name:'Ce que les sources permettent de dire'})).toBeVisible();
+});

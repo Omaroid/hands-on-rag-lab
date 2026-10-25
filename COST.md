@@ -117,3 +117,12 @@ BYOK hors compteur. Il ne garantit ni plafond strict de 5 USD ni facture 0 €.
 Aucun appel génératif, achat, recharge, ajout de paiement, changement de plan ou
 modification d'autre projet. La garde serverless reste fermée faute de compteur atomique
 durable gratuit. Preuve actuelle : `evidence/gateway-readiness-current.json`.
+
+## Génération sur l’appareil du visiteur
+
+La nouvelle intégration exécute Qwen3 0,6B dans le navigateur après consentement au
+téléchargement d’environ 950 Mo. Aucun service d’inférence, crédit Gateway ou achat n’est
+utilisé. Le calcul, la mémoire, le téléchargement et la batterie sont ceux de l’appareil ;
+le Wi-Fi est recommandé. Le runtime est servi comme asset statique du site existant.
+Cela ne lève aucun des blocages Gateway documentés plus haut et ne modifie pas sa facturation.
+La garde serverless reste fermée. Voir docs/BROWSER_AI.md pour les limites de compatibilité.

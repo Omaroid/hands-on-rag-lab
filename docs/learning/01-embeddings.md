@@ -12,3 +12,11 @@ Le petit dictionnaire FR/EN est visible et ne constitue pas un modèle multiling
 Exercice : comparer « transactions Delta Lake » et « garanties atomiques ». Observer ce que
 le hash manque, puis expliquer pourquoi un vrai modèle peut rapprocher des paraphrases.
 Ne jamais mélanger des vecteurs de deux modèles dans la même collection.
+
+Le modèle optionnel multilingue MiniLM produit 384 dimensions et est limité à 128 tokens
+selon sa configuration Sentence Transformers. Un token n'est pas un nombre fixe de caractères :
+accents, ponctuation et identifiants techniques changent le découpage. L'adaptateur charge
+le tokenizer local sans troncature et compte les tokens spéciaux avant de lancer l'inférence.
+Il rejette tout le lot si un texte dépasse la limite. Le titre préfixé par le moteur doit
+également tenir dans ce budget ; le chunking du baseline (650 tokens estimés) doit donc être
+réévalué avant indexation sémantique.

@@ -15,10 +15,15 @@ class MultilingualEmbedder:
 
     def __init__(self, model_directory: Path) -> None:
         from fastembed import TextEmbedding
+        from tokenizers import Tokenizer
 
         if not model_directory.is_dir():
             raise ValueError("Model directory missing; automatic downloads are disabled")
-        # 128-token model: require short passages instead of silent truncation.
+        # Count with the same local tokenizer, without its saved truncation/padding.
+        self.tokenizer = Tokenizer.from_file(str(model_directory / "tokenizer.json"))
+        self.tokenizer.no_truncation()
+        self.tokenizer.no_padding()
+        # The upstream sentence-transformer limit is 128, even if ONNX allows more.
         self.model = TextEmbedding(
             model_name=self.name,
             specific_model_path=str(model_directory),
@@ -28,11 +33,9 @@ class MultilingualEmbedder:
         )
 
     def embed(self, texts: list[str], *, query: bool = False) -> list[list[float]]:
-        # Explicitly reject long passages for this small multilingual model.
-        if any(len(text) > 380 for text in texts):
-            raise ValueError(
-                "This model requires <=380 character passages; rechunk before indexing"
-            )
+        # Validate the complete batch before any inference, including special tokens.
+        if any(len(self.tokenizer.encode(text).ids) > 128 for text in texts):
+            raise ValueError("This model requires <=128 tokens; rechunk before indexing")
         return [vector.tolist() for vector in self.model.embed(texts)]
 
 

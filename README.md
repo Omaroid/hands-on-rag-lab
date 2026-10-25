@@ -4,11 +4,33 @@ Un laboratoire observable consacré aux architectures Lakehouse : recherche, ins
 comparaison des stratégies et réponses extractives citées. Python/FastAPI, LangGraph, Qdrant,
 React/TypeScript, MCP, évaluations MLflow locales et Docker.
 
-> **État réel : baseline fonctionnel, cible complète encore en cours.** Le corpus livré contient
-> 24 notes pédagogiques originales et 22 références candidates, pas des pages officielles ingérées.
-> Le vecteur par défaut est un hash lexical déterministe, pas un embedding neuronal. La génération
-> est extractive, sans appel LLM. L'édition publique calcule dans le navigateur ; le moteur
-> FastAPI/LangGraph/Qdrant s'exécute localement. Voir [STATUS.md](STATUS.md) pour les écarts.
+> **État réel : recherche multilingue et corpus officiel Delta Lake intégrés.**
+> Le backend peut utiliser MiniLM ONNX sur CPU et 20 documents officiels Apache-2.0
+> (1 034 passages) dans le cluster Qdrant Free dédié. Les notes pédagogiques et le hash lexical
+> restent le baseline et le compagnon public. Les réponses sont extractives, sans appel LLM.
+> L'API publique serverless reste fermée tant que les quotas durables gratuits ne sont pas raccordés.
+> Voir [STATUS.md](STATUS.md) pour les vérifications et les limites.
+
+## Backend sémantique vérifié
+
+Depuis la racine, après installation du groupe `semantic` et préparation des fichiers du modèle
+à la révision fixée (voir [le guide embeddings](docs/learning/01-embeddings.md)) :
+
+```bash
+.venv/bin/python scripts/serve_semantic.py \
+  --corpus corpus/delta-official-semantic.json \
+  --model-dir work/models/multilingual-minilm --cloud --build
+```
+
+Ouvrir `http://localhost:8000`. La clé Qdrant de lecture reste dans l'environnement ; la clé
+d'écriture est retirée du processus de service. Sans `--cloud`, la même commande utilise
+Qdrant en mémoire local, sans contacter le cluster. Le frontend affiche le corpus et la
+provenance réellement servis. Il faut un hôte local durable pour les quotas SQLite.
+La commande vérifie les tokens et le nombre de points avant de servir.
+
+[Manifeste des 20 sources](evidence/delta-source-manifest.json),
+[licence et attribution](corpus/licenses/delta/),
+[vérification cloud FR/EN](evidence/cloud-semantic-integration.json).
 
 ## Démonstration
 

@@ -1,0 +1,3 @@
+Source: https://github.com/delta-io/delta/tree/7c660debfc3ef2dab6006fa012b15a13cd5ffc69/docs
+Modified for retrieval: frontmatter, imports and MDX wrappers removed; headings split and passages rechunked with a 128-token budget and 16-token overlap.
+No MDX or documentation code was executed.

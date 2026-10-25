@@ -9,6 +9,10 @@ from lakehouse.retrieval import Embedder, HashEmbedder
 MULTILINGUAL_MODEL = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
 
 
+class EmbeddingInputTooLong(ValueError):
+    """A valid HTTP question can still exceed this embedding model's token budget."""
+
+
 class MultilingualEmbedder:
     name = MULTILINGUAL_MODEL
     dimensions = 384
@@ -35,7 +39,7 @@ class MultilingualEmbedder:
     def embed(self, texts: list[str], *, query: bool = False) -> list[list[float]]:
         # Validate the complete batch before any inference, including special tokens.
         if any(len(self.tokenizer.encode(text).ids) > 128 for text in texts):
-            raise ValueError("This model requires <=128 tokens; rechunk before indexing")
+            raise EmbeddingInputTooLong("This model requires <=128 tokens; rechunk before indexing")
         return [vector.tolist() for vector in self.model.embed(texts)]
 
 

@@ -10,6 +10,20 @@ from lakehouse.retrieval import Store, load_chunks
 from qdrant_client import QdrantClient, models
 
 
+def ensure_product_index(client: QdrantClient, collection: str) -> None:
+    # Cloud Free strict mode refuses filtered searches without a keyword payload index.
+    schema = client.get_collection(collection).payload_schema
+    if "product" not in schema:
+        client.create_payload_index(
+            collection,
+            field_name="product",
+            field_schema=models.PayloadSchemaType.KEYWORD,
+            wait=True,
+        )
+    elif schema["product"].data_type != models.PayloadSchemaType.KEYWORD:
+        raise ValueError("Product filter requires a keyword payload index")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--corpus", type=Path, default=Path("corpus/official.json"))
@@ -51,6 +65,7 @@ def main() -> None:
                 size=store.embedder.dimensions, distance=models.Distance.COSINE
             ),
         )
+    ensure_product_index(client, collection)
     changed = store.upsert_changed(chunks)
     removed = 0
     if args.prune:

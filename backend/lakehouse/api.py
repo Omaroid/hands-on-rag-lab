@@ -14,6 +14,7 @@ from fastapi.responses import JSONResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from starlette.concurrency import run_in_threadpool
 
+from lakehouse.embeddings import EmbeddingInputTooLong
 from lakehouse.graph import Engine
 from lakehouse.models import Answer, Question
 from lakehouse.quotas import QuotaExceeded, Quotas
@@ -48,7 +49,10 @@ SECURITY_HEADERS = {
 
 @lru_cache
 def engine() -> Engine:
-    path = ROOT / "corpus" / "official.json"
+    configured = os.getenv("LAKEHOUSE_CORPUS")
+    path = Path(configured) if configured else ROOT / "corpus" / "official.json"
+    if configured and not path.is_file():
+        raise ValueError("Configured corpus is missing; refusing a silent fallback")
     return Engine(
         build_store(load_chunks(path if path.exists() else ROOT / "corpus/editorial.json"))
     )
@@ -119,15 +123,18 @@ def health() -> dict[str, Any]:
 
 @app.get("/api/sources")
 def sources() -> list[dict[str, Any]]:
+    documents = {(c.document_id, c.title): c for c in reversed(engine().store.chunks)}
     return [
         dict(
+            id=c.id,
             title=c.title,
             url=c.url,
             product=c.product,
             provenance=c.provenance,
             retrieved_at=c.retrieved_at,
+            text=c.text[:650],
         )
-        for c in engine().store.chunks
+        for c in reversed(list(documents.values()))
     ]
 
 
@@ -152,6 +159,10 @@ async def answer_cached(question: Question) -> Answer:
         )
     try:
         result = await asyncio.wait_for(run_in_threadpool(engine().answer, question), timeout=15)
+    except EmbeddingInputTooLong:
+        raise HTTPException(
+            422, "Question trop longue pour le modèle multilingue : raccourcissez-la à 128 tokens."
+        ) from None
     except TimeoutError:
         raise HTTPException(504, "Délai de recherche dépassé") from None
     CACHE[key] = result.model_copy(update={"question_normalized": ""})

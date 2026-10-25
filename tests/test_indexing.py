@@ -2,10 +2,30 @@
 
 import sys
 from pathlib import Path
+from unittest.mock import MagicMock
 
 import pytest
+from qdrant_client import models
 
 from scripts import index_qdrant
+
+
+def test_cloud_product_filter_index_is_created_idempotently():
+    client = MagicMock()
+    client.get_collection.return_value.payload_schema = {}
+    index_qdrant.ensure_product_index(client, "lakehouse_docs_multilingual_v1")
+    client.create_payload_index.assert_called_once_with(
+        "lakehouse_docs_multilingual_v1",
+        field_name="product",
+        field_schema=models.PayloadSchemaType.KEYWORD,
+        wait=True,
+    )
+    client.create_payload_index.reset_mock()
+    client.get_collection.return_value.payload_schema = {
+        "product": models.PayloadIndexInfo(data_type=models.PayloadSchemaType.KEYWORD, points=1)
+    }
+    index_qdrant.ensure_product_index(client, "lakehouse_docs_multilingual_v1")
+    client.create_payload_index.assert_not_called()
 
 
 def test_semantic_collection_rejects_hash_backend_before_remote_access(monkeypatch):

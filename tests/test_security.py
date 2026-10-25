@@ -1,10 +1,22 @@
 import concurrent.futures
 import sqlite3
+from types import SimpleNamespace
 
 import pytest
 from fastapi.testclient import TestClient
 from lakehouse.api import app, quotas
+from lakehouse.embeddings import EmbeddingInputTooLong
 from lakehouse.quotas import Limits, QuotaExceeded, Quotas
+
+
+def test_semantic_token_overflow_returns_actionable_validation_error(client, monkeypatch):
+    def answer(_):
+        raise EmbeddingInputTooLong("internal model token bound")
+
+    monkeypatch.setattr("lakehouse.api.engine", lambda: SimpleNamespace(answer=answer))
+    response = client.post("/api/answer", json={"question": "table " * 150})
+    assert response.status_code == 422
+    assert "128 tokens" in response.json()["detail"]
 
 
 @pytest.fixture

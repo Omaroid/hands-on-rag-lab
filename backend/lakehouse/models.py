@@ -1,3 +1,4 @@
+import re
 from typing import Literal
 from urllib.parse import urlparse
 
@@ -35,10 +36,16 @@ class Chunk(BaseModel):
     def safe_citation_url(cls, value: str) -> str:
         parsed = urlparse(value)
         allowed = {"docs.databricks.com", "learn.microsoft.com", "docs.delta.io"}
-        if parsed.scheme != "https" or parsed.hostname not in allowed:
+        pinned_delta = parsed.hostname == "github.com" and re.fullmatch(
+            r"/delta-io/delta/blob/[0-9a-f]{40}/docs/src/content/docs/[a-z0-9/-]+\.mdx?",
+            parsed.path,
+        )
+        if parsed.scheme != "https" or (parsed.hostname not in allowed and not pinned_delta):
             raise ValueError("Citation must use an official HTTPS host")
         if parsed.username or parsed.password or parsed.port not in (None, 443):
             raise ValueError("Unsafe citation authority")
+        if pinned_delta and (parsed.query or parsed.fragment):
+            raise ValueError("Pinned source citations cannot contain query or fragment")
         return value
 
 

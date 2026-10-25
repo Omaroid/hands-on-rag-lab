@@ -3,7 +3,7 @@ from pathlib import Path
 
 from lakehouse.models import Chunk, Question
 
-for file in ["corpus/editorial.json"]:
+for file in ["corpus/editorial.json", "corpus/delta-official-semantic.json"]:
     chunks = [Chunk.model_validate(c) for c in json.loads(Path(file).read_text())]
     assert len({c.id for c in chunks}) == len(chunks)
 expected = json.loads(Path("config/question.schema.json").read_text())

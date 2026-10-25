@@ -152,3 +152,24 @@ Cette option est implémentée, mais son exécution actuelle n'a pas abouti.
 Prochaine étape : rétablir la capacité d'exécution approuvée pour les contrôles HTTP/cloud,
 relancer le diagnostic Qdrant, puis poursuivre uniquement les sources dont les droits sont
 validés. Aucun contournement des gardes, aucun appel facturable pour débloquer l'intégration.
+
+
+## Dernier état — corpus officiel et chemin cloud sémantique validés
+
+Les anciens blocages d'inférence, de tests HTTP et de connexion Qdrant sont levés.
+Le modèle MiniLM quantifié à révision fixée fonctionne sur CPU. Un corpus distinct de
+20 documents officiels Delta Lake sous Apache-2.0 (1 034 passages) est livré et indexé dans
+`lakehouse_docs_multilingual_v1` sur le cluster Free dédié. Les payloads complets et trois
+vecteurs recalculés correspondent aux données distantes ; huit questions FR/EN donnent des
+réponses avec citations exactes. Il ne s'agit pas d'une évaluation indépendante de leur pertinence.
+
+64 tests Python, Ruff, mypy et schémas passent. Douze parcours navigateur du baseline et six
+parcours sémantiques cloud desktop/mobile passent. Un défaut cloud réel a été corrigé :
+le filtrage exige un index payload keyword sur `product`. L'indexeur le crée idempotemment ;
+la seconde indexation n'a modifié aucun passage. Le frontend affiche maintenant le corpus actif
+et sa provenance. Le lanceur `scripts/serve_semantic.py` enlève la clé d'écriture du service.
+
+La génération reste extractive. L'API publique serverless reste fermée faute de quotas
+durables gratuits raccordés et de garanties du compte fournisseur. Aucun achat, changement de
+plan ni base existante réutilisée ; 0 € obligatoire. La revue des sites web reste pending ;
+le corpus Git licencié n'en change pas les décisions. Voir ADR 0006 et docs/RESUME.md.

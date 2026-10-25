@@ -1,0 +1,386 @@
+[
+  {
+    "id": "69a923e8-5eec-5eb5-b1bf-417f9a2ceb15",
+    "document_id": "eb4878e2-0604-58ad-b2f3-897ef9c39359",
+    "title": "Unity Catalog : gouvernance unifiée",
+    "url": "https://docs.databricks.com/en/data-governance/unity-catalog/index.html",
+    "product": "Unity Catalog",
+    "section": [
+      "Unity Catalog : gouvernance unifiée"
+    ],
+    "retrieved_at": null,
+    "content_hash": "0f9bd9e64e0cfbfbe189c56a70b6ce5781b5f0c35916acbf3ddebb52a384f8c1",
+    "language": "fr",
+    "position": 0,
+    "text": "Unity Catalog centralise la gouvernance des données et des objets IA dans Databricks. Les objets de données suivent la hiérarchie catalogue, schéma, table. Les permissions d'accès, la traçabilité lineage et l'audit contribuent à une gouvernance cohérente.",
+    "provenance": "editorial"
+  },
+  {
+    "id": "2edc5b36-4cbb-5eb0-937f-7b372304305f",
+    "document_id": "a018ccaf-599c-5af8-91fb-72a1b15f37ee",
+    "title": "Unity Catalog : privilèges et accès",
+    "url": "https://docs.databricks.com/en/data-governance/unity-catalog/manage-privileges/index.html",
+    "product": "Unity Catalog",
+    "section": [
+      "Unity Catalog : privilèges et accès"
+    ],
+    "retrieved_at": null,
+    "content_hash": "4f1141a99b31754471cb9fb09ecb05645d81d548e12872aba44179f833efd06d",
+    "language": "fr",
+    "position": 0,
+    "text": "Les privilèges Unity Catalog contrôlent les actions autorisées sur les objets. Lire une table nécessite les privilèges appropriés sur la table ainsi que USE CATALOG et USE SCHEMA sur ses parents. Accorder les permissions à des groupes simplifie la gestion des accès.",
+    "provenance": "editorial"
+  },
+  {
+    "id": "486434c3-7e6f-5979-9628-bea176c4f0e7",
+    "document_id": "e4ba7eef-cf39-5b2a-ade5-df48bcd65508",
+    "title": "Lineage : traçabilité des données",
+    "url": "https://docs.databricks.com/en/data-governance/unity-catalog/data-lineage.html",
+    "product": "Unity Catalog",
+    "section": [
+      "Lineage : traçabilité des données"
+    ],
+    "retrieved_at": null,
+    "content_hash": "a9d21ab6c276bc622efad85e1fb169d295f88609bdf7a2ec8293a0b3850eae01",
+    "language": "fr",
+    "position": 0,
+    "text": "Le lineage Unity Catalog décrit les relations entre les données sources et les données produites. La traçabilité aide à comprendre les dépendances entre tables et l'impact d'un changement. La visibilité dépend des permissions et des opérations prises en charge.",
+    "provenance": "editorial"
+  },
+  {
+    "id": "03b3a5cc-ecd2-51c4-86fd-1027f629afd3",
+    "document_id": "9d233197-a81e-5d14-b1b1-88960fedeae9",
+    "title": "Tables managées et tables externes",
+    "url": "https://docs.databricks.com/en/tables/managed.html",
+    "product": "Unity Catalog",
+    "section": [
+      "Tables managées et tables externes"
+    ],
+    "retrieved_at": null,
+    "content_hash": "c33ef201827a0043be7a1d44b8c4b0c40e235bd969abe5079b84af55391a6d37",
+    "language": "fr",
+    "position": 0,
+    "text": "Une table managée délègue à Unity Catalog la gestion du stockage et du cycle de vie des données. Pour une table externe, les fichiers restent sous la responsabilité du propriétaire du stockage externe. Supprimer la définition d'une table externe ne supprime pas ses fichiers.",
+    "provenance": "editorial"
+  },
+  {
+    "id": "d610ce27-781e-5489-bf89-77cf9ec08e52",
+    "document_id": "d794df68-afee-5f42-a798-769b4cd81e25",
+    "title": "Volumes Unity Catalog",
+    "url": "https://docs.databricks.com/en/volumes/index.html",
+    "product": "Unity Catalog",
+    "section": [
+      "Volumes Unity Catalog"
+    ],
+    "retrieved_at": null,
+    "content_hash": "b808c4fffccdc10e6657ba0f2cffdc3663dbb5a9595dfc54aae415021c3149be",
+    "language": "fr",
+    "position": 0,
+    "text": "Les volumes Unity Catalog gouvernent les fichiers non tabulaires. Un volume appartient à un catalogue et à un schéma. Les permissions READ VOLUME et WRITE VOLUME contrôlent les opérations sur les fichiers.",
+    "provenance": "editorial"
+  },
+  {
+    "id": "0f18ccd1-b370-501b-ab00-241355b1aa9b",
+    "document_id": "d1881fb4-9503-5948-b74c-fc862763faf7",
+    "title": "Delta Lake : transactions ACID",
+    "url": "https://docs.delta.io/latest/introduction.html",
+    "product": "Delta Lake",
+    "section": [
+      "Delta Lake : transactions ACID"
+    ],
+    "retrieved_at": null,
+    "content_hash": "52d9617db305b391655e860ce310f918e30756e87a249199c4ea65577b135212",
+    "language": "fr",
+    "position": 0,
+    "text": "Delta Lake apporte des transactions ACID aux tables d'un lac de données. Le journal de transactions décrit les versions cohérentes de la table et les fichiers associés. Les transactions permettent de coordonner des lectures et des écritures concurrentes.",
+    "provenance": "editorial"
+  },
+  {
+    "id": "657f9b9b-7366-533b-86a9-7a747f925fe2",
+    "document_id": "f29d2b5f-4c2e-5664-b525-8faece13e4ef",
+    "title": "Time travel et historique Delta",
+    "url": "https://docs.delta.io/latest/delta-batch.html",
+    "product": "Delta Lake",
+    "section": [
+      "Time travel et historique Delta"
+    ],
+    "retrieved_at": null,
+    "content_hash": "e28fef06bab731a061c093856983c156a4a13c2eb7fd1afcaa65b3ea2f6c80d6",
+    "language": "fr",
+    "position": 0,
+    "text": "Le time travel Delta Lake permet de lire une version antérieure d'une table par version ou par timestamp. Les fichiers et le journal nécessaires doivent encore être disponibles. Une politique de rétention et VACUUM influencent la disponibilité de cet historique.",
+    "provenance": "editorial"
+  },
+  {
+    "id": "0a11255f-24ad-5330-b4ce-75812c40646d",
+    "document_id": "54b53687-0b08-5df4-9047-1a89710bbab8",
+    "title": "VACUUM et rétention des fichiers",
+    "url": "https://docs.delta.io/latest/delta-utility.html",
+    "product": "Delta Lake",
+    "section": [
+      "VACUUM et rétention des fichiers"
+    ],
+    "retrieved_at": null,
+    "content_hash": "03431a3a464afacdb18fd894554214eb8e62810ea5441b745674d9b7d924f3a2",
+    "language": "fr",
+    "position": 0,
+    "text": "VACUUM supprime les fichiers de données qui ne sont plus référencés et dont la rétention a expiré. Une rétention trop courte peut compromettre les lecteurs concurrents et le time travel. Il faut vérifier les durées maximales des traitements avant de réduire la rétention.",
+    "provenance": "editorial"
+  },
+  {
+    "id": "9358c11f-60ce-5fb5-bd13-70f4b48635a2",
+    "document_id": "22ddf0df-7da0-5c73-949e-5e1c55cf561e",
+    "title": "MERGE : insertions et mises à jour",
+    "url": "https://docs.delta.io/latest/delta-update.html",
+    "product": "Delta Lake",
+    "section": [
+      "MERGE : insertions et mises à jour"
+    ],
+    "retrieved_at": null,
+    "content_hash": "9404048e3f8e79223f8635f4a3759833d0ec50b296700cc38a12a0bfeabb198c",
+    "language": "fr",
+    "position": 0,
+    "text": "MERGE INTO permet de combiner insertions, mises à jour et suppressions dans une table Delta selon une condition de correspondance. Dédupliquer la source évite les correspondances ambiguës. Une stratégie d'upsert doit aussi traiter l'idempotence des chargements.",
+    "provenance": "editorial"
+  },
+  {
+    "id": "d6edbfa7-498d-5572-8269-3cc92c8db119",
+    "document_id": "0f4b436c-5696-5bfb-a236-13664e4fa4f4",
+    "title": "Schema enforcement et évolution",
+    "url": "https://docs.delta.io/latest/delta-batch.html",
+    "product": "Delta Lake",
+    "section": [
+      "Schema enforcement et évolution"
+    ],
+    "retrieved_at": null,
+    "content_hash": "db70bff9b5e51356e45d6a5d1533df5ea15ac3a42337a797a8dd1e09d2dcde44",
+    "language": "fr",
+    "position": 0,
+    "text": "Le schema enforcement vérifie que les données écrites sont compatibles avec le schéma de la table Delta. Le schema evolution autorise des changements de schéma explicitement configurés. Il faut distinguer le contrôle de compatibilité de l'activation volontaire d'une évolution.",
+    "provenance": "editorial"
+  },
+  {
+    "id": "bc34295d-1276-52d4-9bb1-e11e27763db4",
+    "document_id": "d5f455dc-f361-5d3d-850b-55ca621d7d1b",
+    "title": "Change Data Feed : changements Delta",
+    "url": "https://docs.delta.io/latest/delta-change-data-feed.html",
+    "product": "Delta Lake",
+    "section": [
+      "Change Data Feed : changements Delta"
+    ],
+    "retrieved_at": null,
+    "content_hash": "644b354691fb0de6dd5cfb97f0035f84597497eb144899c32e6d5267d8968aa4",
+    "language": "fr",
+    "position": 0,
+    "text": "Le Change Data Feed expose les changements de lignes d'une table Delta après son activation. Il facilite les traitements incrémentaux et la propagation des insertions, mises à jour et suppressions. La rétention limite la durée de lecture des anciens changements.",
+    "provenance": "editorial"
+  },
+  {
+    "id": "16c3ce42-1656-588d-ac1d-ec1b0288a9b1",
+    "document_id": "0840f81c-aefc-5378-a227-88e90dbfc7b1",
+    "title": "OPTIMIZE : compaction des fichiers",
+    "url": "https://docs.delta.io/latest/optimizations-oss.html",
+    "product": "Delta Lake",
+    "section": [
+      "OPTIMIZE : compaction des fichiers"
+    ],
+    "retrieved_at": null,
+    "content_hash": "8f162a3b7d11f6880ca8d5833fa5bef9fde33d91c1fad6d87437f06bb232972a",
+    "language": "fr",
+    "position": 0,
+    "text": "La compaction OPTIMIZE regroupe des petits fichiers Delta pour améliorer l'efficacité des lectures. Son intérêt dépend du volume, des écritures et des motifs de lecture. Une optimisation consomme du calcul et doit être évaluée en fonction du gain attendu.",
+    "provenance": "editorial"
+  },
+  {
+    "id": "d36636ba-32a1-5ab9-a669-ec0698b48479",
+    "document_id": "8c7763ce-b0ec-59c1-84b5-db1c9ac4541b",
+    "title": "Lakehouse : lac et entrepôt de données",
+    "url": "https://docs.databricks.com/en/lakehouse/index.html",
+    "product": "Databricks",
+    "section": [
+      "Lakehouse : lac et entrepôt de données"
+    ],
+    "retrieved_at": null,
+    "content_hash": "fa16fef515221129da2e12a0c1d7456391cbb903540a69c365666aa36545b840",
+    "language": "fr",
+    "position": 0,
+    "text": "Une architecture Lakehouse rapproche la flexibilité d'un lac de données et les capacités de gestion d'un entrepôt. Les formats ouverts de table apportent des garanties transactionnelles et une organisation des métadonnées. Le stockage, le calcul et la gouvernance restent des responsabilités distinctes.",
+    "provenance": "editorial"
+  },
+  {
+    "id": "7fad5e7a-df4b-5be5-803d-88babedf7a16",
+    "document_id": "5775e26f-db4a-5248-b048-3463223d0db7",
+    "title": "Architecture médaillon : bronze, silver, gold",
+    "url": "https://docs.databricks.com/en/lakehouse/medallion.html",
+    "product": "Databricks",
+    "section": [
+      "Architecture médaillon : bronze, silver, gold"
+    ],
+    "retrieved_at": null,
+    "content_hash": "5dfed9f004f004545543cadbadd2fde1e383d48f35808c73bdc5ee25637b2257",
+    "language": "fr",
+    "position": 0,
+    "text": "L'architecture médaillon organise les données en couches bronze, silver et gold. Bronze conserve les données brutes, silver nettoie et consolide les données, gold fournit des jeux adaptés aux usages métier. Ces couches expriment des niveaux de qualité et de préparation.",
+    "provenance": "editorial"
+  },
+  {
+    "id": "ec576495-4b46-52cb-8b4a-198b1b10f131",
+    "document_id": "30f117fe-58e9-5fbc-8589-6be57ff57ed7",
+    "title": "Auto Loader : ingestion incrémentale",
+    "url": "https://docs.databricks.com/en/ingestion/cloud-object-storage/auto-loader/index.html",
+    "product": "Databricks",
+    "section": [
+      "Auto Loader : ingestion incrémentale"
+    ],
+    "retrieved_at": null,
+    "content_hash": "75992208ac09495037cad8b7af95d6ed4a0cb47736869b0028bb8957b1a40efa",
+    "language": "fr",
+    "position": 0,
+    "text": "Auto Loader ingère de façon incrémentale des fichiers arrivant dans un stockage objet. Les checkpoints conservent l'état du traitement et permettent la reprise. Le choix des options de schéma et de découverte des fichiers influence la robustesse de l'ingestion.",
+    "provenance": "editorial"
+  },
+  {
+    "id": "95e69315-7f01-5c9d-99f4-25f8f90d6e21",
+    "document_id": "0fe8c85c-9935-5797-ac48-0c66aafa82b4",
+    "title": "Structured Streaming et checkpoints",
+    "url": "https://docs.databricks.com/en/structured-streaming/index.html",
+    "product": "Databricks",
+    "section": [
+      "Structured Streaming et checkpoints"
+    ],
+    "retrieved_at": null,
+    "content_hash": "92aaaa1b64c59a9d2f328cd45a4c9279cd0ad994eee9afcfe3d105b7d9ebe71b",
+    "language": "fr",
+    "position": 0,
+    "text": "Structured Streaming exprime des traitements incrémentaux sur des flux de données. Un checkpoint durable conserve la progression et l'état nécessaires à la reprise. La garantie de bout en bout dépend des sources, des transformations et de la destination.",
+    "provenance": "editorial"
+  },
+  {
+    "id": "925fa353-8037-59c3-aa08-ff530cc57ccd",
+    "document_id": "d9020361-03b8-55d8-baf8-b4f45244b720",
+    "title": "Azure Databricks et identité Entra",
+    "url": "https://learn.microsoft.com/en-us/azure/databricks/admin/users-groups/",
+    "product": "Azure",
+    "section": [
+      "Azure Databricks et identité Entra"
+    ],
+    "retrieved_at": null,
+    "content_hash": "2113bd713ce76e7c15d41dda8d26700fc7251b26a43c26ae73d7359d4f54893b",
+    "language": "fr",
+    "position": 0,
+    "text": "Azure Databricks s'intègre aux identités Microsoft Entra ID. Les utilisateurs, groupes et identités de service servent à contrôler l'accès aux espaces de travail et aux données. Une identité managée peut éviter la gestion de secrets pour certains accès Azure pris en charge.",
+    "provenance": "editorial"
+  },
+  {
+    "id": "20d39b98-5c5f-5984-81e7-5949939792f3",
+    "document_id": "4b02a6f3-9cc2-5bbf-95b9-4b331ceb37ee",
+    "title": "Azure : identifiants de stockage et emplacements",
+    "url": "https://learn.microsoft.com/en-us/azure/databricks/connect/unity-catalog/cloud-storage/",
+    "product": "Azure",
+    "section": [
+      "Azure : identifiants de stockage et emplacements"
+    ],
+    "retrieved_at": null,
+    "content_hash": "059cd2f3e58328d12583ac7892e497250d7b122f2ff6419605d58b9401c03852",
+    "language": "fr",
+    "position": 0,
+    "text": "Dans Azure Databricks, un identifiant de stockage représente une identité d'accès au stockage cloud. Un emplacement externe associe un chemin de stockage à cet identifiant. Les permissions Unity Catalog contrôlent l'utilisation de ces objets.",
+    "provenance": "editorial"
+  },
+  {
+    "id": "71f08eb0-cd28-503c-b2c2-3eed0101a816",
+    "document_id": "0c39da84-168e-5296-bfae-b00e40c97f60",
+    "title": "Azure Databricks : isolation réseau",
+    "url": "https://learn.microsoft.com/en-us/azure/databricks/security/network/",
+    "product": "Azure",
+    "section": [
+      "Azure Databricks : isolation réseau"
+    ],
+    "retrieved_at": null,
+    "content_hash": "5ee2bb7daba0c85d04c0769152c9638a7aaf5f53bead50b4dda6cffc491ac92a",
+    "language": "fr",
+    "position": 0,
+    "text": "L'isolation réseau Azure Databricks dépend des chemins de communication à protéger. Private Link permet des connexions privées pour les flux pris en charge. Une architecture réseau doit considérer séparément l'accès utilisateur, le plan de contrôle et les données.",
+    "provenance": "editorial"
+  },
+  {
+    "id": "bbd855fe-349d-5102-9c55-a0d919134034",
+    "document_id": "3067e239-0c0e-5b12-a702-d1cadbad5bb3",
+    "title": "Sécurité : filtres de lignes et masquage",
+    "url": "https://docs.databricks.com/en/data-governance/unity-catalog/filters-and-masks/index.html",
+    "product": "Gouvernance",
+    "section": [
+      "Sécurité : filtres de lignes et masquage"
+    ],
+    "retrieved_at": null,
+    "content_hash": "86b337c2b2387d3988f3ecad22eaac9c7af76f2a1047fcb5a46592cdbbcd4ef5",
+    "language": "fr",
+    "position": 0,
+    "text": "Les filtres de lignes limitent les lignes accessibles et les masques de colonnes adaptent les valeurs visibles. Ces politiques complètent les privilèges sur les objets. Il faut tester les accès avec les identités réellement utilisées par les consommateurs.",
+    "provenance": "editorial"
+  },
+  {
+    "id": "7abebe20-4b10-5656-83d0-7605df765bbe",
+    "document_id": "f0818c56-ec24-5218-8618-425efad1d52c",
+    "title": "Audit : observer les accès et opérations",
+    "url": "https://docs.databricks.com/en/admin/system-tables/audit-logs.html",
+    "product": "Gouvernance",
+    "section": [
+      "Audit : observer les accès et opérations"
+    ],
+    "retrieved_at": null,
+    "content_hash": "d5f99eee0726246a243632edde2687a9c2a61c05705ef76e5069e950f2af9f2f",
+    "language": "fr",
+    "position": 0,
+    "text": "Les événements d'audit documentent des accès et des opérations sur la plateforme. Leur disponibilité et leur couverture doivent être vérifiées pour le périmètre utilisé. Les journaux d'audit doivent eux-mêmes être protégés et soumis à une politique de rétention.",
+    "provenance": "editorial"
+  },
+  {
+    "id": "24c2a3c0-fc51-5501-b309-b9155e21cd3f",
+    "document_id": "6257b1a1-14d8-53d2-8a7e-964b978a858a",
+    "title": "FinOps : maîtriser le coût du calcul",
+    "url": "https://docs.databricks.com/en/admin/account-settings/usage.html",
+    "product": "Gouvernance",
+    "section": [
+      "FinOps : maîtriser le coût du calcul"
+    ],
+    "retrieved_at": null,
+    "content_hash": "02db138399642b8305b2d825e8f8b9ade93c35e6f9250f13b0fb2c8137dc7375",
+    "language": "fr",
+    "position": 0,
+    "text": "Une démarche FinOps rapproche les coûts du calcul, du stockage et des usages métier. Les politiques de calcul, les tags et l'arrêt automatique contribuent à maîtriser les coûts Databricks. Une alerte budgétaire seule ne constitue pas nécessairement une coupure de facturation.",
+    "provenance": "editorial"
+  },
+  {
+    "id": "5153ae44-5325-5a60-9200-65d668142d16",
+    "document_id": "5eeee8c6-8ba5-574a-b4bc-b632304b7af9",
+    "title": "Delta Sharing : partager des données",
+    "url": "https://docs.databricks.com/en/delta-sharing/index.html",
+    "product": "Databricks",
+    "section": [
+      "Delta Sharing : partager des données"
+    ],
+    "retrieved_at": null,
+    "content_hash": "00e12af0b53e19d5255a932a41ad644d63bb60f59762d78be5cc4044a9d5d2de",
+    "language": "fr",
+    "position": 0,
+    "text": "Delta Sharing est un protocole ouvert de partage de données. Un fournisseur définit les données partagées et les destinataires autorisés. Les contrôles de gouvernance et de révocation restent essentiels pour gérer le cycle de vie du partage.",
+    "provenance": "editorial"
+  },
+  {
+    "id": "14027ec6-910e-5f2f-bfa1-683dab62d5e0",
+    "document_id": "0fbe3e52-1861-5dbe-8950-e990e3a438f9",
+    "title": "Qualité des données et contrats",
+    "url": "https://docs.databricks.com/en/lakehouse/medallion.html",
+    "product": "Gouvernance",
+    "section": [
+      "Qualité des données et contrats"
+    ],
+    "retrieved_at": null,
+    "content_hash": "c5d0136f3219c636df8c09b47e2f28e11db34d6e5e1ad42861ac359e1e36ac5e",
+    "language": "fr",
+    "position": 0,
+    "text": "La qualité des données se vérifie par des règles explicites de complétude, validité et cohérence. Les couches silver et gold d'une architecture médaillon rendent ces contrôles visibles. Un contrat de données précise les attentes, les propriétaires et le traitement des anomalies.",
+    "provenance": "editorial"
+  }
+]

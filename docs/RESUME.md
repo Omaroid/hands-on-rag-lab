@@ -84,3 +84,13 @@ Le compte Vercel utilisateur est Hobby ; aucun changement de plan n'a été effe
 
 Poursuivre les quotas durables et les garanties fournisseur avant de déployer la vraie API
 publique. Ne pas supprimer la garde ni annoncer la génération distante comme réalisée.
+
+
+## Dernière publication
+
+Les changements ont été poussés sur main ; le compagnon a été redéployé à partir du commit
+`afea23a6a4301c1047ff37a2b11fce3bea572c6f`, déploiement
+`dpl_ALgAGxsJCQBgu4PrFXH2mCJ2chio`, production READY. HTTP et assets vérifiés identiques au
+build navigateur testé. Le navigateur distant du sandbox refuse la CA du proxy ; aucune
+vérification TLS n'a été désactivée. Les tests locaux réels totalisent 18 parcours réussis,
+dont 6 sur le chemin Qdrant Cloud. La synthèse actuelle est `evidence/integration-current.json`.

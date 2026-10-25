@@ -1,21 +1,29 @@
 {
   "date": "2026-10-25",
-  "scope": "Baseline editorial; no neural inference or official ingestion claimed",
+  "scope": "Multilingual CPU retrieval, licensed official Delta corpus, dedicated Qdrant Cloud Free; extractive answers",
   "python_tests": {
-    "passed": 54
+    "passed": 64
   },
   "browser_tests": {
     "backend": {
-      "startTime": "2026-10-25T21:19:04.345Z",
-      "duration": 5924.196,
+      "startTime": "2026-10-25T21:43:35.230Z",
+      "duration": 15767.616,
       "expected": 6,
       "skipped": 0,
       "unexpected": 0,
       "flaky": 0
     },
     "browser": {
-      "startTime": "2026-10-25T21:19:12.235Z",
-      "duration": 5307.567,
+      "startTime": "2026-10-25T21:43:55.284Z",
+      "duration": 11807.737,
+      "expected": 6,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "semantic_cloud": {
+      "startTime": "2026-10-25T21:42:44.408Z",
+      "duration": 12544.775,
       "expected": 6,
       "skipped": 0,
       "unexpected": 0,
@@ -25,73 +33,78 @@
   "public_http": {
     "url": "https://lakehouse-rag-lab.vercel.app",
     "status": 200,
-    "security_headers": {
-      "content-security-policy": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'",
-      "strict-transport-security": "max-age=31536000; includeSubDomains",
-      "x-content-type-options": "nosniff",
-      "referrer-policy": "no-referrer",
-      "permissions-policy": "camera=(), microphone=(), geolocation=(), payment=()",
-      "x-frame-options": "DENY"
-    },
     "assets": [
       {
-        "path": "/assets/index-DynKFUAz.js",
+        "path": "/assets/index-Dirjz_1U.js",
         "status": 200,
-        "matches_tested_browser_build": true,
-        "sha256": "42042bd95dd1ef56d581a92349e88b43344beba8e8b76edbaff4449c74933029"
+        "matches_tested_build": true,
+        "sha256": "5d9818edb66cbdfd1737a0886d2df6f3c8d10c1fdddec6e0935086982a305f4e"
       },
       {
         "path": "/assets/index-uNQ7KE_Z.css",
         "status": 200,
-        "matches_tested_browser_build": true,
+        "matches_tested_build": true,
         "sha256": "034816250248dbe45cfaba6bdd2708ebd19c099a82eee38f07c93a700b775e29"
       }
-    ]
-  },
-  "docker": {
-    "uid": 10001,
-    "health": {
-      "status": "ok",
-      "remote_generation": false,
-      "public_queries": true,
-      "mandatory_cost_eur": 0
+    ],
+    "headers": {
+      "content-security-policy": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'",
+      "permissions-policy": "camera=(), microphone=(), geolocation=(), payment=()",
+      "referrer-policy": "no-referrer",
+      "strict-transport-security": "max-age=31536000; includeSubDomains",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "DENY"
     },
-    "answer_cited": true,
-    "injection_refused": true,
-    "network": "none"
+    "deployment": "dpl_ALgAGxsJCQBgu4PrFXH2mCJ2chio",
+    "state": "READY",
+    "git_commit": "afea23a6a4301c1047ff37a2b11fce3bea572c6f",
+    "runtime": "browser editorial baseline; no public inference API",
+    "mandatory_cost_eur": 0
+  },
+  "semantic": {
+    "documents": 20,
+    "chunks": 1034,
+    "dimensions": 384,
+    "payload_index": "product keyword",
+    "all_remote_payloads_match": true,
+    "vector_identity_sample_count": 3,
+    "fr_en_smoke_cases": 8,
+    "remote_writes": "Dedicated semantic collection only; indexer second pass changed 0 passages"
   },
   "qdrant_read_only": {
-    "status": "collection_missing",
+    "status": "ready",
     "missing": [],
     "read_key_present": true,
     "indexing_key_present": true,
     "free_plan_operator_confirmed": true,
     "billing_verified_by_api": false,
     "network_contacted": true,
-    "mutations": false
+    "mutations": false,
+    "collection": {
+      "status": "ready",
+      "dimensions": 384,
+      "distance": "Cosine",
+      "points": 1034,
+      "embedding_identity": "not_verified_by_dimensions_alone",
+      "read_access": "verified",
+      "read_only_permission": "must_be_confirmed_in_dashboard"
+    }
   },
   "mandatory_cost_eur": 0,
-  "ci_remote": "disabled on private repository to avoid unverified billable minutes",
-  "remaining": [
-    "Effective runtime policy still lacks us.aws.cdn.hf.co; model download denied",
-    "Official source reuse reviews pending; Databricks review intentionally deferred",
-    "Neural inference and semantic FR/EN retrieval not validated",
-    "No durable shared cloud quotas or verified free remote generation"
-  ],
-  "audits": {
-    "python": {
-      "packages": 138,
-      "known_vulnerabilities": 0
-    },
-    "javascript": {
-      "info": 0,
-      "low": 0,
-      "moderate": 0,
-      "high": 0,
-      "critical": 0,
-      "total": 0
-    },
+  "ci_remote": "Private repository job remains disabled",
+  "security": {
     "secretlint": "passed",
-    "bundle_scan": "passed"
-  }
+    "bundle_scan": "passed",
+    "service_write_key_removed": true,
+    "remote_generation": false,
+    "serverless_closed": true
+  },
+  "public_browser_verification": "Attempted via configured proxy; Chromium rejected proxy CA (ERR_CERT_AUTHORITY_INVALID). No TLS verification was disabled. HTTPS and exact asset equality verified with httpx; local real Chromium tests passed.",
+  "docker": "Historical baseline verification retained; not rebuilt in this session",
+  "remaining": [
+    "Free durable distributed quotas not provisioned/connected",
+    "AI Gateway account eligibility, credentials and hard zero-spend guarantees unverified",
+    "Databricks website ingestion review intentionally deferred; licensed Git snapshot is separate",
+    "Service key collection scope must be confirmed in Qdrant dashboard"
+  ]
 }

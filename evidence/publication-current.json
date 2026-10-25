@@ -1,0 +1,31 @@
+{
+  "url": "https://lakehouse-rag-lab.vercel.app",
+  "status": 200,
+  "assets": [
+    {
+      "path": "/assets/index-Dirjz_1U.js",
+      "status": 200,
+      "matches_tested_build": true,
+      "sha256": "5d9818edb66cbdfd1737a0886d2df6f3c8d10c1fdddec6e0935086982a305f4e"
+    },
+    {
+      "path": "/assets/index-uNQ7KE_Z.css",
+      "status": 200,
+      "matches_tested_build": true,
+      "sha256": "034816250248dbe45cfaba6bdd2708ebd19c099a82eee38f07c93a700b775e29"
+    }
+  ],
+  "headers": {
+    "content-security-policy": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'",
+    "permissions-policy": "camera=(), microphone=(), geolocation=(), payment=()",
+    "referrer-policy": "no-referrer",
+    "strict-transport-security": "max-age=31536000; includeSubDomains",
+    "x-content-type-options": "nosniff",
+    "x-frame-options": "DENY"
+  },
+  "deployment": "dpl_ALgAGxsJCQBgu4PrFXH2mCJ2chio",
+  "state": "READY",
+  "git_commit": "afea23a6a4301c1047ff37a2b11fce3bea572c6f",
+  "runtime": "browser editorial baseline; no public inference API",
+  "mandatory_cost_eur": 0
+}

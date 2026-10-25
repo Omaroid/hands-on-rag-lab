@@ -1,6 +1,6 @@
 # État vérifiable — 25 octobre 2026
 
-**Le baseline est fonctionnel ; le projet cible complet n'est pas déclaré terminé.**
+**La recherche multilingue avec corpus officiel et Qdrant Cloud est validée ; l’API publique générative reste fermée.**
 Aucune ressource payante ni modification d'une application existante.
 
 | Phase | Réalisé et vérifié | À comprendre | Risque/écart restant |
@@ -173,3 +173,15 @@ La génération reste extractive. L'API publique serverless reste fermée faute 
 durables gratuits raccordés et de garanties du compte fournisseur. Aucun achat, changement de
 plan ni base existante réutilisée ; 0 € obligatoire. La revue des sites web reste pending ;
 le corpus Git licencié n'en change pas les décisions. Voir ADR 0006 et docs/RESUME.md.
+
+
+## Publication de cette reprise
+
+Les trois commits de cette reprise ont été poussés sur `main` (`afea23a` pour le code et
+les preuves précédant la publication). Le compagnon statique a été redéployé sur le projet
+Vercel dédié : `dpl_ALgAGxsJCQBgu4PrFXH2mCJ2chio`, READY en production.
+Le domaine public retourne HTTP 200 et ses assets sont identiques au build navigateur testé.
+Aucune erreur/fatal de fonction n'a été trouvée dans les logs de ce déploiement statique.
+Le navigateur distant du sandbox refuse le certificat du proxy ; sa vérification TLS n'a pas
+été désactivée. Les 18 parcours locaux, dont 6 utilisant réellement Qdrant Cloud, restent validés.
+Voir `evidence/publication-current.json` et `evidence/integration-current.json`.

@@ -26,3 +26,9 @@ frontend/public/onnx/
 
 frontend/public/ocr/
 frontend/public/licenses/
+
+# Private credentials and certificate containers
+*.pem
+*.key
+*.p12
+*.pfx

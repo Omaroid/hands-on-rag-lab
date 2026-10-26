@@ -1,205 +1,131 @@
-# Source — comprendre le RAG sur ses propres PDF
+# Source · Lakehouse RAG Lab
 
-La vitrine navigateur est maintenant un espace temporaire bilingue FR/EN : import de PDF
-(5 Mo cumulés), extraction ou OCR local, passages bornés par le tokenizer, embeddings E5
-multilingues, BM25 et fusion RRF inspectables, citations avec fichier et page.
-Les PDF complets et vecteurs restent locaux. La génération NVIDIA côté serveur est
-**activée**, après consentement pour l'envoi de la question et des passages sélectionnés,
-sans plafond applicatif de demandes. La page [Architecture](https://lakehouse-rag-lab.vercel.app/architecture) expose le parcours, les formules et les calculs de votre dernière recherche. Les réponses citées ont été réellement validées
-sur PDF texte et scan OCR. Voir [PDF_GENERATION.md](docs/PDF_GENERATION.md),
-[PDF_RAG.md](docs/PDF_RAG.md) et [RESUME.md](docs/RESUME.md) pour preuves et limites.
+**Un laboratoire RAG pour interroger ses PDF et comprendre chaque étape de la réponse.**
 
-L’atelier des preuves accompagne l’indexation : pages réellement lues, cartes de texte,
-vecteurs calculés, recherche à deux voies et panier de passages. Chaque étape est
-cliquable, avec des exemples tirés des PDF en session et un petit défi pédagogique.
-Aucune progression n’est simulée et aucun appel NVIDIA n’est lancé pendant l’indexation.
+[![CI](https://github.com/Omaroid/lakehouse-rag-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/Omaroid/lakehouse-rag-lab/actions/workflows/ci.yml)
 
-L’interface utilise désormais shadcn/ui, Radix UI et Tailwind CSS : navigation Documents /
-[Théorie](https://lakehouse-rag-lab.vercel.app/theory) / Architecture, palette sobre et
-transitions respectant la réduction des animations. La théorie FR/EN explique le RAG,
-propose trois questions pédagogiques sans appel fournisseur et détaille l’objectif et
-l’assemblage de chaque technologie. L’atelier est repliable et s’ouvre pendant le traitement.
+[Application](https://lakehouse-rag-lab.vercel.app) · [Théorie FR/EN](https://lakehouse-rag-lab.vercel.app/theory) · [Architecture et calculs](https://lakehouse-rag-lab.vercel.app/architecture) · [English](README.en.md)
 
-Build : `VITE_RUNTIME=browser npm run build --prefix frontend`.
-Les dépendances sont verrouillées ; les assets OCR/WASM sont préparés au build.
-Les fonctionnalités historiques Lakehouse restent décrites ci-dessous.
+![Interface Source](evidence/refined-home-desktop.png)
 
----
+## Ce que fait l’application
 
-# Lakehouse RAG Lab
+1. **Importer** des PDF texte ou scannés. PDF.js extrait le texte ; Tesseract effectue l’OCR français/anglais si nécessaire.
+2. **Indexer localement** les passages avec le véritable encodeur multilingue E5, puis conserver leurs vecteurs en mémoire de session.
+3. **Rechercher** avec deux méthodes : proximité sémantique par cosinus et correspondance lexicale BM25. RRF fusionne les classements.
+4. **Vérifier les preuves** : passages, fichier, page, scores, règles de sélection et budget de contexte restent inspectables.
+5. **Générer sur demande** : après consentement, le serveur transmet la question et les seuls passages sélectionnés à NVIDIA GPT-OSS. La réponse contient des références consultables.
 
-Un laboratoire observable consacré aux architectures Lakehouse : recherche, inspection des preuves,
-comparaison des stratégies et réponses extractives citées. Python/FastAPI, LangGraph, Qdrant,
-React/TypeScript, MCP, évaluations MLflow locales et Docker.
+L’interface FR/EN comprend un atelier interactif, une page de théorie avec un exemple guidé et une page d’architecture avec les calculs réels de la dernière recherche. Elle utilise **React, TypeScript et shadcn/ui** et respecte la réduction des animations.
 
-> **État réel : recherche multilingue et corpus officiel Delta Lake intégrés.**
-> Le backend peut utiliser MiniLM ONNX sur CPU et 20 documents officiels Apache-2.0
-> (1 034 passages) dans le cluster Qdrant Free dédié. Les notes pédagogiques et le hash lexical
-> restent le baseline et le compagnon public. Les réponses sont extractives, sans appel LLM.
-> L'API publique serverless reste fermée tant que les quotas durables gratuits ne sont pas raccordés.
-> Voir [STATUS.md](STATUS.md) pour les vérifications et les limites.
+> Ce dépôt contient aussi un **laboratoire Python Lakehouse historique**. Il est indépendant du parcours PDF publié sur Vercel. Son guide est dans [docs/LEGACY_LAB.md](docs/LEGACY_LAB.md).
 
-## Backend sémantique vérifié
-
-Depuis la racine, après installation du groupe `semantic` et préparation des fichiers du modèle
-à la révision fixée (voir [le guide embeddings](docs/learning/01-embeddings.md)) :
-
-```bash
-.venv/bin/python scripts/serve_semantic.py \
-  --corpus corpus/delta-official-semantic.json \
-  --model-dir work/models/multilingual-minilm --cloud --build
-```
-
-Ouvrir `http://localhost:8000`. La clé Qdrant de lecture reste dans l'environnement ; la clé
-d'écriture est retirée du processus de service. Sans `--cloud`, la même commande utilise
-Qdrant en mémoire local, sans contacter le cluster. Le frontend affiche le corpus et la
-provenance réellement servis. Il faut un hôte local durable pour les quotas SQLite.
-La commande vérifie les tokens et le nombre de points avant de servir.
-
-[Manifeste des 20 sources](evidence/delta-source-manifest.json),
-[licence et attribution](corpus/licenses/delta/),
-[vérification cloud FR/EN](evidence/cloud-semantic-integration.json).
-
-## Démonstration
-
-**[Ouvrir la démonstration publique](https://lakehouse-rag-lab.vercel.app)** — édition navigateur.
-Les détails de vérification sont dans [DEPLOYMENT.md](DEPLOYMENT.md).
-Essayez « Comment Delta Lake fournit des transactions ACID ? », inspectez les résultats fusionnés,
-puis « Quelle est la météo à Paris ? » pour observer un refus.
-
-![Interface desktop](evidence/screenshots/desktop.png)
-
-![Explorer des passages](evidence/screenshots/explorer.png)
-
-## Architecture
+## Architecture et circulation des données
 
 ```mermaid
 flowchart LR
-  A[URLs officielles explicites] --> B{Termes et robots validés ?}
-  B -->|oui, ingestion CLI uniquement| C[Extraction et chunking]
-  B -->|non| X[Arrêt sans modifier le corpus]
-  C --> D[Hash de section / embeddings modifiés seulement]
-  D --> E[Qdrant isolé]
-  Q[Question validée] --> G[Graphe LangGraph]
-  E --> G
-  L[BM25 lexical] --> G
-  G --> R[RRF / reranking / pertinence]
-  R --> V[Extraction ou refus]
-  V --> Z[Citations exactes vérifiées / streaming NDJSON]
+  subgraph Browser["Navigateur · session temporaire"]
+    PDF[PDF] --> Read[PDF.js / OCR Tesseract]
+    Read --> Chunks[Passages + fichier/page]
+    Chunks --> Index[E5 + index lexical]
+    Question[Question] --> Search[Cosinus + BM25]
+    Index --> Search
+    Search --> RRF[RRF + sélection du contexte]
+  end
+  RRF --> Consent[Consentement explicite]
+  Consent --> API[Vercel Function · validation]
+  API --> NVIDIA[NVIDIA · openai/gpt-oss-20b]
+  NVIDIA --> Answer[Réponse + références contrôlées]
 ```
 
-L'édition navigateur est un compagnon statique : le même principe de recherche et de fusion,
-un index JavaScript en mémoire, aucun serveur d'inférence. Elle ne prétend pas utiliser Qdrant
-ou LangGraph dans le navigateur. [ARCHITECTURE.md](ARCHITECTURE.md) détaille les deux exécutions.
+| Couche | Technologies | Rôle |
+| --- | --- | --- |
+| Interface | React 19, TypeScript, shadcn/ui, Radix UI, Tailwind 4, Vite | Écrans, interactions accessibles, visualisation des étapes |
+| Lecture | PDF.js, Tesseract.js, Web Workers | Extraction et OCR locaux, interface réactive |
+| Encodage | Transformers.js, ONNX Runtime, multilingual E5 small | Vecteurs de 384 dimensions, pooling moyen et normalisation L2 |
+| Recherche | BM25, cosinus, Reciprocal Rank Fusion | Recherche hybride et classement observable |
+| API | Fonctions Node.js Vercel | Consentement, validation, appel fournisseur et contrôle des citations |
+| Génération | API NVIDIA, GPT-OSS 20B | Rédaction à partir des passages fournis |
 
-## Fonctionnalités
+Les poids E5 sont téléchargés depuis Hugging Face à une révision fixée. Les fichiers du modèle utilisés en test sont vérifiés par SHA-256 : [manifeste](evidence/pdf-model-manifest.json).
 
-- Questions FR/EN, filtres par produit, quatre stratégies de recherche réellement calculées.
-- Explorer : question normalisée, chunks, scores dense/lexical/RRF, rang après reranking et contexte.
-- Citations avec provenance, refus si le contexte n'est pas suffisamment pertinent.
-- Backend typé, neuf nœuds LangGraph, Qdrant local réel et client cloud en lecture seule.
-- Ingestion CLI avec liste blanche HTTPS, robots, revue des termes, taille bornée, hash incrémental.
-- Trois outils MCP locaux en lecture seule, sans fetch arbitraire ni exécution de code.
+### Confidentialité et limites
 
-## Lancement local
+- Les **PDF complets et les vecteurs restent dans le navigateur**. Ils ne sont pas enregistrés par l’API. La session est perdue au rechargement ou à la réinitialisation.
+- La recherche et l’indexation n’appellent pas NVIDIA. La génération envoie, après accord, la question, la langue et les passages choisis avec leur fichier/page.
+- La clé NVIDIA reste une variable serveur sensible. Aucun secret n’est nécessaire au build de l’interface ou aux tests CI.
+- Import : **5 Mo cumulés, 10 fichiers et 40 pages**. Sélection : **4 passages maximum, 1 600 tokens E5, cosinus ≥ 0,78**. [Détails des bornes](docs/PDF_RAG.md).
+- **Aucun quota applicatif de demandes** n’est ajouté. Les conditions et limites des fournisseurs restent distinctes ; ce projet ne promet pas un service NVIDIA illimité.
+- Une citation et un score ne prouvent pas qu’une réponse est correcte. Relisez les passages ; le seuil de pertinence est heuristique.
 
-Python 3.12, Node 24 et uv 0.12.23. Aucune clé distante n'est nécessaire.
+## Démarrer en local
+
+Prérequis : **Node.js 24.19+ dans la branche 24**, **npm 11.9**. Python 3.12 est utile pour les outils de vérification, mais n’est pas requis pour ouvrir l’interface.
 
 ```bash
-uv sync --frozen --group evaluation
-npm ci --prefix frontend
-npm run build --prefix frontend
-uv run python -m lakehouse.baseline
-uv run uvicorn app:app --host 127.0.0.1 --port 8000 --no-access-log --no-proxy-headers
+git clone https://github.com/Omaroid/lakehouse-rag-lab.git
+cd lakehouse-rag-lab
+npm ci --ignore-scripts
+npm ci --ignore-scripts --prefix frontend
+VITE_RUNTIME=browser npm run dev --prefix frontend
 ```
 
-Ouvrir `http://localhost:8000`. Le mode par défaut utilise Qdrant embarqué en mémoire ; aucune
-ressource cloud n'est créée. Pour développer avec rechargement, lancer `npm run dev --prefix frontend`
-à côté du backend. Le proxy Vite envoie `/api` au backend ; garder l'origine API configurée
-cohérente si le navigateur envoie un en-tête Origin.
+Ouvrir l’URL affichée par Vite. L’import, l’OCR, l’indexation, la recherche et les pages pédagogiques fonctionnent sans clé fournisseur. Le premier encodage télécharge environ **118 Mo de poids**, plus le tokenizer.
 
-Docker avec Qdrant serveur, indexation et volume de quotas :
+**La génération locale nécessite les fonctions serveur Vercel et leur configuration.** Le serveur de développement Vite seul ne fournit pas l’API NVIDIA ; cela n’empêche pas la recherche locale. Le backend Python historique n’est pas le serveur de génération des PDF.
 
-```bash
-python -c 'import secrets; print("ANONYMIZATION_SECRET="+secrets.token_hex(32))' > .env
-docker compose up --build
-```
-
-Ce fichier `.env` est ignoré par Git. Ne jamais partager sa valeur. Le port Qdrant est publié
-uniquement sur la boucle locale. Arrêter avec `docker compose down` ; ajouter `-v` uniquement
-si vous voulez détruire les volumes de développement.
-
-## Vérifications reproductibles
+### Construire et vérifier
 
 ```bash
-uv run ruff format --check backend tests scripts app.py
-uv run ruff check backend tests scripts app.py
-uv run mypy backend
-uv run pytest -q
-uv run python scripts/check_schema.py
-MLFLOW_ALLOW_FILE_STORE=true uv run --group evaluation python scripts/evaluate.py --mlflow
-uv run pip-audit
-npm audit --prefix frontend
+npm run test:server
 VITE_RUNTIME=browser npm run build --prefix frontend
-uv run python scripts/check_bundle.py
-# Vérifier les deux runtimes avec serveurs et quotas de test isolés :
-(cd frontend && npx playwright install chromium)
-uv run --group semantic python scripts/verify_web.py
-# Avec Chromium système : préfixer la commande par CHROMIUM_PATH=/usr/bin/chromium
+python3 scripts/check_bundle.py
+npm exec --prefix frontend -- playwright install chromium
+python3 scripts/verify_pdf.py --skip-build
 ```
 
-La CI versionnée répète ces contrôles, ajoute la détection de secrets et le build Docker.
-Le dépôt étant actuellement privé, son job reste désactivé pour éviter toute minute facturable ;
-il s'exécute uniquement sur un dépôt public avec runner standard.
-Les résultats exécutés ici sont conservés dans [evidence](evidence/), sans déclarer qu'une CI
-GitHub a réussi avant son exécution distante. Les tests ne consomment aucun jeton payant. Le lanceur `scripts/verify_web.py` construit puis
-vérifie les éditions backend et navigateur, démarre ses propres serveurs locaux et utilise
-un compteur de test neuf par exécution. Il retire les accès Qdrant cloud de ses sous-processus
-et conserve les protections et quotas de l’application. Ne pas lancer ces tests sur un
-serveur de développement déjà utilisé : ses quotas peuvent légitimement être épuisés.
+Le dernier outil démarre et arrête son propre serveur local. Il teste réellement les PDF, l’OCR et E5 sur ordinateur et mobile émulé. Le modèle est téléchargé dans `work/e5`, ignoré par Git. **Les cas d’interface de génération sont simulés : la CI n’appelle aucun fournisseur et n’a aucun secret de production.** Les vérifications réelles NVIDIA sont documentées séparément dans les [preuves de publication](evidence/generation-publication-current.json).
 
-## Mesures
+Pour les contrôles Python historiques et les commandes complètes : [CONTRIBUTING.md](CONTRIBUTING.md).
 
-42 cas annotés : 24 factuels, 6 comparaisons/multi-sources, 12 refus/ambiguïtés/injections.
-Le rapport mesuré [evaluation.json](evidence/evaluation.json) contient les résultats de chaque cas.
-Sur ce jeu éditorial synthétique, hybride : Recall@4 = 0,9833 ; Precision@4 = 0,2833 ; MRR = 0,9611.
-Ces chiffres ne constituent pas un benchmark indépendant ni une mesure de fidélité d'un LLM.
-Les citations sont vérifiées par correspondance exacte avec les notes, pas par entailment des
-pages officielles. Voir [EVALUATION.md](EVALUATION.md).
+## Déployer sur Vercel
 
-## Sécurité et coût
+Le projet existant `lakehouse-rag-lab` est relié au dépôt GitHub ; **`main` est la branche de production**. La configuration versionnée est dans [vercel.json](vercel.json).
 
-Aucun appel payant n'est implémenté dans le chemin actif. Pas de clé dans le navigateur, pas
-d'upload public, pas de web search dynamique, pas de HTML LLM injecté, pas de tracker ni cookie
-marketing. Le backend impose des limites, des timeouts et des réservations de quota atomiques
-sur SQLite. Il refuse les requêtes serverless plutôt que de simuler un plafond global avec
-un compteur en mémoire. [SECURITY.md](SECURITY.md) et [COST.md](COST.md) expliquent les limites.
+| Réglage | Valeur |
+| --- | --- |
+| Racine du projet | Racine du dépôt |
+| Runtime | Node.js 24 |
+| Installation | `npm ci --ignore-scripts && npm ci --ignore-scripts --prefix frontend` |
+| Build | `npm run test:server && VITE_RUNTIME=browser npm run build --prefix frontend` |
+| Fichiers statiques | `frontend/dist` |
+| Fonctions | `api/ai/answer.js`, `api/ai/status.js` |
 
-## Apprendre et présenter
+Variables à configurer **uniquement côté serveur dans Vercel / Production** :
 
-Commencer par [LEARNING_GUIDE.md](LEARNING_GUIDE.md), puis suivre les chapitres dans
-[docs/learning](docs/learning/). Les choix structurants sont dans [docs/adr](docs/adr/).
+| Variable | Type / rôle |
+| --- | --- |
+| `NVIDIA_API_KEY` | Sensible ; clé fournie directement dans Vercel, jamais dans Git ou le chat |
+| `RAG_PUBLIC_GENERATION` | `true` pour activer explicitement la génération |
 
-Pitch court :
+Ne jamais utiliser de préfixe `VITE_` pour une clé. Sans ces réglages, la recherche fonctionne et la génération reste indisponible. Aucun token Vercel ou NVIDIA n’est nécessaire dans GitHub Actions : le déploiement passe par l’intégration Git native.
 
-« J’ai construit un RAG observable consacré aux architectures Lakehouse. Le moteur Python/FastAPI
-orchestre une recherche hybride, un reranking, un contrôle de pertinence et une validation des
-citations. L’application rend les étapes du retrieval visibles afin de comparer les stratégies
-et d’expliquer les décisions du système. »
+```bash
+python3 scripts/check_public.py --expect-generation-ready --compare-dist
+```
 
-Préciser ensuite en entretien : « La version actuelle est un baseline extractif, avec un index
-Qdrant local et un compagnon navigateur à coût nul. Les embeddings neuronaux, le corpus officiel
-et le LLM distant sont des étapes distinctes, pas des fonctionnalités simulées. »
+Ce contrôle public vérifie les routes, les en-têtes de sécurité, le favicon, le statut de l’API et, sur demande, les empreintes du build. Il ne lance aucun appel NVIDIA. Voir [DEPLOYMENT.md](DEPLOYMENT.md) pour le flux CI/CD et le retour arrière.
 
-## Limites et roadmap
+## Qualité et sécurité
 
-1. Finaliser la revue des conditions et robots, puis ingérer 20–50 pages officielles.
-2. Raccorder le cluster Qdrant Cloud Free dédié fourni par le propriétaire ; suivre
-   [le guide de configuration](docs/CLOUD_SETUP.md), puis créer un index isolé avec clé read-only.
-3. Évaluer de vrais embeddings multilingues, le chunking associé et un reranker éventuel.
-4. Vérifier le catalogue AI Gateway, l'éligibilité gratuite du compte, le non-rechargement et
-   la coupure fournisseur avant d'implémenter un fournisseur distant.
-5. Ajouter un stockage atomique durable gratuit avant toute API publique de génération.
-6. Élargir le jeu d'évaluation avec données tenues à part et jugements humains indépendants.
+La CI couvre l’historique Git avec Gitleaks, les fichiers suivis avec secretlint, les audits npm/Python, les tests de l’API Node, les builds, les tests navigateur réels et le laboratoire Python. Les actions sont fixées par commit ; les installations npm désactivent les scripts de dépendances ; les permissions GitHub sont en lecture seule.
 
-Aucune application existante et aucun projet Supabase ne sont utilisés ou modifiés.
+- [Contrôles de préparation à la publication](evidence/public-release-readiness.json)
+- [Politique de sécurité et signalement](SECURITY.md)
+- [Contribuer et lancer les vérifications](CONTRIBUTING.md)
+- [Architecture détaillée du parcours PDF](docs/PDF_RAG.md)
+- [Génération et historique de ses contrôles](docs/PDF_GENERATION.md)
+- [Laboratoire Python optionnel](docs/LEGACY_LAB.md)
+- [Licences et attributions des composants tiers](frontend/notices/THIRD_PARTY.md)
+
+Les audits détectent des signatures et vulnérabilités connues ; ils ne constituent pas une garantie absolue. Ne joignez jamais de clé, PDF privé ou capture sensible à une issue.

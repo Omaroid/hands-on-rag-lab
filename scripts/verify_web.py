@@ -31,9 +31,13 @@ def run_runtime(runtime: str, port: int) -> None:
         "LAKEHOUSE_ROOT",
         "BASE_URL",
         "VITE_RUNTIME",
+        "NVIDIA_API_KEY",
+        "NVIDIA_INFERENCE_ENABLED",
+        "AI_GATEWAY_API_KEY",
     ):
         env.pop(name, None)
     env["EMBEDDING_BACKEND"] = "local-hash"
+    env["LAKEHOUSE_E2E_LOCAL"] = "1"
     env["VITE_RUNTIME"] = runtime
     origin = f"http://localhost:{port}"
     env["APP_ORIGIN"] = origin
@@ -50,7 +54,9 @@ def run_runtime(runtime: str, port: int) -> None:
                 sys.executable,
                 "-m",
                 "uvicorn",
-                "app:app",
+                "e2e_server:app",
+                "--app-dir",
+                str(ROOT / "tests"),
                 "--host",
                 "127.0.0.1",
                 "--port",
@@ -78,7 +84,7 @@ def run_runtime(runtime: str, port: int) -> None:
                             raise TimeoutError(f"{runtime} test server did not become ready")
                         time.sleep(0.1)
                 subprocess.run(  # noqa: S603
-                    [npm, "run", "test:e2e", "--prefix", "frontend"],
+                    [npm, "run", "test:e2e", "--prefix", "frontend", "--", "app.spec.ts"],
                     cwd=ROOT,
                     env=env,
                     check=True,
@@ -99,7 +105,12 @@ def main() -> None:
     args = parser.parse_args()
     runtimes = ["backend", "browser"] if args.runtime == "both" else [args.runtime]
     for index, runtime in enumerate(runtimes):
-        run_runtime(runtime, args.port + index)
+        if runtime == "browser":
+            from verify_pdf import run_pdf
+
+            run_pdf(args.port + index)
+        else:
+            run_runtime(runtime, args.port + index)
     print("All requested local web runtimes passed.")
 
 

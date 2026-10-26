@@ -1,0 +1,6 @@
+# Exact historical findings reviewed before publication. No file-wide exclusions.
+# One synthetic test value and three public model SHA-256 checksums.
+5ce8058f9a65ec953c57f53745e97fcd29ba286d:tests/server-quota.test.mjs:generic-api-key:113
+d20c21eccc4d19973e73a6da5c0e9fb20705e042:scripts/verify_semantic.py:generic-api-key:22
+d20c21eccc4d19973e73a6da5c0e9fb20705e042:scripts/verify_semantic.py:generic-api-key:23
+d20c21eccc4d19973e73a6da5c0e9fb20705e042:scripts/verify_semantic.py:generic-api-key:24

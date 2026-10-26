@@ -4,7 +4,7 @@ WORKDIR /web
 COPY frontend/package.json frontend/package-lock.json ./
 RUN --mount=type=secret,id=proxy_ca \
     if [ -f /run/secrets/proxy_ca ]; then export NODE_EXTRA_CA_CERTS=/run/secrets/proxy_ca; fi; \
-    npm ci --strict-ssl=true
+    npm ci --ignore-scripts --strict-ssl=true
 COPY frontend/ ./
 RUN npm run build
 

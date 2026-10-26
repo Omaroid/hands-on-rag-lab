@@ -1,68 +1,68 @@
-# Déploiement gratuit
+# Déploiement et CI/CD
 
-## Cible livrée
+## Projet actuel
 
-L'édition publique est statique (retrieval dans le navigateur). `vercel.json` sélectionne
-`frontend/dist` et `VITE_RUNTIME=browser`. Aucun runtime Python ni fournisseur distant n'est
-nécessaire pour cette édition. Ne pas la présenter comme l'intégration cloud complète.
+- Application : https://lakehouse-rag-lab.vercel.app
+- Dépôt : https://github.com/Omaroid/lakehouse-rag-lab
+- Projet Vercel existant : `lakehouse-rag-lab`, équipe `omar-laraquis-projects`.
+- Branche de production : `main`.
+- Runtime : Node.js 24 ; interface statique et fonctions `api/ai/*`.
 
-URL : **https://lakehouse-rag-lab.vercel.app**
+Le projet est relié à GitHub. Les modifications Git sont déployées par l’intégration native Vercel : aucun token de déploiement n’est stocké dans GitHub Actions. Aucun nouveau projet, plan payant ou base de données n’est nécessaire.
 
-Déploiement production READY ; HTML, JavaScript et CSS retournent 200 via le connecteur Vercel.
-Les deux assets sont identiques octet pour octet au build local testé. Les en-têtes de sécurité
-sont présents. Le navigateur de cet environnement ne peut pas atteindre vercel.app à cause de
-la politique réseau ; les parcours navigateur ont donc été exécutés localement, sans prétendre
-à une vérification navigateur distante. Voir `evidence/deployment.json`.
-Équipe prévue : `omar-laraquis-projects`, plan Hobby vérifié avant création.
-Nouveau projet dédié : `lakehouse-rag-lab`. Aucune application existante modifiée.
+## Configuration versionnée
 
-## Local
+`vercel.json` fait foi :
 
-Voir README. Le backend FastAPI et l'interface construite partagent le port 8000. Pour servir
-l'interface avec Vite sur 5173, définir APP_ORIGIN à `http://localhost:5173`, puis lancer le
-backend et le dev server. Pas de wildcard CORS.
-
-## Qdrant Cloud Free (cluster existant, collection en attente)
-
-Le propriétaire a fourni un cluster **Free dédié** existant. Le diagnostic en lecture seule retourne maintenant `collection_missing` sur le port HTTPS
-443 explicite ; aucune collection sémantique n’a encore été créée. Suivre [CLOUD_SETUP.md](docs/CLOUD_SETUP.md).
-Créer uniquement un index isolé. Ne pas accepter un essai qui se convertit en offre
-payante. Vérifier la console avant de définir `QDRANT_PLAN_CONFIRMED_FREE=true` pour l'indexeur.
-Utiliser `QDRANT_WRITE_API_KEY` pour l'indexation, puis une clé read-only différente avec
-`QDRANT_API_KEY` pour le service. Entrer les secrets dans un gestionnaire de secrets serveur,
-jamais dans le chat ou dans une variable `VITE_*`.
-
-```bash
-uv run python -m lakehouse.ingestion
-# Uniquement quand robots et termes sont réellement approuvés :
-uv run python scripts/index_qdrant.py --corpus corpus/official.json --prune
+```text
+Install: npm ci --ignore-scripts && npm ci --ignore-scripts --prefix frontend
+Build:   npm run test:server && VITE_RUNTIME=browser npm run build --prefix frontend
+Output:  frontend/dist
 ```
 
-Le premier appel d'ingestion échoue tant que les revues restent pending. C'est intentionnel.
-Le manifeste ne crée aucun cluster et ne modifie aucune autre base.
+La racine du projet Vercel reste la racine du dépôt, afin de déployer les fonctions Node et le frontend ensemble. Les routes `/theory` et `/architecture` servent l’application. Le favicon est `frontend/public/favicon.svg`, référencé par `frontend/index.html` et publié sous `/favicon.svg`.
 
-## Backend et frontend dans un même projet Vercel
+Les secrets sont saisis directement dans Vercel / Environment Variables, cible **Production** :
 
-La documentation actuelle confirme la détection FastAPI et la promotion des fichiers statiques
-par `app.mount(..., StaticFiles(...))` ou `app.frontend`. Le backend local utilise la première
-méthode. Cela rend la colocalisation possible, mais **ne résout pas** la persistance des quotas,
-les embeddings lourds ou la connectivité Qdrant.
+| Variable | Valeur / type |
+| --- | --- |
+| `NVIDIA_API_KEY` | Clé serveur sensible ; ne jamais l’exporter dans une variable `VITE_*` |
+| `RAG_PUBLIC_GENERATION` | `true` pour autoriser explicitement la génération |
 
-Une configuration intégrée doit être validée séparément après ajout d'un stockage atomique
-durable gratuit. Le code refuse les requêtes quand VERCEL ou PUBLIC_SERVERLESS est actif.
-Ne pas enlever cette garde pour obtenir artificiellement une démo de génération publique.
+Sans activation et clé valide, l’API indique `ready:false`. L’indexation/recherche locale et les pages pédagogiques restent utilisables. Ne copiez pas les secrets Production vers les previews de contributions externes.
 
-## Génération distante
+## CI : vérifier avant fusion
 
-Non activée. Le catalogue `/v1/models` ne pouvait pas être téléchargé depuis l'environnement
-restreint au moment de la première vérification. Aucun nom de modèle, solde gratuit ou budget
-du compte n'est supposé. Les adaptateurs de protocole permettent une extension ultérieure,
-mais le chemin actif n'a aucune clé AI Gateway/Azure/Mistral.
+La workflow `.github/workflows/ci.yml` s’exécute sur les pull requests et les pushes sur `main` :
 
-## Conditions avant publication
+- **PDF/API/sécurité** : historique Git, secretlint, audits npm, API Node, compilation TypeScript/Vite, scan du bundle et vrais tests PDF/OCR/E5 sur desktop/mobile émulé.
+- **Laboratoire Python** : formatage, lint, types, schémas, tests, évaluation locale, audit des dépendances, wheel et conteneur non-root.
 
-Tests unitaires, refus, injections, citations, quotas, mypy/Ruff, audits de dépendances,
-secretlint, build, schéma, tests navigateur, en-têtes et contrôle du bundle. La CI est versionnée ;
-un résultat local ne doit pas être présenté comme un résultat GitHub Actions distant.
-Après déploiement : vérifier état READY, URL publique sans authentification, headers et
-parcours essentiels. Le statut effectif est enregistré dans evidence/deployment.json.
+La génération d’interface est simulée dans la CI ; aucun appel NVIDIA réel n’y est effectué. Les scénarios réels fournisseur sont validés séparément avec des documents de test et un accord explicite.
+
+Les permissions Actions sont en lecture seule et les actions sont fixées par SHA. Les modèles publics sont validés par le [manifeste SHA-256](evidence/pdf-model-manifest.json). La CI ne publie que le rapport JSON des tests, pas les secrets, logs complets ou états de navigateur.
+
+La protection de branche et les checks requis sont des réglages GitHub distincts de la workflow : un administrateur doit les activer si les permissions et le plan le permettent. La présence du YAML ne prouve pas que ces réglages sont appliqués.
+
+## Vérifier le déploiement
+
+Après le build local PDF et le déploiement du même commit :
+
+```bash
+python3 scripts/check_public.py --expect-generation-ready --compare-dist
+```
+
+Le contrôle vérifie HTTP 200, les routes, la CSP et les autres en-têtes, le favicon, les empreintes des fichiers publics et les rejets de requêtes invalides. **Il ne déclenche aucun appel NVIDIA.** Un échec de comparaison signifie que le déploiement et le build local ne correspondent pas : ne validez pas la publication avant de l’expliquer.
+
+## Retour arrière
+
+1. Choisir dans Vercel un déploiement Production précédemment validé.
+2. Utiliser Rollback/Promote dans ce projet uniquement, puis refaire le contrôle public.
+3. Vérifier l’assignation du domaine et le comportement des prochains pushes : un rollback peut suspendre l’assignation automatique.
+4. Pour couper seulement la génération, désactiver `RAG_PUBLIC_GENERATION` puis redéployer. La recherche locale reste disponible.
+
+Aucune suppression de base, rotation automatique ou migration d’un autre projet n’est prévue par cette procédure.
+
+## Avant de rendre le dépôt public
+
+Valider le commit exact : scans de secrets et d’historique, CI, tests réels locaux, audits, favicon et site public. En cas de vrai secret historique, le révoquer et nettoyer l’historique avant de poursuivre. Le changement de visibilité est une action GitHub d’administration ; ne pas confondre dépôt publiable et dépôt déjà public.

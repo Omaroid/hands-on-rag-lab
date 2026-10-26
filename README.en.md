@@ -1,3 +1,5 @@
+![Hands-on RAG Lab — from documents to grounded answers](.github/brand/social-preview.jpg)
+
 # Hands-on RAG Lab
 
 **Explore your PDFs, retrieve evidence and understand how a RAG answer is built.**

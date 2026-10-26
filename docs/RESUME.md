@@ -25,7 +25,7 @@ nettoie les erreurs et efface réponse/consentement à la réinitialisation.
 Quatre appels NVIDIA réels séparés sur textes synthétiques ont validé réponse étayée,
 incomplète, absence et refus d'injection, avec le constructeur de requête et le validateur
 JS réellement employés par le serveur. Ce n'est pas un test public complet PDF→NVIDIA.
-Les 16 tests serveur passent ; 14 parcours navigateur passent, avec OCR/E5 réels et
+Les 17 tests serveur passent ; 14 parcours navigateur passent, avec OCR/E5 réels et
 réponses fournisseur simulées dans les deux cas UI de génération. Backend Python inchangé,
 dernière validation 100 tests. Audits npm root/frontend à 0 après correction Zod transitive.
 Preuves : nvidia-pdf-contract-current.json et generation-readiness-current.json.

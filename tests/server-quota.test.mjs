@@ -119,3 +119,35 @@ test("only the dedicated blob store can be selected", () => {
     false,
   );
 });
+test("invalid period fields and inconsistent totals fail closed without a write", async () => {
+  const valid = nextState(emptyState(), client, now);
+  let writes = 0;
+  const invalid = [
+    { ...valid, month: "" },
+    {
+      ...valid,
+      day: "2026-02-31",
+      month: "2026-02",
+      minute: "2026-02-31T10:00",
+    },
+    { ...valid, daily: 2 },
+    { ...valid, monthly: 0 },
+    { ...valid, clients: {} },
+    { ...valid, unexpected: 0 },
+    { ...emptyState(), monthly: 1 },
+  ];
+  for (const state of invalid) {
+    await assert.rejects(
+      reserveQuota({
+        client,
+        now,
+        store: {
+          read: async () => ({ state, etag: "x" }),
+          write: async () => writes++,
+          isConflict: () => false,
+        },
+      }),
+    );
+  }
+  assert.equal(writes, 0);
+});

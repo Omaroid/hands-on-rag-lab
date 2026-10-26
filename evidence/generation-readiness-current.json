@@ -2,7 +2,7 @@
   "checked_at": "2026-10-26T11:04:30.493545+00:00",
   "status": "counter_verified_generation_code_ready_project_key_missing",
   "real_blob_counter": "evidence/blob-quota-current.json",
-  "server_tests_passed": 16,
+  "server_tests_passed": 17,
   "browser_tests_passed": 14,
   "browser_generation_provider_responses": "simulated, explicitly distinct from four real synthetic NVIDIA contract probes",
   "nvidia_contract_real_probes": 4,
@@ -34,5 +34,6 @@
   "task_nvidia_key_is_proxy_reference": true,
   "proxy_reference_copied_to_project": false,
   "other_projects_modified": false,
-  "purchases_or_plan_changes": false
+  "purchases_or_plan_changes": false,
+  "corrupt_counter_periods_and_totals_fail_closed": true
 }

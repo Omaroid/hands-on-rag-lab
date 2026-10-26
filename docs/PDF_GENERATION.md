@@ -100,3 +100,7 @@ ce jeton donne le droit d'écrire mais ne donne pas accès à la valeur de la cl
 référencée par le proxy de tâche. Aucun placeholder n'a été enregistré comme secret NVIDIA
 Vercel. RAG_PUBLIC_GENERATION reste false. Une injection directe sécurisée de la clé dans
 Vercel est nécessaire avant activation, redéploiement et test public borné.
+
+Le contrôle d’intégrité vérifie aussi la forme et la cohérence des périodes, le total
+par client, les totaux globaux, la révision et l’identifiant de compteur. Un état incohérent
+est refusé avant toute écriture ; il ne peut pas déclencher une remise à zéro silencieuse.

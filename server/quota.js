@@ -46,9 +46,54 @@ export function validateState(s) {
     )
   )
     throw new QuotaUnavailable("Invalid counter");
+  const keys = [
+    "version",
+    "instance",
+    "revision",
+    "month",
+    "monthly",
+    "day",
+    "daily",
+    "minute",
+    "minuteCount",
+    "clients",
+  ];
+  const initial =
+    s.revision === 0 &&
+    s.monthly === 0 &&
+    s.daily === 0 &&
+    s.minuteCount === 0 &&
+    s.month === "" &&
+    s.day === "" &&
+    s.minute === "" &&
+    Object.keys(s.clients).length === 0;
+  const dates =
+    /^\d{4}-(0[1-9]|1[0-2])$/.test(s.month) &&
+    /^\d{4}-\d{2}-\d{2}$/.test(s.day) &&
+    /^\d{4}-\d{2}-\d{2}T([01]\d|2[0-3]):[0-5]\d$/.test(s.minute) &&
+    s.day.startsWith(s.month + "-") &&
+    s.minute.startsWith(s.day + "T") &&
+    new Date(s.day + "T00:00:00.000Z").toISOString().slice(0, 10) === s.day;
+  if (
+    Object.keys(s).length !== keys.length ||
+    Object.keys(s).some((k) => !keys.includes(k)) ||
+    !/^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/.test(
+      s.instance,
+    ) ||
+    s.revision >= Number.MAX_SAFE_INTEGER ||
+    s.monthly > s.revision ||
+    s.daily > s.monthly ||
+    s.minuteCount > s.daily ||
+    Object.values(s.clients).reduce((sum, n) => sum + n, 0) !== s.daily ||
+    (!initial &&
+      (!dates || s.revision === 0 || !s.monthly || !s.daily || !s.minuteCount))
+  )
+    throw new QuotaUnavailable("Inconsistent counter");
   return s;
 }
 export function nextState(state, client, now, limits = LIMITS) {
+  if (!/^[a-f0-9]{64}$/.test(client))
+    throw new QuotaUnavailable("Invalid client digest");
   const s = structuredClone(validateState(state)),
     iso = new Date(now).toISOString(),
     month = iso.slice(0, 7),

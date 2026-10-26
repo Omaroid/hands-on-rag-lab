@@ -193,7 +193,8 @@ export async function generateAnswer(
   if (
     choice?.finish_reason !== "stop" ||
     message?.role !== "assistant" ||
-    message?.tool_calls
+    (message?.tool_calls != null &&
+      (!Array.isArray(message.tool_calls) || message.tool_calls.length > 0))
   )
     throw new ProviderUnavailable("Incomplete provider output", {
       finishReason: choice?.finish_reason,

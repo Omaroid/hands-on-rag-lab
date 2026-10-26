@@ -152,3 +152,19 @@ test("generation gate remains closed for missing policy, proxy placeholders and 
   assert.equal(ready({}), false);
   assert.equal(ready({ NVIDIA_API_KEY: "[proxy]" }), false);
 });
+test("completed NVIDIA answers accept an empty tool_calls array but reject actual tool requests", async () => {
+  const q = validateQuestion(body());
+  const result = await generateAnswer(q, {
+    apiKey: "test-only-placeholder",
+    fetchImpl: async () => completed(undefined, { tool_calls: [] }),
+  });
+  assert.equal(result.answer, "25 jours [1].");
+  for (const calls of [[{ id: "forbidden", type: "function" }], {}, "tool"])
+    await assert.rejects(
+      generateAnswer(q, {
+        apiKey: "test-only-placeholder",
+        fetchImpl: async () => completed(undefined, { tool_calls: calls }),
+      }),
+      ProviderUnavailable,
+    );
+});

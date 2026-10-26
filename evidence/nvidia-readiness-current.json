@@ -32,5 +32,14 @@
     "Free durable atomic global serverless quota store not connected or concurrency-tested",
     "NVIDIA account terms/retention not independently verified",
     "PDF-specific public generation contract not implemented while gate remains closed"
-  ]
+  ],
+  "live_site_changed": true,
+  "site": "https://lakehouse-rag-lab.vercel.app",
+  "production_deployment_id": "dpl_DxdCEKHq43qewTpr8vkcSUnpTHHS",
+  "public_ai_status": {
+    "ready": false
+  },
+  "public_ai_answer_http": 503,
+  "public_api_secret_provisioned": false,
+  "publication_evidence": "evidence/pdf-publication-current.json"
 }

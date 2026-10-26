@@ -1,0 +1,230 @@
+{
+  "checked_at": "2026-10-26T10:26:11.878557+00:00",
+  "site": "https://lakehouse-rag-lab.vercel.app",
+  "target": "production",
+  "state": "READY",
+  "deployment_id": "dpl_DxdCEKHq43qewTpr8vkcSUnpTHHS",
+  "source_commit": "3205a6624d5b303d869008f32b010d028101798a",
+  "http_status": 200,
+  "html_matches_local": true,
+  "csp_matches": true,
+  "assets": [
+    {
+      "path": "/favicon.svg",
+      "bytes": 235,
+      "sha256": "2d6ac803939f012060e9b8e4c8094c7ad905b2bcdd4032bbe053c07cb1251e49",
+      "matches_local": true
+    },
+    {
+      "path": "/index.html",
+      "bytes": 642,
+      "sha256": "ade9195d2d079d01857fd95cee538f6827939156559fbb0c9838f5734390dd1d",
+      "matches_local": true
+    },
+    {
+      "path": "/ocr/worker.min.js",
+      "bytes": 111307,
+      "sha256": "576b7df7e3393e137e51849357c9adb53fe7ac1bb69bfa06cf3d61520f182c6d",
+      "matches_local": true
+    },
+    {
+      "path": "/assets/pdf.worker.min-CjEcRF4W.mjs",
+      "bytes": 1264342,
+      "sha256": "9536359f1b8367850d485731ca1d5e45c159a7b7a0912325e539937aa21ceb18",
+      "matches_local": true
+    },
+    {
+      "path": "/assets/ocr.worker-DNbwE4x-.js",
+      "bytes": 18796,
+      "sha256": "8b56233c2fa64e7ce614b7e6a579da8f49830602bb93cdfb9e788506d34ea861",
+      "matches_local": true
+    },
+    {
+      "path": "/assets/pdf-import-DgXOu3or.js",
+      "bytes": 431217,
+      "sha256": "7bba4be19c2c26b7ef44e42673379ff717be2d0ee1c9cbe59b84215b7c168329",
+      "matches_local": true
+    },
+    {
+      "path": "/assets/index-B7rMTcq4.css",
+      "bytes": 31946,
+      "sha256": "dddcb774a3fb4eb064fe5ebb1cf58c0ec38f54bfdb4b2277bebcb31da253383a",
+      "matches_local": true
+    },
+    {
+      "path": "/assets/ort-wasm-simd-threaded.asyncify-CxOG5pUO.wasm",
+      "bytes": 26861777,
+      "sha256": "49871f5a4409519797e127440868a6d1923339d9185907f301a5b2a1d90af082",
+      "matches_local": true
+    },
+    {
+      "path": "/assets/index-DY40lQJe.js",
+      "bytes": 264695,
+      "sha256": "54f3dfe209023db33e70a7d336e413cde2124d085b08022a5263130adaaa81a0",
+      "matches_local": true
+    },
+    {
+      "path": "/assets/semantic.worker-DFr6s3cH.js",
+      "bytes": 546970,
+      "sha256": "10289e34cfee01ad88dec9ce7a1fd6e85dbf78d91d406f53d75ec42589e52ac9",
+      "matches_local": true
+    },
+    {
+      "path": "/onnx/ort-wasm-simd-threaded.jsep.mjs",
+      "bytes": 46851,
+      "sha256": "c2f80e915e9df63289788a99d434d8c4e00e64e9c1f030f4b80b022458dd2c99",
+      "matches_local": true
+    },
+    {
+      "path": "/onnx/ort-wasm-simd-threaded.mjs",
+      "bytes": 24381,
+      "sha256": "c57ca56328877353a575e51bbca6f18450027d6c9bf2307a2cb2c41363b4de9f",
+      "matches_local": true
+    },
+    {
+      "path": "/onnx/ort-wasm-simd-threaded.asyncify.mjs",
+      "bytes": 53057,
+      "sha256": "0966b6105cd936744498aa60df7a22cbd47af3374dbc64a9ab561c08a71e3611",
+      "matches_local": true
+    },
+    {
+      "path": "/onnx/ort-wasm-simd-threaded.asyncify.wasm",
+      "bytes": 26861777,
+      "sha256": "49871f5a4409519797e127440868a6d1923339d9185907f301a5b2a1d90af082",
+      "matches_local": true
+    },
+    {
+      "path": "/onnx/ort-wasm-simd-threaded.jsep.wasm",
+      "bytes": 28352885,
+      "sha256": "62ff86b2f2fa3a79eb87a7e4720e8ea9051942bf975f314181bf7dcef2feac06",
+      "matches_local": true
+    },
+    {
+      "path": "/onnx/ort-wasm-simd-threaded.wasm",
+      "bytes": 14264838,
+      "sha256": "06ba057753da3847e4c24f02d91ab133455b0817c69a44993a9a53a2146df9e3",
+      "matches_local": true
+    },
+    {
+      "path": "/licenses/THIRD_PARTY.md",
+      "bytes": 972,
+      "sha256": "dcdefb7afad41276bb34605c75ce89d7101e67d54df5a5da9d09e92f979a5e34",
+      "matches_local": true
+    },
+    {
+      "path": "/licenses/pdfjs.txt",
+      "bytes": 10174,
+      "sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594",
+      "matches_local": true
+    },
+    {
+      "path": "/licenses/tesseract-core.txt",
+      "bytes": 11358,
+      "sha256": "c6596eb7be8581c18be736c846fb9173b69eccf6ef94c5135893ec56bd92ba08",
+      "matches_local": true
+    },
+    {
+      "path": "/licenses/tesseract.txt",
+      "bytes": 11357,
+      "sha256": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
+      "matches_local": true
+    },
+    {
+      "path": "/licenses/onnxruntime.txt",
+      "bytes": 1073,
+      "sha256": "2f07c72751aed99790b8a4869cf2311df85a860b22ded05fa22803587a48922c",
+      "matches_local": true
+    },
+    {
+      "path": "/licenses/transformers.txt",
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "matches_local": true
+    },
+    {
+      "path": "/ocr/lang/fra.traineddata.gz",
+      "bytes": 707406,
+      "sha256": "d611139672b3752c7097e671e4a1d9209dfd37f2aeb081ef6487fba3351e9255",
+      "matches_local": true
+    },
+    {
+      "path": "/ocr/lang/eng.traineddata.gz",
+      "bytes": 2952873,
+      "sha256": "45b4cb346724ac1774f1c36f42f182b887bcdb28ebe63e6fff90ac41f3fcff91",
+      "matches_local": true
+    },
+    {
+      "path": "/ocr/core/tesseract-core-lstm.wasm.js",
+      "bytes": 3896484,
+      "sha256": "eef5f8b2f8e20e150680b20adaec4a60babafee3adbe8a94583c81fee46e8680",
+      "matches_local": true
+    },
+    {
+      "path": "/ocr/core/tesseract-core-lstm.wasm",
+      "bytes": 2855361,
+      "sha256": "66b17df6e20c5329a17ffa9c202a47eaa3e32500b253d4c7f38e7f2bc01457c3",
+      "matches_local": true
+    },
+    {
+      "path": "/ocr/core/tesseract-core-simd-lstm.wasm.js",
+      "bytes": 3899472,
+      "sha256": "c58b46a4c796c0b8afccf77591d5b875b6896b45d402bbce8caa6f5362447b38",
+      "matches_local": true
+    },
+    {
+      "path": "/ocr/core/tesseract-core-relaxedsimd-lstm.wasm",
+      "bytes": 2862266,
+      "sha256": "7985c92d4c64e7267d24cadffe1b2a1da6bf8aa55fdcaf953fe94fe122a24545",
+      "matches_local": true
+    },
+    {
+      "path": "/ocr/core/tesseract-core-relaxedsimd-lstm.wasm.js",
+      "bytes": 3905767,
+      "sha256": "861a536cf9ef8e63cb644d57bab39c388f37f7d6b6f60024b741c5f6b39a59b3",
+      "matches_local": true
+    },
+    {
+      "path": "/ocr/core/tesseract-core-simd-lstm.wasm",
+      "bytes": 2857601,
+      "sha256": "34e8d50cac216427d86bf397d610fdd9f49492539bbcdfbfccc4eda20c810bea",
+      "matches_local": true
+    }
+  ],
+  "ai_status": {
+    "ready": false,
+    "reason": "durable_quota_unavailable"
+  },
+  "answer_http": 503,
+  "answer_body": {
+    "error": "generation_unavailable"
+  },
+  "public_generation_enabled": false,
+  "durable_quota_connected": false,
+  "local_pdf_browser_tests_passed": 12,
+  "python_tests_passed": 100,
+  "model_cache_fixture_deployed": false,
+  "nvidia_live_probe": "evidence/nvidia-live-probe.json",
+  "public_browser": {
+    "status": "blocked_by_sandbox_proxy_CA",
+    "error": "ERR_CERT_AUTHORITY_INVALID",
+    "desktop_attempted": true,
+    "mobile_attempted": true,
+    "tls_verification_disabled": false
+  },
+  "deployment_method": "Source files uploaded by SHA1 using Vercel REST API, deployment created using connected Vercel tool. Locked remote build; all 30 resulting static files matched the local tested build.",
+  "vercel_cli": "Rejected injected proxy placeholder syntax; no credential changed or printed. Not used for deployment.",
+  "local_artifact_upload": "Large asset transfer reset by proxy; only source files uploaded for remote build.",
+  "cost_actions": {
+    "purchase": false,
+    "top_up": false,
+    "card_added": false,
+    "plan_changed": false,
+    "other_project_modified": false
+  },
+  "observability": {
+    "public_ai_status_verified": true,
+    "answer_route_verified_closed": true,
+    "external_provider_calls_from_public_site": 0,
+    "note": "No inference path exists in the deployed closed handlers; this is established by source inspection, not a provider usage dashboard."
+  }
+}

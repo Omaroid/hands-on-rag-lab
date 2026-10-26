@@ -1,6 +1,6 @@
 # Reprise — état vérifié le 26 octobre 2026
 
-## État actuel : vitrine PDF prête à publier
+## État actuel : vitrine PDF publiée
 
 Branche `feat/nvidia-server-inference`, checkpoint initial `afd085a` conservé. Interface
 Source FR/EN sur les PDF visiteurs : 5 Mo cumulés, 10 fichiers, 40 pages, extraction PDF.js,
@@ -33,9 +33,28 @@ navigateur cloud refuse la CA du proxy. Aucune vérification TLS désactivée. C
 preuve de téléchargement HF depuis un téléphone physique. Captures réelles dans
 `evidence/pdf-screenshots/`, synthèse `evidence/pdf-validation-current.json`.
 
-Prochaine étape immédiate : commit/push, fusion main, déploiement exclusivement sur
-prj_bx0b78VzJb6VNA2OyyIOElDnBiEE / team_0yx8bLSbYEsadJbCiwOd28l6, puis vérifier
-https://lakehouse-rag-lab.vercel.app et les assets. L'état de publication sera ajouté ci-dessous.
+Publication effectuée : branche poussée puis fusionnée par fast-forward dans main.
+Code produit `93d0ee8`, configuration d'installation `3205a66`. Déploiement de production
+`dpl_DxdCEKHq43qewTpr8vkcSUnpTHHS`, source exacte
+`3205a6624d5b303d869008f32b010d028101798a`, READY, sur le projet/équipe autorisés.
+Domaine https://lakehouse-rag-lab.vercel.app : HTTP 200, HTML, CSP et **30 assets identiques**
+au build testé. GET /api/ai/status renvoie ready:false ; POST /api/ai/answer renvoie 503.
+Le projet n'a pas de liaison Git Vercel ; fichiers sources envoyés par SHA puis création par
+l'outil Vercel connecté et build distant verrouillé, comparé au build local. Le CLI refusait
+la syntaxe du placeholder secret injecté ; aucune clé n'a été remplacée pour le contourner.
+Le transfert des gros assets locaux était interrompu par le proxy, d'où le build distant.
+
+Le contrôle navigateur du domaine public reste bloqué par la CA du proxy du sandbox
+(ERR_CERT_AUTHORITY_INVALID, desktop/mobile). Pas de désactivation TLS. Les 12 parcours
+réels portent sur le build local identique ; les contrôles HTTPS publics utilisent la CA
+configurée du runtime. Ne pas déclarer les parcours publics réussis. Voir
+`evidence/pdf-publication-current.json`. Les captures dans evidence sont les rendus réels
+locaux. La génération publique reste fermée ; le seul appel réel est le probe synthétique.
+
+La dernière mise à jour de documentation/preuves après publication ne modifie aucun asset.
+Pour poursuivre : raccorder et tester un compteur durable atomique gratuit, clarifier les
+conditions du compte NVIDIA, puis implémenter/valider le contrat de génération sur extraits
+PDF locaux avant toute ouverture. Ne pas supprimer la garde ou réutiliser une autre base.
 
 ---
 

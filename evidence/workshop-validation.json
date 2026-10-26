@@ -1,0 +1,29 @@
+{
+  "checked_at": "2026-10-26T12:43:18.934226+00:00",
+  "reports": {
+    "pdf_and_architecture": {
+      "startTime": "2026-10-26T12:39:31.300Z",
+      "duration": 114746.76699999999,
+      "expected": 20,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "workshop": {
+      "startTime": "2026-10-26T12:41:57.632Z",
+      "duration": 19691.217999999997,
+      "expected": 2,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    }
+  },
+  "node_tests_passed": 13,
+  "real_pdf": true,
+  "real_ocr": true,
+  "real_encoder": true,
+  "generation_ui_test_mock_distinguished": true,
+  "live_provider_proof": "no-caps-live-desktop.json",
+  "browser_tls_limitation": "Public API tested via TLS-verified Playwright relay; model from pinned checksum-verified fixture cache.",
+  "application_request_caps": false
+}

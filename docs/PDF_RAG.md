@@ -105,3 +105,19 @@ cache exact (empreintes vérifiées), car Chromium ne fait pas confiance à la C
 cloud. PDF.js, OCR, tokenizer, ONNX et recherche sont réels, pas simulés. La route de cache
 n'est jamais copiée dans les assets publiés. Les tests mobile sont une émulation Chromium,
 pas un test sur iPhone physique. Voir les preuves actuelles pour les résultats.
+
+## Atelier interactif du traitement
+
+`LearningJourney.tsx` présente cinq métaphores reliées au traitement réel : pages,
+cartes, boussoles, indices et panier de preuves. `pdf-import.ts` émet une page complétée
+uniquement après extraction/OCR ; `semantic.worker.ts` émet le nombre réel de brouillons
+et les nombres d’encodages terminés. La progression du téléchargement correspond au
+fichier annoncé par Transformers, pas à une estimation du temps total. Aucun délai
+artificiel n’est ajouté pour simuler une analyse.
+
+Les cartes affichent leurs vrais tokens E5 ; les barres du vecteur montrent 16 coordonnées
+réelles sur 384, positives ou négatives, sans interprétation comme confiance. Le podium
+reprend les vrais rangs E5/BM25 et scores RRF ; le panier reprend les passages effectivement
+sélectionnés. Les explications restent consultables après une étape très rapide. Un petit
+défi distingue encodage/recherche et rédaction NVIDIA. Le bouton Architecture ouvre les
+formules sans perdre la session. Réinitialiser/arrêter efface aussi les aperçus et compteurs.

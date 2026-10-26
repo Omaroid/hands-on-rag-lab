@@ -16,6 +16,7 @@ export async function readPDFs(
     total: number;
     kind: "text" | "ocr";
     progress?: number;
+    completedPage?: PageText;
   }) => void,
 ) {
   validateFiles(files);
@@ -150,6 +151,14 @@ export async function readPDFs(
             page: number,
             text: text.trim(),
             ocr: usedOCR,
+          });
+        if (text.trim())
+          progress({
+            file: file.name,
+            page: number,
+            total: pdf.numPages,
+            kind: usedOCR ? "ocr" : "text",
+            completedPage: result[result.length - 1],
           });
         page.cleanup();
       }

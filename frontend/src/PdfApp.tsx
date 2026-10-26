@@ -10,6 +10,10 @@ import {
 import "./pdf.css";
 import PdfGeneration from "./PdfGeneration";
 import ArchitecturePage from "./ArchitecturePage";
+import LearningJourney, {
+  emptyActivity,
+  type Activity,
+} from "./LearningJourney";
 const labels = {
   fr: {
     title: "Vos documents.",
@@ -235,6 +239,7 @@ export default function PdfApp() {
     window.scrollTo(0, 0);
   }
 
+  const [activity, setActivity] = useState<Activity>(emptyActivity);
   const [lang, setLang] = useState<"fr" | "en">("fr"),
     [files, setFiles] = useState<File[]>([]),
     [chunks, setChunks] = useState<Passage[]>([]),
@@ -267,6 +272,7 @@ export default function PdfApp() {
     document.documentElement.lang = lang;
   }, [lang]);
   function reset() {
+    setActivity(emptyActivity);
     generation.current++;
     clean();
     setBusy(false);
@@ -301,6 +307,7 @@ export default function PdfApp() {
     if (input.current) input.current.value = "";
   }
   function stop() {
+    setActivity({ ...emptyActivity, phase: "stopped" });
     generation.current++;
     clean();
     setBusy(false);
@@ -311,6 +318,7 @@ export default function PdfApp() {
     setStatus(t.stopMessage);
   }
   async function index() {
+    setActivity({ ...emptyActivity, phase: "reading" });
     const id = ++generation.current;
     clean();
     setError("");
@@ -330,12 +338,29 @@ export default function PdfApp() {
     try {
       const { readPDFs } = await import("./pdf-import");
       const extracted = await readPDFs(files, c.signal, (p) => {
-        if (generation.current === id)
+        if (generation.current === id) {
+          if (p.completedPage)
+            setPages((previous) => [...previous, p.completedPage!]);
+          setActivity((previous) => ({
+            ...previous,
+            phase: p.kind === "ocr" ? "ocr" : "reading",
+            file: p.file,
+            done: p.page,
+            total: p.total,
+          }));
           setStatus(
             `${p.kind === "ocr" ? "OCR" : t.reading} · ${p.file} · ${p.page}/${p.total}${p.progress !== undefined ? " · " + Math.round(p.progress * 100) + "%" : ""}`,
           );
+        }
       });
       if (generation.current !== id) return;
+      setActivity((previous) => ({
+        ...previous,
+        phase: "model",
+        done: 0,
+        total: 0,
+        file: undefined,
+      }));
       setPages(extracted);
       setStep(1);
       setStatus(t.loading);
@@ -351,23 +376,55 @@ export default function PdfApp() {
         setBusy(false);
         setQueryBusy(false);
         setStatus("");
+        setActivity({ ...emptyActivity, phase: "error" });
         setError(t.errors[code as keyof typeof t.errors] || t.errors.default);
       };
       w.onerror = () => fail();
       w.onmessage = (e) => {
         if (generation.current !== id) return;
         const d = e.data;
-        if (d.type === "download" && d.detail.status === "progress")
+        if (d.type === "download" && d.detail.status === "progress") {
+          setActivity((previous) => ({
+            ...previous,
+            phase: "model",
+            done: d.detail.progress || 0,
+            total: 100,
+            detail: d.detail.file,
+          }));
           setStatus(
             `${t.loading} · ${d.detail.file} · ${Math.round(d.detail.progress || 0)}%`,
           );
+        }
+        if (d.type === "drafts")
+          setActivity((previous) => ({
+            ...previous,
+            phase: "splitting",
+            draftCount: d.total,
+            drafts: d.preview,
+            done: 0,
+            total: d.total,
+          }));
         if (d.type === "encoded") {
+          setActivity((previous) => ({
+            ...previous,
+            phase: "encoding",
+            done: d.done,
+            total: d.total,
+            encoded: d.done,
+          }));
           setStep(2);
           setStatus(`${t.encoding} · ${d.done}/${d.total}`);
         }
         if (d.type === "index") {
           if (timer.current) clearTimeout(timer.current);
           setChunks(d.chunks);
+          setActivity((previous) => ({
+            ...previous,
+            phase: "ready",
+            done: d.chunks.length,
+            total: d.chunks.length,
+            encoded: d.chunks.length,
+          }));
           setBusy(false);
           setStep(3);
           setStatus(t.ready);
@@ -381,6 +438,7 @@ export default function PdfApp() {
       setBusy(false);
       setPages([]);
       setStatus("");
+      setActivity({ ...emptyActivity, phase: "error" });
       setError(
         t.errors[
           (e instanceof Error ? e.message : "default") as keyof typeof t.errors
@@ -395,6 +453,12 @@ export default function PdfApp() {
       q = normalize(question),
       scope = filter;
     setQueryBusy(true);
+    setActivity((previous) => ({
+      ...previous,
+      phase: "query",
+      done: 0,
+      total: 0,
+    }));
     setError("");
     setResult(null);
     setStep(4);
@@ -410,11 +474,14 @@ export default function PdfApp() {
       setQueryBusy(false);
       if (e.data.type === "query") {
         setResult(retrieve(chunks, q, e.data.vector, scope));
+        setActivity((previous) => ({ ...previous, phase: "results" }));
         setStep(7);
-      } else
+      } else {
+        setActivity((previous) => ({ ...previous, phase: "error" }));
         setError(
           t.errors[e.data.code as keyof typeof t.errors] || t.errors.default,
         );
+      }
     };
     w.postMessage({ type: "query", question: q });
   }
@@ -615,6 +682,15 @@ export default function PdfApp() {
                   )}
                 </div>
               </section>
+              <LearningJourney
+                lang={lang}
+                activity={activity}
+                pages={pages}
+                chunks={chunks}
+                result={result}
+                busy={busy || queryBusy}
+                onArchitecture={() => navigate("architecture")}
+              />
               {chunks.length > 0 && (
                 <section className="panel transformations">
                   <h2>

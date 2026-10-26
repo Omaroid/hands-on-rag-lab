@@ -79,6 +79,13 @@ self.onmessage = async (e: MessageEvent) => {
     }
     if (drafts.length > 200) throw Error("chunk_limit");
     if (!drafts.length) throw Error("empty");
+    self.postMessage({
+      type: "drafts",
+      total: drafts.length,
+      preview: drafts
+        .slice(0, 3)
+        .map((d) => ({ text: d.text, tokens: d.tokens })),
+    });
     const chunks: Passage[] = [];
     for (const draft of drafts) {
       chunks.push({ ...draft, vector: await embed("passage: " + draft.text) });

@@ -9,6 +9,11 @@ sans plafond applicatif de demandes. La page [Architecture](https://lakehouse-ra
 sur PDF texte et scan OCR. Voir [PDF_GENERATION.md](docs/PDF_GENERATION.md),
 [PDF_RAG.md](docs/PDF_RAG.md) et [RESUME.md](docs/RESUME.md) pour preuves et limites.
 
+L’atelier des preuves accompagne l’indexation : pages réellement lues, cartes de texte,
+vecteurs calculés, recherche à deux voies et panier de passages. Chaque étape est
+cliquable, avec des exemples tirés des PDF en session et un petit défi pédagogique.
+Aucune progression n’est simulée et aucun appel NVIDIA n’est lancé pendant l’indexation.
+
 Build : `VITE_RUNTIME=browser npm run build --prefix frontend`.
 Les dépendances sont verrouillées ; les assets OCR/WASM sont préparés au build.
 Les fonctionnalités historiques Lakehouse restent décrites ci-dessous.

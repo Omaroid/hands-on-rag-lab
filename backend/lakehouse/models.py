@@ -16,6 +16,10 @@ class Question(BaseModel):
     top_k: int = Field(default=4, ge=1, le=6)
 
 
+class AIQuestion(Question):
+    consent: Literal[True]
+
+
 class Chunk(BaseModel):
     model_config = ConfigDict(extra="forbid")
     id: str

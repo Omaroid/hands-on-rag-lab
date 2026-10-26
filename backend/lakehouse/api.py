@@ -14,9 +14,10 @@ from fastapi.responses import JSONResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from starlette.concurrency import run_in_threadpool
 
+from lakehouse import nvidia
 from lakehouse.embeddings import EmbeddingInputTooLong
 from lakehouse.graph import Engine
-from lakehouse.models import Answer, Question
+from lakehouse.models import AIQuestion, Answer, Question
 from lakehouse.quotas import QuotaExceeded, Quotas
 from lakehouse.retrieval import build_store, load_chunks
 from lakehouse.text import digest, normalize
@@ -115,7 +116,7 @@ async def unexpected(_: Request, exc: Exception) -> JSONResponse:
 def health() -> dict[str, Any]:
     return {
         "status": "ok",
-        "remote_generation": False,
+        "remote_generation": ai_status()["ready"],
         "public_queries": not bool(os.getenv("VERCEL")),
         "mandatory_cost_eur": 0,
     }
@@ -169,6 +170,38 @@ async def answer_cached(question: Question) -> Answer:
     if len(CACHE) > 64:
         CACHE.popitem(last=False)
     return result
+
+
+@app.get("/api/ai/status")
+def ai_status() -> dict[str, bool]:
+    ready = nvidia.configured()
+    if ready:
+        try:
+            quotas()
+        except (RuntimeError, sqlite3.Error, OSError, ValueError):
+            ready = False
+    return {"ready": ready}
+
+
+@app.post("/api/ai/answer")
+async def ai_answer(question: AIQuestion, request: Request) -> dict[str, Any]:
+    if not nvidia.configured():
+        raise HTTPException(503, "La génération IA n’est pas encore disponible.")
+    reserve(request)  # Includes the existing fail-closed serverless guard.
+    result = await answer_cached(Question(**question.model_dump(exclude={"consent"})))
+    # Recompute evidence; never trust browser passages.
+    if result.refused or not result.citations:
+        raise HTTPException(422, "Les sources ne permettent pas une reformulation fiable.")
+    try:
+        text = await asyncio.wait_for(nvidia.explain(result), timeout=35)
+    except (nvidia.NvidiaUnavailable, TimeoutError):
+        raise HTTPException(503, "La génération IA est temporairement indisponible.") from None
+    return {
+        "answer": text,
+        "citations": [c.model_dump() for c in result.citations],
+        "model": nvidia.MODEL,
+        "question": result.question_normalized,
+    }
 
 
 @app.post("/api/answer", response_model=Answer)

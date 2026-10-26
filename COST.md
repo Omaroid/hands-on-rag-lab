@@ -126,3 +126,13 @@ utilisé. Le calcul, la mémoire, le téléchargement et la batterie sont ceux d
 le Wi-Fi est recommandé. Le runtime est servi comme asset statique du site existant.
 Cela ne lève aucun des blocages Gateway documentés plus haut et ne modifie pas sa facturation.
 La garde serverless reste fermée. Voir docs/BROWSER_AI.md pour les limites de compatibilité.
+
+## NVIDIA server-side migration — prepared only
+
+The owner requested NVIDIA-hosted inference instead of downloading browser weights. Account
+free allowance, cutoff and overage conditions remain unverified. The exposed chat credential
+has not been used; a rotated key must be injected securely. No authenticated NVIDIA request,
+training job, purchase, auto-recharge or plan change was made. No live deployment was changed.
+The replacement is disabled by default, reserves quotas before inference and retains the
+closed serverless guard. Public activation also requires a backend and a free durable atomic
+global limiter. Operator flags alone do not prove €0 billing. See docs/NVIDIA_AI.md.

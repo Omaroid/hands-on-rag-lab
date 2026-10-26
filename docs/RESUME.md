@@ -234,3 +234,31 @@ ci-dessus restent applicables. Aucun appel Gateway ni achat ; garde serverless i
 Utilisation : télécharger/activer (~950 Mo), poser une question, puis « Expliquer ces
 sources avec l’IA ». Ordinateur récent et Wi-Fi recommandés.
 Preuves : evidence/publication-current.json et evidence/browser-ai-current.json.
+
+## NVIDIA — remplacement préparé, non activé
+
+Le propriétaire demande une inférence NVIDIA côté serveur à la place du téléchargement du
+modèle navigateur. L’exemple fourni correspond à Responses avec openai/gpt-oss-20b, pas à
+un entraînement. La clé publiée en chat est exposée : elle n’a été ni utilisée ni enregistrée ;
+rotation puis injection sécurisée de NVIDIA_API_KEY nécessaires. Aucun secret demandé en chat.
+La configuration attachée ne lie pas NVIDIA_API_KEY et n’inclut pas les hôtes NVIDIA.
+Les sondes publiques de documentation/catalogue ont échoué. Contrat API actuel et conditions
+gratuites du compte non vérifiés ; aucune inférence NVIDIA réelle exécutée.
+
+Code préparé : adaptateur httpx serveur, endpoint/modèle fixes, consentement obligatoire,
+recalcul des preuves côté serveur, quota réservé avant appel, aucun retry/redirect/outillage,
+réponse bornée et erreurs sans détails fournisseur. Le frontend utilise seulement des URLs
+same-origin ; dépendance Transformers, worker et permissions CSP WASM retirés. Service
+indisponible affiché honnêtement tant que les conditions ne sont pas réunies.
+
+96 tests Python, 14 tests navigateur, Ruff, mypy, build, contrôle des signatures de secrets
+et audits passent. Réponses NVIDIA simulées seulement. La garde serverless reste fermée.
+Le site public précédent n’a pas été redéployé : backend public, compteur durable gratuit,
+clé de remplacement et conditions fournisseur restent à raccorder/vérifier.
+Voir docs/NVIDIA_AI.md et evidence/nvidia-readiness-current.json.
+
+Le propriétaire indique que NVIDIA est gratuit et sans limite d’usage. Information consignée
+comme déclarative : aucun quota fournisseur n’a été constaté. Les protections anti-abus du
+site restent distinctes. Configuration attachée révision 12, politique enforced : aucun
+secret NVIDIA ni domaine NVIDIA autorisé. Le remplacement est conservé sur une branche
+préparatoire pour ne pas remplacer le site actif par une génération indisponible.

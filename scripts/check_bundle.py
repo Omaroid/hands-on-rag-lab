@@ -5,9 +5,10 @@ from pathlib import Path
 
 PATTERNS = [
     r"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----",
+    r"\bnvapi-[A-Za-z0-9_\-]{20,}",
     r"\b(?:sk_live_|sk-proj-|ghp_|github_pat_)[A-Za-z0-9_\-]{15,}",
     (
-        "\\b(?:AI_GATEWAY_API_KEY|QDRANT_API_KEY|ANONYMIZATION_SECRET)\\s*[:=]\\s*"
+        "\\b(?:NVIDIA_API_KEY|AI_GATEWAY_API_KEY|QDRANT_API_KEY|ANONYMIZATION_SECRET)\\s*[:=]\\s*"
         "[\"\\'][^\"\\']{12,}"
     ),
 ]

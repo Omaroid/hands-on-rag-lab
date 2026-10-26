@@ -1,3 +1,8 @@
+# Historical browser AI integration
+
+Superseded locally by the server-side NVIDIA integration; see NVIDIA_AI.md.
+The deployed version remains unchanged until the NVIDIA readiness requirements are met.
+
 # IA sur l’appareil du visiteur
 
 Sur le site, lancer une recherche, puis cliquer sur **Télécharger et activer l’IA sur cet appareil**.

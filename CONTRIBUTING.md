@@ -23,6 +23,8 @@ npm exec --prefix frontend -- playwright install chromium
 python3 scripts/verify_pdf.py --skip-build
 ```
 
+`CHROMIUM_PATH` peut désigner un navigateur système compatible ; la CI utilise le Chrome préinstallé de l’image officielle Ubuntu 24.04 pour éviter les téléchargements de navigateur.
+
 Le script de vérification utilise un serveur local isolé et retire les identifiants fournisseurs de son environnement. Il télécharge le modèle public épinglé si nécessaire et vérifie ses empreintes. Il teste PDF/OCR/E5 réellement ; les réponses de génération sont simulées dans les tests d’interface.
 
 ## Sécurité avant publication

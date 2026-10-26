@@ -17,7 +17,7 @@ concurrency:
 jobs:
   pdf-and-security:
     name: PDF app, Node API and secret safety
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -49,9 +49,12 @@ jobs:
         run: |
           VITE_RUNTIME=browser npm run build --prefix frontend
           python scripts/check_bundle.py
-      - name: Install Chromium
-        working-directory: frontend
-        run: npx playwright install --with-deps chromium
+      - name: Use the browser supplied by the official Ubuntu runner
+        run: |
+          browser_path="$(command -v google-chrome)"
+          test -x "$browser_path"
+          "$browser_path" --version
+          printf 'CHROMIUM_PATH=%s\n' "$browser_path" >> "$GITHUB_ENV"
       - name: Real PDF, OCR and E5 tests on desktop and mobile emulation
         run: python scripts/verify_pdf.py --skip-build
       - name: Preserve only sanitized verification results
@@ -65,7 +68,7 @@ jobs:
 
   python-lab:
     name: Legacy Python lab quality and container
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
     env:
       PYTHONPATH: backend
@@ -102,10 +105,9 @@ jobs:
       - name: Verify the optional legacy web interface
         run: |
           npm ci --ignore-scripts --prefix frontend
-          cd frontend
-          npx playwright install --with-deps chromium
-          cd ..
-          uv run python scripts/verify_web.py --runtime backend --port 8766
+          browser_path="$(command -v google-chrome)"
+          test -x "$browser_path"
+          CHROMIUM_PATH="$browser_path" uv run python scripts/verify_web.py --runtime backend --port 8766
       - name: Validate Compose and build the non-root legacy container
         run: |
           ANONYMIZATION_SECRET=ci-placeholder-never-use-in-production docker compose config --quiet

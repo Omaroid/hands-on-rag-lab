@@ -1,10 +1,10 @@
 {
-  "checked_at": "2026-10-26T12:06:05.961172+00:00",
+  "checked_at": "2026-10-26T12:45:09.763615+00:00",
   "site": "https://lakehouse-rag-lab.vercel.app",
   "target": "production",
   "state": "READY",
-  "deployment_id": "dpl_BdcK11wDoNRx4rLn7Xd2Huvt5rM4",
-  "source_commit": "5f454778a92ecddc964ead83173f8a6a6c15b1b0",
+  "deployment_id": "dpl_3JB2cWHctBsiM4Z6npPzrufo4C6R",
+  "source_commit": "9a3e62d52ca88cb26679518fe93338747f926fde",
   "http_status": 200,
   "html_matches_local": true,
   "csp_matches": true,
@@ -18,7 +18,7 @@
     {
       "path": "/index.html",
       "bytes": 642,
-      "sha256": "7e02930da4cb6eb0cb8035622da5b3b0ce45df6ec88615a29a73761bb729035b",
+      "sha256": "112f82d072aca342896d76ecd173da5d477bcd5eeb8860c1444e633bc27c9ba0",
       "matches_local": true
     },
     {
@@ -28,15 +28,21 @@
       "matches_local": true
     },
     {
-      "path": "/assets/pdf-import-CMgP5kmd.js",
-      "bytes": 431217,
-      "sha256": "13e9e15fa795f2d6c5777eacb0c4c312a624421cb2936f4f77e1417927cc47d5",
-      "matches_local": true
-    },
-    {
       "path": "/assets/pdf.worker.min-CjEcRF4W.mjs",
       "bytes": 1264342,
       "sha256": "9536359f1b8367850d485731ca1d5e45c159a7b7a0912325e539937aa21ceb18",
+      "matches_local": true
+    },
+    {
+      "path": "/assets/pdf-import-CXanoKI0.js",
+      "bytes": 431316,
+      "sha256": "e0ce22108ef624aa524a52267d7c2acc5e86a70453ce220b53328520160d6716",
+      "matches_local": true
+    },
+    {
+      "path": "/assets/semantic.worker-D7a10wLX.js",
+      "bytes": 547080,
+      "sha256": "5ee8e23c728ace48e4480ffe8c8e14540258be0c8671edf3fde83658e4165d02",
       "matches_local": true
     },
     {
@@ -46,27 +52,21 @@
       "matches_local": true
     },
     {
-      "path": "/assets/index-C8XsYmwb.js",
-      "bytes": 269357,
-      "sha256": "e07644789caecdcfa7bcdb268998f22bd802fbe9387e9c5d428b0eebd43318dc",
-      "matches_local": true
-    },
-    {
       "path": "/assets/ort-wasm-simd-threaded.asyncify-CxOG5pUO.wasm",
       "bytes": 26861777,
       "sha256": "49871f5a4409519797e127440868a6d1923339d9185907f301a5b2a1d90af082",
       "matches_local": true
     },
     {
-      "path": "/assets/index-BpSFQc2l.css",
-      "bytes": 32373,
-      "sha256": "80554c2a66c315dfb7c534282855c61766f85a498d6e6832145780c4ea9e4008",
+      "path": "/assets/index-lMdtOx9k.css",
+      "bytes": 47504,
+      "sha256": "b3dded5d10c555c6f725db73659685e66a67a47530a9c350a1b1e0d91dcad07d",
       "matches_local": true
     },
     {
-      "path": "/assets/semantic.worker-DFr6s3cH.js",
-      "bytes": 546970,
-      "sha256": "10289e34cfee01ad88dec9ce7a1fd6e85dbf78d91d406f53d75ec42589e52ac9",
+      "path": "/assets/index-CxkddFJk.js",
+      "bytes": 315694,
+      "sha256": "070bef81b683f38a14aba5bd99f06d98c4122dc72c1defd02d0c0043b967da02",
       "matches_local": true
     },
     {
@@ -199,30 +199,15 @@
   },
   "public_generation_enabled": true,
   "temporary_verification_route_http": 404,
-  "durable_quota_connected": true,
+  "durable_quota_connected": false,
+  "application_request_caps": false,
+  "architecture_browser_tests_passed": 6,
+  "workshop_browser_tests_passed": 2,
   "local_pdf_browser_tests_passed": 14,
   "python_tests_last_passed": 100,
-  "node_server_tests_passed": 19,
+  "node_server_tests_passed": 13,
   "model_cache_fixture_deployed": false,
   "nvidia_live_probe": "evidence/nvidia-live-probe.json",
-  "project_id": "prj_bx0b78VzJb6VNA2OyyIOElDnBiEE",
-  "team_id": "team_0yx8bLSbYEsadJbCiwOd28l6",
-  "project_nvidia_key_metadata_present": true,
-  "public_generation_flag": true,
-  "valid_generation_http": 200,
-  "public_generation_evidence": "evidence/nvidia-public-generation-current.json",
-  "full_live_flows": [
-    "evidence/pdf-live-desktop-current.json",
-    "evidence/pdf-live-mobile-current.json"
-  ],
-  "browser_transport": "Local production-identical assets and SHA-verified actual E5 cache, real public API through TLS-verified Playwright transport due sandbox Chromium proxy CA restriction. No provider response simulated in these two live flows.",
-  "tls_verification_disabled": false,
-  "cost_actions": {
-    "purchase": false,
-    "top_up": false,
-    "card_added": false,
-    "plan_changed": false,
-    "other_project_changed": false
-  },
-  "runtime_fix": "Empty tool_calls now accepted; actual tools still rejected; privacy-safe diagnostics."
+  "architecture_http": 200,
+  "architecture_matches_html": true
 }

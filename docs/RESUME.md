@@ -1,3 +1,30 @@
+# Version publiée — atelier ludique et architecture
+
+Déploiement production READY `dpl_3JB2cWHctBsiM4Z6npPzrufo4C6R`, code `9a3e62d`,
+fusionné et poussé sur main. Site et `/architecture` répondent 200 ; les 30 fichiers
+publics et la CSP correspondent exactement au build testé. Statut API ready:true,
+entrée invalide 422, ancienne route opérateur 404. Aucun plafond applicatif de demandes.
+
+L’atelier des preuves suit les pages réellement extraites, les cartes découpées et les
+vecteurs calculés, puis les rangs de recherche et le contexte retenu. Les étapes sont
+cliquables et les aperçus sont tirés des PDF locaux. Un petit défi distingue E5 et NVIDIA.
+La page Architecture détaille les huit étapes, les formules interactives et la frontière
+de données, avec un mode utilisant les chiffres de la dernière recherche.
+
+Validation : **22 cas navigateur réussis** (14 PDF/OCR/recherche, 6 architecture et 2 atelier),
+**13 tests serveur réussis**. Accessibilité et débordement vérifiés sur ordinateur/mobile
+Chromium émulé. Audit dépendances frontend production : aucune vulnérabilité connue.
+Nouveau parcours réel, deux PDF → E5/BM25/RRF → consentement → API publique → NVIDIA
+HTTP 200 → citation guide.pdf page 1 ouverte. Les limites de transport TLS du sandbox
+restent explicites dans `evidence/workshop-live-desktop.json` : interface locale aux
+assets identiques au public, cache E5 vérifié et relais API avec TLS vérifié. Aucun faux
+résultat fournisseur ni contournement TLS. Aucun achat ni changement de plan.
+
+Preuves : `evidence/generation-publication-current.json`, `workshop-validation.json`,
+`workshop-live-desktop.json`, captures architecture/atelier et pdf-screenshots/workshop-live-*.
+
+---
+
 # Mise à jour — suppression des plafonds de demandes, 26 octobre 2026
 
 À la demande explicite du propriétaire, tous les quotas de demandes du parcours PDF public

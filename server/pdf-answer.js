@@ -1,7 +1,25 @@
 export const MODEL = "openai/gpt-oss-20b";
 export const ENDPOINT = "https://integrate.api.nvidia.com/v1/chat/completions";
 export class InvalidRequest extends Error {}
-export class ProviderUnavailable extends Error {}
+const providerCodes = {
+  "Invalid model output": "model_output_invalid",
+  "Invalid model JSON": "model_json_invalid",
+  "Invalid citations": "citations_invalid",
+  "Unknown citation marker": "citation_marker_invalid",
+  "Server key unavailable": "server_key_missing",
+  "Provider unavailable": "provider_transport",
+  "Provider output too large": "provider_output_large",
+  "Secret echo rejected": "secret_echo",
+  "Provider invalid JSON": "provider_json_invalid",
+  "Incomplete provider output": "provider_output_incomplete",
+};
+export class ProviderUnavailable extends Error {
+  constructor(message, details = {}) {
+    super(message);
+    this.code = providerCodes[message] || "provider_failure";
+    this.details = details;
+  }
+}
 const plain = (o) => o && Object.getPrototypeOf(o) === Object.prototype;
 const exact = (o, keys) =>
   plain(o) &&
@@ -138,10 +156,14 @@ export async function generateAnswer(
       signal,
     });
   } catch {
-    throw new ProviderUnavailable("Provider unavailable");
+    throw new ProviderUnavailable("Provider unavailable", {
+      timeout: signal.aborted,
+    });
   }
   if (response.status !== 200 || !response.body)
-    throw new ProviderUnavailable("Provider unavailable");
+    throw new ProviderUnavailable("Provider unavailable", {
+      httpStatus: response.status,
+    });
   const reader = response.body.getReader();
   let bytes = 0,
     parts = [];
@@ -173,6 +195,12 @@ export async function generateAnswer(
     message?.role !== "assistant" ||
     message?.tool_calls
   )
-    throw new ProviderUnavailable("Incomplete provider output");
+    throw new ProviderUnavailable("Incomplete provider output", {
+      finishReason: choice?.finish_reason,
+      toolCallCount: Array.isArray(message?.tool_calls)
+        ? message.tool_calls.length
+        : null,
+      roleValid: message?.role === "assistant",
+    });
   return parseAnswer(message.content, question.passages);
 }

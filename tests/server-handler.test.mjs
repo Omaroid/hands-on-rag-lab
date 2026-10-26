@@ -97,3 +97,22 @@ test("closed policy does not parse input or reserve quota", async () => {
   assert.equal(out.statusCode, 503);
   assert.equal(calls, 0);
 });
+test("diagnostic fields never include provider messages, body, IP or credentials", async () => {
+  const events = [];
+  const handler = createAnswerHandler({
+    isReady: () => true,
+    reserve: async () => {},
+    generate: async () => {
+      throw new Error("private text and key");
+    },
+    report: (e) => events.push(e),
+  });
+  const out = res();
+  await handler(req(question()), out);
+  assert.equal(events.length, 1);
+  assert.equal(events[0].stage, "provider");
+  assert.equal(events[0].code, "unexpected");
+  assert.equal(events[0].requestId, out.headers["X-Request-ID"]);
+  assert.equal(JSON.stringify(events).includes("private text"), false);
+  assert.equal(JSON.stringify(events).includes("192.0.2.10"), false);
+});

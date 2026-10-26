@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+  <title id="title">Hands-on RAG Lab — documents and grounded answers</title>
+  <rect width="128" height="128" rx="30" fill="#172234"/>
+  <g fill="#f7f5f0">
+    <rect x="25" y="25" width="58" height="76" rx="9" opacity=".18" transform="rotate(-12 54 63)"/>
+    <rect x="34" y="22" width="58" height="76" rx="9"/>
+  </g>
+  <path d="M46 40h32M46 50h23" fill="none" stroke="#172234" stroke-width="4" stroke-linecap="round"/>
+  <rect x="44" y="62" width="32" height="17" rx="4" fill="#365cff"/>
+  <rect x="73" y="71" width="36" height="36" rx="11" fill="#365cff"/>
+  <path d="M87 82h-5v14h5m8-14h5v14h-5" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

@@ -1,3 +1,5 @@
+![Hands-on RAG Lab — from documents to grounded answers](.github/brand/social-preview.jpg)
+
 # Hands-on RAG Lab
 
 **Un laboratoire RAG pour interroger ses PDF et comprendre chaque étape de la réponse.**

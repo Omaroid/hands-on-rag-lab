@@ -1,0 +1,66 @@
+{
+  "checked_at": "2026-10-26T10:19:04.375175+00:00",
+  "python_tests": {
+    "passed": 100,
+    "skipped": 0,
+    "provider_responses": "simulated in Python tests; separate actual probe exists"
+  },
+  "browser_tests": {
+    "startTime": "2026-10-26T10:13:20.308Z",
+    "duration": 61856.931,
+    "expected": 12,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "browser_projects": [
+    "desktop Chromium",
+    "mobile Chromium iPhone 13 emulation"
+  ],
+  "real_components": [
+    "PDF.js text extraction",
+    "Tesseract FR/EN scan OCR",
+    "pinned q8 E5 tokenizer and ONNX inference",
+    "cosine retrieval",
+    "BM25",
+    "RRF"
+  ],
+  "model_transport_in_browser_tests": "Only HF model downloads redirected to checksum-verified local cache because of proxy CA trust failure. No model output simulated. TLS verification never disabled.",
+  "covered": [
+    "multiple PDFs",
+    "combined size >5MB",
+    "signature spoof",
+    "corrupt PDF",
+    "password protected PDF",
+    "41-page PDF",
+    "long passages token bound",
+    "FR/EN question and UI",
+    "source file/page citations",
+    "no-answer question",
+    "inert document injection",
+    "scope filter",
+    "isolated tabs",
+    "reset",
+    "OCR cancellation with worker count zero",
+    "WCAG2A/AA axe home and populated results",
+    "mobile page width equals viewport",
+    "no external question/document POST"
+  ],
+  "screenshots": "evidence/pdf-screenshots/",
+  "ruff": "passed",
+  "mypy": "passed, 17 modules",
+  "typescript_vite_build": "passed",
+  "bundle_secret_signatures": "none",
+  "npm_audit_vulnerabilities": 0,
+  "pip_audit": "no known vulnerabilities; local project not published on PyPI skipped",
+  "nvidia_live_probe": "evidence/nvidia-live-probe.json",
+  "not_verified": [
+    "physical mobile devices",
+    "universal multilingual OCR",
+    "arbitrary complex PDF layouts",
+    "universal semantic threshold calibration",
+    "NVIDIA account terms or unlimited allowance",
+    "durable atomic free serverless limiter"
+  ],
+  "public_generation_enabled": false
+}

@@ -1,3 +1,44 @@
+# Reprise — état vérifié le 26 octobre 2026
+
+## État actuel : vitrine PDF prête à publier
+
+Branche `feat/nvidia-server-inference`, checkpoint initial `afd085a` conservé. Interface
+Source FR/EN sur les PDF visiteurs : 5 Mo cumulés, 10 fichiers, 40 pages, extraction PDF.js,
+OCR FR/EN Tesseract, encodeur E5 q8 réellement exécuté, BM25, RRF, contexte borné et citations
+fichier/page. Texte extrait, passages, comptes de tokens et coordonnées vectorielles visibles.
+Session en mémoire ; arrêt et suppression terminent les workers. Pas de bibliothèque persistante.
+Le frontend historique Lakehouse et son backend restent dans le dépôt ; la production choisit
+le build PDF par `VITE_RUNTIME=browser`. Voir `docs/PDF_RAG.md` pour architecture et limites.
+
+Configuration attachée révision 2 : secrets NVIDIA/Vercel présents, états déclarés unknown,
+donc pas qualifiés ready. Accès authentifiés réels réussis via le proxy : catalogue NVIDIA
+HTTP 200, modèle demandé présent ; lecture du projet Vercel dédié HTTP 200. Une génération
+réelle NVIDIA Chat Completions a réussi sur un passage synthétique, 155 tokens d'entrée,
+39 en sortie, plafond 512, aucun retry. Aucun secret affiché, aucune ancienne clé recherchée.
+Contrat Python corrigé vers Chat Completions, qui est documenté et testé. Voir NVIDIA_AI.md.
+
+La génération publique reste fermée : aucun compteur global atomique durable gratuit connecté,
+aucun Blob créé, aucune autre base réutilisée. Routes Vercel status false / answer 503, bouton
+NVIDIA désactivé et indisponibilité expliquée. Le raccordement de génération spécifique aux PDF
+reste à faire une fois les protections établies ; le backend historique ne lit pas ces PDF.
+La page NVIDIA annonce un endpoint gratuit ; conditions du compte et usage illimité restent
+non vérifiés indépendamment. Compte utilisateur Vercel Hobby confirmé via le connecteur.
+Aucun achat, recharge, carte, changement de plan ou autre projet modifié.
+
+Validation : 100 tests Python, 12 tests PDF navigateur desktop/mobile, Ruff/mypy/build,
+axe WCAG2A/AA sur accueil et résultats, audits npm/Python sans vulnérabilité connue.
+Le projet Python local non publié est ignoré par pip-audit. Les tests PDF emploient de vrais
+PDF/OCR/embeddings ; seuls les téléchargements HF passent par un cache local vérifié car le
+navigateur cloud refuse la CA du proxy. Aucune vérification TLS désactivée. Ce n'est pas une
+preuve de téléchargement HF depuis un téléphone physique. Captures réelles dans
+`evidence/pdf-screenshots/`, synthèse `evidence/pdf-validation-current.json`.
+
+Prochaine étape immédiate : commit/push, fusion main, déploiement exclusivement sur
+prj_bx0b78VzJb6VNA2OyyIOElDnBiEE / team_0yx8bLSbYEsadJbCiwOd28l6, puis vérifier
+https://lakehouse-rag-lab.vercel.app et les assets. L'état de publication sera ajouté ci-dessous.
+
+---
+
 # Reprise — état vérifié le 25 octobre 2026
 
 ## Contraintes absolues

@@ -23,3 +23,6 @@ dist/
 *.tsbuildinfo
 
 frontend/public/onnx/
+
+frontend/public/ocr/
+frontend/public/licenses/

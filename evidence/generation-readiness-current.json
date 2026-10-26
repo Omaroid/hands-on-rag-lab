@@ -1,8 +1,8 @@
 {
-  "checked_at": "2026-10-26T11:16:09.598131+00:00",
-  "status": "counter_verified_generation_code_ready_project_key_missing",
+  "checked_at": "2026-10-26T12:09:39.961316+00:00",
+  "status": "public_generation_verified",
   "real_blob_counter": "evidence/blob-quota-current.json",
-  "server_tests_passed": 17,
+  "server_tests_passed": 19,
   "browser_tests_passed": 14,
   "browser_generation_provider_responses": "simulated, explicitly distinct from four real synthetic NVIDIA contract probes",
   "nvidia_contract_real_probes": 4,
@@ -29,16 +29,21 @@
   "temporary_verification_route_removed": true,
   "temporary_verification_env_removed": true,
   "quota_verified_receipt_configured": true,
-  "public_generation_flag": false,
-  "project_nvidia_key_present": false,
+  "public_generation_flag": true,
+  "project_nvidia_key_present": true,
   "task_nvidia_key_is_proxy_reference": true,
   "proxy_reference_copied_to_project": false,
   "other_projects_modified": false,
   "purchases_or_plan_changes": false,
   "corrupt_counter_periods_and_totals_fail_closed": true,
-  "production_deployment_id": "dpl_HrXkrp1cMTHG5c6ZD7GDifiivBDL",
-  "source_commit": "996ab965a4bca75ed4f99cfa9085c8a12d2b7e2f",
+  "production_deployment_id": "dpl_BdcK11wDoNRx4rLn7Xd2Huvt5rM4",
+  "source_commit": "5f454778a92ecddc964ead83173f8a6a6c15b1b0",
   "publication_evidence": "evidence/generation-publication-current.json",
-  "public_ai_answer_http": 503,
-  "static_assets_identical": 30
+  "public_ai_answer_http": 200,
+  "static_assets_identical": 30,
+  "real_browser_public_api_flows": [
+    "evidence/pdf-live-desktop-current.json",
+    "evidence/pdf-live-mobile-current.json"
+  ],
+  "initial_runtime_bug": "evidence/nvidia-public-diagnostic-current.json"
 }

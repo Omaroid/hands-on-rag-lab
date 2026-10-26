@@ -1,3 +1,8 @@
+> Mise à jour du 26 octobre 2026 : génération NVIDIA publique activée et vérifiée.
+> Clé sensible injectée directement dans Vercel, compteur Blob CAS testé, 19 tests serveur
+> et deux parcours réels vers l'API de production réussis. Voir docs/RESUME.md et
+> evidence/generation-publication-current.json. Les mentions de blocage ci-dessous sont historiques.
+
 # Source — session PDF locale
 
 Le build `VITE_RUNTIME=browser npm run build --prefix frontend` ouvre la vitrine PDF.

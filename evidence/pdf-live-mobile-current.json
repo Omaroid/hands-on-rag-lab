@@ -1,0 +1,78 @@
+{
+  "checkedAt": "2026-10-26T12:02:12.993Z",
+  "site": "https://lakehouse-rag-lab.vercel.app",
+  "mobile": true,
+  "transport": "Local browser on production-identical assets; verified real E5 cache; real public API via TLS-verified relay with production Origin due sandbox browser CA limitation. Provider responses are not simulated.",
+  "tlsVerificationDisabled": false,
+  "realPDF": true,
+  "realOCR": true,
+  "realE5": true,
+  "consent": true,
+  "automaticRetries": 0,
+  "modelChecks": [
+    {
+      "file": "config.json",
+      "sha256": "cb99455288675345e1a4f411438d5d0adbba5fbd3a67ea4fb03c015433b996c1",
+      "matches": true
+    },
+    {
+      "file": "tokenizer.json",
+      "sha256": "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39",
+      "matches": true
+    },
+    {
+      "file": "tokenizer_config.json",
+      "sha256": "a1d6bc8734a6f635dc158508bef000f8e2e5a759c7d92f984b2c86e5ff53425b",
+      "matches": true
+    },
+    {
+      "file": "special_tokens_map.json",
+      "sha256": "d05497f1da52c5e09554c0cd874037a083e1dc1b9cfd48034d1c717f1afc07a7",
+      "matches": true
+    },
+    {
+      "file": "onnx/model_quantized.onnx",
+      "sha256": "f80102d3f2a1229f387d3c81909990d8945513e347b0eab049f7de3c6f98c193",
+      "matches": true
+    }
+  ],
+  "requests": [
+    {
+      "http": 200,
+      "request": {
+        "question": "Quel est le budget annuel de formation ?",
+        "language": "fr",
+        "consent": true,
+        "passages": [
+          {
+            "id": "1",
+            "file": "scan.pdf",
+            "page": 1,
+            "text": "Politique de formation\n\nChaque salarie dispose de 3 jours\nde formation par an.\n\nLe budget annuel est de 500 euros."
+          }
+        ]
+      },
+      "response": {
+        "status": "supported",
+        "answer": "Le budget annuel de formation est de 500 euros.",
+        "citations": [
+          {
+            "number": 1,
+            "id": "1",
+            "file": "scan.pdf",
+            "page": 1,
+            "text": "Politique de formation\n\nChaque salarie dispose de 3 jours\nde formation par an.\n\nLe budget annuel est de 500 euros."
+          }
+        ],
+        "model": "openai/gpt-oss-20b"
+      },
+      "requestId": "e00be534-afcb-4047-86c5-50e69434af41"
+    }
+  ],
+  "pageErrors": [],
+  "width": {
+    "viewport": 390,
+    "page": 390
+  },
+  "passed": true
+}

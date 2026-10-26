@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-10-26T11:16:09.598131+00:00",
+  "checked_at": "2026-10-26T12:09:39.961316+00:00",
   "python_tests": {
     "passed": 100,
     "skipped": 0,
@@ -62,8 +62,13 @@
     "NVIDIA account terms or unlimited allowance",
     "durable atomic free serverless limiter"
   ],
-  "public_generation_enabled": false,
-  "node_server_tests_passed": 17,
+  "public_generation_enabled": true,
+  "node_server_tests_passed": 19,
   "browser_generation_responses": "Simulated in two UI tests, distinct from four actual NVIDIA contract probes",
-  "durable_quota": "Verified real Blob CAS; evidence/blob-quota-current.json"
+  "durable_quota": "Verified real Blob CAS; evidence/blob-quota-current.json",
+  "extra_real_public_api_browser_flows": 2,
+  "live_evidence": [
+    "evidence/pdf-live-desktop-current.json",
+    "evidence/pdf-live-mobile-current.json"
+  ]
 }

@@ -1,10 +1,10 @@
 {
-  "checked_at": "2026-10-26T11:13:48.612494+00:00",
+  "checked_at": "2026-10-26T12:06:05.961172+00:00",
   "site": "https://lakehouse-rag-lab.vercel.app",
   "target": "production",
   "state": "READY",
-  "deployment_id": "dpl_HrXkrp1cMTHG5c6ZD7GDifiivBDL",
-  "source_commit": "996ab965a4bca75ed4f99cfa9085c8a12d2b7e2f",
+  "deployment_id": "dpl_BdcK11wDoNRx4rLn7Xd2Huvt5rM4",
+  "source_commit": "5f454778a92ecddc964ead83173f8a6a6c15b1b0",
   "http_status": 200,
   "html_matches_local": true,
   "csp_matches": true,
@@ -191,40 +191,38 @@
     }
   ],
   "ai_status": {
-    "ready": false,
-    "reason": "configuration_or_quota_unavailable"
+    "ready": true
   },
-  "answer_http": 503,
-  "answer_body": {
-    "error": "generation_unavailable"
+  "invalid_request_http": 422,
+  "invalid_request_body": {
+    "error": "invalid_question_or_context"
   },
-  "public_generation_enabled": false,
+  "public_generation_enabled": true,
   "temporary_verification_route_http": 404,
   "durable_quota_connected": true,
   "local_pdf_browser_tests_passed": 14,
   "python_tests_last_passed": 100,
-  "node_server_tests_passed": 17,
+  "node_server_tests_passed": 19,
   "model_cache_fixture_deployed": false,
   "nvidia_live_probe": "evidence/nvidia-live-probe.json",
   "project_id": "prj_bx0b78VzJb6VNA2OyyIOElDnBiEE",
   "team_id": "team_0yx8bLSbYEsadJbCiwOd28l6",
-  "quota_evidence": "evidence/blob-quota-current.json",
-  "nvidia_pdf_contract": "evidence/nvidia-pdf-contract-current.json",
-  "project_nvidia_key_metadata_present": false,
-  "public_generation_flag": false,
-  "quota_receipt_configured": true,
-  "temporary_operator_variable_removed": true,
-  "public_browser": {
-    "status": "not repeated for final build; prior browser attempt blocked by sandbox proxy CA",
-    "prior_error": "ERR_CERT_AUTHORITY_INVALID",
-    "tls_verification_disabled": false
-  },
-  "provider_ui_tests": "Simulated responses in two browser tests; four actual NVIDIA synthetic contract probes recorded separately",
+  "project_nvidia_key_metadata_present": true,
+  "public_generation_flag": true,
+  "valid_generation_http": 200,
+  "public_generation_evidence": "evidence/nvidia-public-generation-current.json",
+  "full_live_flows": [
+    "evidence/pdf-live-desktop-current.json",
+    "evidence/pdf-live-mobile-current.json"
+  ],
+  "browser_transport": "Local production-identical assets and SHA-verified actual E5 cache, real public API through TLS-verified Playwright transport due sandbox Chromium proxy CA restriction. No provider response simulated in these two live flows.",
+  "tls_verification_disabled": false,
   "cost_actions": {
     "purchase": false,
-    "upgrade": false,
-    "card_added": false,
     "top_up": false,
+    "card_added": false,
+    "plan_changed": false,
     "other_project_changed": false
-  }
+  },
+  "runtime_fix": "Empty tool_calls now accepted; actual tools still rejected; privacy-safe diagnostics."
 }

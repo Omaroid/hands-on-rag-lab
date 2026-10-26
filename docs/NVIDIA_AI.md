@@ -1,3 +1,8 @@
+> Mise à jour du 26 octobre 2026 : génération NVIDIA publique activée et vérifiée.
+> Clé sensible injectée directement dans Vercel, compteur Blob CAS testé, 19 tests serveur
+> et deux parcours réels vers l'API de production réussis. Voir docs/RESUME.md et
+> evidence/generation-publication-current.json. Les mentions de blocage ci-dessous sont historiques.
+
 # NVIDIA serveur — accès réel validé, génération publique fermée
 
 État du 26 octobre 2026. Il s'agit d'inférence, pas d'entraînement.

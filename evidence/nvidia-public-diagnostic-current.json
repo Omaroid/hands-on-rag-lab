@@ -1,0 +1,36 @@
+{
+  "checked_at": "2026-10-26T12:05:59.772990+00:00",
+  "symptom": "Public API status ready:true but valid generation returned 503",
+  "confirmed_diagnostic": {
+    "requestId": "8c8d1ee7-9ba9-4fb2-975a-35c56d0bf34b",
+    "stage": "provider",
+    "code": "provider_output_incomplete",
+    "finishReason": "stop",
+    "toolCallCount": 0,
+    "roleValid": true
+  },
+  "root_cause": "JavaScript treated an empty tool_calls array as truthy and rejected an otherwise completed NVIDIA answer. Earlier mocked responses omitted this field.",
+  "fix": "Accept omitted, null or empty tool_calls; continue rejecting non-empty arrays or malformed values.",
+  "regression_test": "completed NVIDIA answers accept an empty tool_calls array but reject actual tool requests",
+  "server_tests_passed": 19,
+  "successful_public_api": "evidence/nvidia-public-generation-current.json",
+  "logs_include": [
+    "entryPoint",
+    "requestId",
+    "stage",
+    "allowlisted code",
+    "duration",
+    "numeric provider HTTP status or bounded output metadata"
+  ],
+  "logs_exclude": [
+    "key",
+    "headers",
+    "IP",
+    "question",
+    "passages",
+    "model answer",
+    "provider body",
+    "reasoning_content"
+  ],
+  "automatic_retries": 0
+}

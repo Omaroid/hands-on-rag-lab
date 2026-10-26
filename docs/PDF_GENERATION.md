@@ -1,3 +1,21 @@
+# Génération PDF active — validation publique
+
+La clé réelle est maintenant configurée directement dans Vercel comme secret sensible.
+La génération est activée avec le compteur durable obligatoire. Un appel public direct
+et deux parcours de l'interface (PDF texte et OCR, desktop/mobile émulé) ont renvoyé de
+vraies réponses NVIDIA citées. Voir evidence/nvidia-public-generation-current.json et
+les deux preuves pdf-live-*-current.json. Le relais HTTPS de test dû à la CA du sandbox
+et le cache d'encodeur vérifié sont explicités dans docs/RESUME.md.
+
+Le bug initial de rejet de `tool_calls: []` est corrigé et couvert par un test : une
+liste vide n'est pas une demande d'outil. Les listes non vides et valeurs malformées
+restent rejetées. Les 19 tests serveur passent. Aucun outil n'est envoyé à NVIDIA.
+
+Les sections ci-dessous documentent le compteur et la préparation, y compris le blocage
+historique de clé, désormais résolu par l'injection directe du propriétaire.
+
+---
+
 # Génération PDF serveur et compteur durable
 
 Le store Blob privé `store_etqnqyg3va5gtf18` a été créé pour le seul projet

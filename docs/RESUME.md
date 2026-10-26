@@ -1,3 +1,55 @@
+# Reprise — génération NVIDIA publique activée, 26 octobre 2026
+
+## État actuel opérationnel
+
+Site : https://lakehouse-rag-lab.vercel.app. NVIDIA_API_KEY est maintenant déclarée comme
+variable **sensible de production** par le propriétaire, sans lecture de sa valeur.
+RAG_PUBLIC_GENERATION a été activé et le projet dédié redéployé. Le compteur Blob durable,
+le consentement et toutes les bornes restent obligatoires. Aucun achat ou changement de plan.
+
+Un premier essai public a révélé un bug dans l'adaptateur JavaScript : `tool_calls: []`
+était considéré comme un appel d'outil parce qu'une liste vide est truthy en JS. NVIDIA
+renvoyait pourtant HTTP 200, finish_reason stop, role assistant. Le contrôle accepte
+maintenant un champ omis, null ou une liste vide ; les vraies demandes d'outils et valeurs
+malformées restent refusées. Test de régression ajouté. Les diagnostics ne journalisent
+que des champs autorisés (étape, UUID, code, durée et métadonnées bornées), jamais clé,
+question, IP, passage, réponse ou raisonnement. Voir nvidia-public-diagnostic-current.json.
+
+**19 tests serveur réussis**, 14 tests navigateur précédents conservés, plus **deux parcours
+réels complets** de l'interface vers l'API de production :
+- desktop : deux PDF texte, E5/BM25/RRF, consentement, réponse NVIDIA « 25 jours de congés
+  payés par an », citation guide.pdf page 1 ouverte avec le vrai passage ;
+- mobile Chromium émulé : PDF scanné, OCR FR/EN, E5, réponse NVIDIA « budget annuel de
+  formation de 500 euros », citation scan.pdf page 1 ouverte.
+Un appel HTTPS public direct a aussi confirmé HTTP 200 et les références.
+Ces réponses ne sont pas simulées. Les deux cas UI simulés antérieurs restent distingués.
+
+Précision de test : le Chromium du sandbox refuse la CA du proxy. Les deux parcours réussis
+utilisent donc le build local **identique aux 30 assets publics**, le vrai encodeur E5
+avec cache vérifié par SHA-256, et un relais Playwright vers l'API publique utilisant le
+proxy et la CA configurés, avec Origin de production. Aucune vérification TLS désactivée.
+Ce n'est pas un test natif sur téléphone physique ni une navigation directe Chromium TLS
+réussie. Les fichiers publics du modèle ont aussi été téléchargés et leurs empreintes
+vérifiées séparément pendant l'essai de transport. Captures réelles sous evidence/pdf-screenshots.
+
+Déploiement actif : `dpl_BdcK11wDoNRx4rLn7Xd2Huvt5rM4`, READY, code
+`5f454778a92ecddc964ead83173f8a6a6c15b1b0`, fusionné et poussé sur main.
+HTTP public 200 ; statut ready:true ; entrée forgée rejetée 422 ; ancienne route de
+vérification 404. HTML, CSP et 30 assets identiques au build testé. Aucune fixture modèle
+ou PDF de test déployée. Dernier résumé : evidence/generation-publication-current.json.
+Preuves détaillées : nvidia-public-generation-current.json, pdf-live-desktop-current.json,
+pdf-live-mobile-current.json. Le backend Python historique reste inchangé (100 tests lors
+du dernier contrôle). Aucune autre application/base modifiée, aucun secret dans Git/bundle.
+
+Les limites restent 3/minute, 20/jour, 200/mois et 6/jour/client. Les tentatives échouées ne
+sont pas remboursées. Les conditions NVIDIA restent distinctes de cette validation technique :
+endpoint annoncé gratuit et déclaration propriétaire, pas de vérification indépendante
+illimité/conditions du compte. Les réponses doivent être vérifiées dans les passages cités.
+
+---
+
+## Historique avant activation
+
 # Reprise — génération PDF, état vérifié le 26 octobre 2026
 
 ## Compteur durable validé ; clé NVIDIA Vercel absente

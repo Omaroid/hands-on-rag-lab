@@ -44,12 +44,10 @@ def mock_provider(monkeypatch, handler):
 
 def completed():
     return {
-        "status": "completed",
-        "output": [
+        "choices": [
             {
-                "type": "message",
-                "role": "assistant",
-                "content": [{"type": "output_text", "text": "Journal de transactions [1]."}],
+                "finish_reason": "stop",
+                "message": {"role": "assistant", "content": "Journal de transactions [1]."},
             }
         ],
     }
@@ -63,7 +61,7 @@ def test_fixed_destination_and_no_secret_in_prompt(setup, monkeypatch):
         assert str(request.url) == nvidia.ENDPOINT
         data = json.loads(request.content)
         assert data["model"] == "openai/gpt-oss-20b"
-        assert data["max_output_tokens"] == 1024 and data["store"] is False
+        assert data["max_tokens"] == 1024 and data["stream"] is False
         assert "test-only-placeholder" not in request.content.decode()
         return httpx.Response(200, json=completed())
 
@@ -155,7 +153,7 @@ def test_disabled_policy_never_contacts_provider(setup, monkeypatch, flag):
 
 def test_accidental_key_in_provider_output_is_never_returned(setup, monkeypatch):
     data = completed()
-    data["output"][0]["content"][0]["text"] = "test-only-placeholder"
+    data["choices"][0]["message"]["content"] = "test-only-placeholder"
     mock_provider(monkeypatch, lambda _: httpx.Response(200, json=data))
     with pytest.raises(nvidia.NvidiaUnavailable) as exc:
         asyncio.run(nvidia.explain(result()))
@@ -172,3 +170,19 @@ def test_refused_question_never_contacts_provider(setup, monkeypatch):
         },
     )
     assert response.status_code == 422
+
+
+def test_reasoning_content_is_not_exposed(setup, monkeypatch):
+    data = completed()
+    data["choices"][0]["message"]["reasoning_content"] = "private reasoning"
+    mock_provider(monkeypatch, lambda _: httpx.Response(200, json=data))
+    assert asyncio.run(nvidia.explain(result())) == "Journal de transactions [1]."
+
+
+@pytest.mark.parametrize("reason", ["length", "tool_calls", None])
+def test_truncated_or_tool_output_is_rejected(setup, monkeypatch, reason):
+    data = completed()
+    data["choices"][0]["finish_reason"] = reason
+    mock_provider(monkeypatch, lambda _: httpx.Response(200, json=data))
+    with pytest.raises(nvidia.NvidiaUnavailable):
+        asyncio.run(nvidia.explain(result()))

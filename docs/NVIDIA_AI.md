@@ -1,74 +1,60 @@
-# Server-side NVIDIA inference — prepared, not activated
+# NVIDIA serveur — accès réel validé, génération publique fermée
 
-The requested API usage is **inference**, not training or fine-tuning. This change replaces
-the local browser model in the prepared code with a same-origin server API. It does not
-upload a training dataset or launch a training job.
+État du 26 octobre 2026. Il s'agit d'inférence, pas d'entraînement.
 
-## Security and request flow
+## Vérifications de cette session
 
-1. The browser searches the corpus as before and requests consent for forwarding the question
-   and evidence to NVIDIA. It never receives an API key, model weights or provider URL.
-2. POST `/api/ai/answer` accepts a strict question schema and explicit consent. It rejects
-   browser-provided contexts, prompts, model overrides and extra fields.
-3. The server checks disabled-by-default policy gates and reserves an atomic quota **before**
-   retrieval or any inference request. It recomputes evidence on the server and refuses a
-   question without citations. The existing serverless guard is unchanged.
-4. The adapter uses the fixed destination `https://integrate.api.nvidia.com/v1/responses`
-   and model `openai/gpt-oss-20b`, based on the owner's provided Responses example.
-   It uses the existing httpx dependency rather than adding an SDK with implicit retries.
-   Output is capped at 1,024 tokens and 6,000 characters; response bodies at 128 KiB.
-   Redirects, retries and tools are disabled. The endpoint has a 35-second overall timeout.
-5. Provider errors are replaced with generic messages. The authorization header is not put
-   in the prompt, returned to clients or logged by this code. A response containing the
-   configured credential is rejected. Model text is rendered as text, not HTML.
-6. The UI displays generated text separately from verified source excerpts. Citation markers
-   are not a claim of factual entailment. Stopping the browser request does not guarantee
-   cancellation at the provider; requests are not automatically retried or refunded.
+La configuration attachée est à la révision 2 et déclare NVIDIA_API_KEY et VERCEL_TOKEN.
+Les variables sont présentes dans le processus, sans lecture affichée de leurs valeurs.
+Les observations sont actuelles mais les états individuels et la politique sont `unknown` :
+ils ne sont donc pas qualifiés de `ready` ou `enforced` sur cette seule base.
+Les accès réels via le proxy avec permissions réseau du sandbox ont ensuite réussi :
+GET NVIDIA `/v1/models` HTTP 200, modèle `openai/gpt-oss-20b` présent ; GET du projet
+Vercel dédié HTTP 200 avec l'identifiant attendu.
 
-`store: false` is requested from the provider. This is not evidence about NVIDIA's actual
-retention/training policy; those terms must be reviewed before activation.
+La documentation NVIDIA actuelle expose Chat Completions pour ce modèle :
+https://docs.api.nvidia.com/nim/reference/openai-gpt-oss-20b-infer
+et https://build.nvidia.com/openai/gpt-oss-20b.
+La page de présentation propose aussi un sélecteur Responses ; cette reprise choisit le
+contrat Chat Completions explicitement documenté et testé, pas une supposition sur Responses.
 
-## Requirements before activation
+Une seule génération réelle bornée a été exécutée sur un passage **synthétique** :
+HTTP 200, `finish_reason: stop`, 155 tokens d'entrée et 39 tokens de sortie, maximum
+512 tokens, aucun retry. Réponse : « Les salariés disposent de **25 jours de congés payés
+par an**. [1] ». Voir `evidence/nvidia-live-probe.json`. Aucun PDF privé n'a été envoyé.
+La page NVIDIA annonce un endpoint gratuit ; les conditions du compte exact, l'absence de
+limite et ses modalités de rétention n'ont pas été vérifiées indépendamment. La déclaration
+historique du propriétaire « gratuit, illimité » reste distincte de ces observations.
+Aucun achat, recharge, carte ou changement de plan n'a été effectué.
 
-- Revoke the credential exposed in chat. This task has not used it, stored it or attempted
-  to rotate it. Its value must never be copied into the repository or browser environment.
-- Provision a replacement as `NVIDIA_API_KEY` through secure server-side secret configuration.
-  Never use a `VITE_*` variable. The task currently has no such secret binding.
-- Add `integrate.api.nvidia.com` and relevant NVIDIA documentation domains to the supported
-  task network configuration. They are absent from the attached policy. Public documentation
-  and model-catalog probes were unsuccessful; no generation probe was made.
-- Verify the current model/Responses API contract, account eligibility, free allowance,
-  cutoff behavior, expiry and payment/overage conditions. These are **unverified**. The
-  provided example and mocked tests do not establish live API support or free availability.
-- Deploy a server backend for the dedicated project. The currently published site is static;
-  adding a secret to Vercel alone does not create a backend route.
-- Connect and test a free durable atomic global limiter before public serverless activation.
-  Local SQLite is valid for one durable host only. No bypass or attestation flag opens the
-  existing Vercel/serverless guard. No other project's store may be reused.
-- Only after those checks may the operator set `NVIDIA_INFERENCE_ENABLED=true` and
-  `NVIDIA_FREE_TIER_CONFIRMED=true`. These are explicit operator policy declarations, **not**
-  technical proof of free credits or of a strict zero-euro bill. They do not bypass quotas.
+## Adaptateur Python
 
-Until then GET `/api/ai/status` returns `ready: false` and the UI keeps generation disabled.
-The production site has not been redeployed by this change. No credits, payment method,
-auto-recharge or plan changes were made.
+- Endpoint fixe `https://integrate.api.nvidia.com/v1/chat/completions` et modèle fixe.
+- `messages` système/utilisateur ; les extraits sont marqués comme données non fiables.
+- Aucun outil, redirection, retry ni URL décidée par un PDF ou une réponse du modèle.
+- Maximum 1024 tokens de sortie, réponse HTTP <=128 Kio et texte <=6000 caractères.
+- `reasoning_effort: low`. Seul `message.content` est retourné, jamais `reasoning_content`.
+- Réponses tronquées, tool calls, formes invalides, erreurs fournisseur et échos du secret
+  sont rejetés. Erreurs publiques nettoyées, pas de journal des prompts ou des clés.
+- Le contrat Chat choisi ne contient pas de paramètre `store`. Aucune garantie de rétention
+  fournisseur n'est donc déduite de la requête ou de l'ancien exemple Responses.
+- La route Python historique garde le consentement explicite, le recalcul de ses sources
+  Lakehouse et la réservation de quota avant tout appel. Elle n'ingère pas les PDF visiteurs.
 
-## Verification
+## Fermeture publique
 
-96 offline Python tests and 14 browser tests pass. Provider responses in tests are simulated;
-there was **no authenticated NVIDIA request or live model response**. The tests cover consent,
-recomputed evidence, quota ordering, missing configuration, serverless closure, malicious
-redirects, error sanitization, incomplete/oversized output and accidental credential echoes.
-The browser tests cover unavailable service, consent, a simulated response and simulated
-failure, in addition to the existing accessibility and search journeys.
+Aucun compteur atomique durable gratuit n'est raccordé/testé. SQLite ou un compteur mémoire
+ne protège pas plusieurs instances serverless. La garde Python d'origine reste intacte.
+Les routes Vercel ajoutées sont explicitement fermées : GET `/api/ai/status` renvoie
+`ready:false`, POST `/api/ai/answer` renvoie 503, sans accès à une clé ni appel externe.
+La vitrine PDF présente cette indisponibilité et un bouton désactivé. Cocher le consentement
+ne l'active pas. Les extraits restent locaux et consultables.
 
-Ruff, mypy, the TypeScript/Vite build, frontend credential-signature checks and dependency
-audits pass. The browser-model dependency and worker were removed, and the frontend CSP
-was restored to same-origin connections without WASM permissions.
+Aucun store Blob n'a été créé et aucune autre ressource réutilisée. Les écritures conditionnelles
+Blob restent une piste documentaire, pas une protection implémentée. Avant ouverture publique,
+il faut établir une solution gratuite, la raccorder, tester sa concurrence et ses erreurs,
+puis implémenter le contrat spécifique aux passages PDF locaux avec validation stricte.
+Voir `docs/PDF_RAG.md` pour l'architecture PDF et ses limites.
 
-The owner reports that NVIDIA inference is free and has no usage limit. Recorded as an
-operator report, not contradicted by an observed provider quota. No provider quota was
-queried or discovered. The application's existing anti-abuse limits are separate and remain
-in place; the original instruction to keep the serverless guard closed has not been removed.
-Attached configuration revision 12 is enforced and still has zero NVIDIA secret bindings
-and zero NVIDIA egress hosts.
+Les tests Python de l'adaptateur utilisent des réponses simulées ; le probe JSON est la preuve
+séparée de l'appel réel. Les tests navigateur PDF utilisent de vrais PDF, OCR et embeddings.

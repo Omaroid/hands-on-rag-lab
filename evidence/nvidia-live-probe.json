@@ -1,0 +1,21 @@
+{
+  "model": "openai/gpt-oss-20b",
+  "endpoint": "https://integrate.api.nvidia.com/v1/chat/completions",
+  "request_kind": "single_bounded_operator_probe",
+  "provider_advertises_free_endpoint": true,
+  "account_terms_independently_verified": false,
+  "max_tokens": 512,
+  "retries": 0,
+  "documents": "synthetic test passage only",
+  "http_status": 200,
+  "answer": "Les salariés disposent de **25 jours de congés payés par an**. [1]",
+  "finish_reason": "stop",
+  "usage": {
+    "prompt_tokens": 155,
+    "total_tokens": 194,
+    "completion_tokens": 39,
+    "prompt_tokens_details": null
+  },
+  "live_inference_verified": true,
+  "elapsed_seconds": 1.65
+}

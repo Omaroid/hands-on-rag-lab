@@ -262,3 +262,54 @@ comme déclarative : aucun quota fournisseur n’a été constaté. Les protecti
 site restent distinctes. Configuration attachée révision 12, politique enforced : aucun
 secret NVIDIA ni domaine NVIDIA autorisé. Le remplacement est conservé sur une branche
 préparatoire pour ne pas remplacer le site actif par une génération indisponible.
+
+## Reprise vers une vitrine RAG PDF généraliste — 26 octobre 2026
+
+Le propriétaire demande maintenant une application RAG sur les PDF des visiteurs, pas
+uniquement Lakehouse, avec tests, déploiement, explications de chaque étape et captures.
+Choix explicitement confirmés : plusieurs PDF mais **5 Mo maximum pour l’ensemble**,
+PDF scannés avec OCR, session temporaire sans bibliothèque conservée, interface FR/EN
+et parcours pédagogique toujours visible. Montrer la décomposition de la question,
+les scores vectoriels et BM25, la fusion RRF, les passages retenus et les raisons de leur
+sélection, avec citations fichier/page. Rester simple et efficace ; ne pas présenter
+un hash lexical comme de la sémantique ni un score comme une probabilité.
+
+Le test de configuration réellement attachée observe encore la révision 14, politique
+enforced, **aucun secret NVIDIA et aucun domaine NVIDIA**. NVIDIA_API_KEY absent du
+processus ; les sondes publiques NVIDIA échouent avec tunnel HTTP 403. Le propriétaire
+confirme ensuite : « Continue la préparation ; on débloquera NVIDIA ensuite », puis
+souhaite rouvrir une session pour recharger la clé. La prochaine session doit revérifier
+sa propre configuration et les accès, sans réutiliser les observations comme preuve.
+Les variables du projet Vercel dédié étaient vides au dernier contrôle (métadonnées
+seulement, aucune valeur de secret consultée). Aucune génération NVIDIA réelle faite.
+
+Préparation actuelle : branche feat/nvidia-server-inference, base a94744e, déjà poussée.
+Ce commit contient le remplacement serveur NVIDIA désactivé par défaut, testé avec
+96 tests Python et 14 tests navigateur **à réponses NVIDIA simulées**, Ruff/mypy/build
+et audits réussis. Le site public reste l’ancienne version sur main, non remplacée.
+
+Après ce commit, seules les dépendances PDF/OCR/embeddings ont été ajoutées :
+pdfjs-dist 6.4.299, tesseract.js 7.0.0, @huggingface/transformers 4.3.1 ; lockfile mis à jour
+avec npm install --ignore-scripts. Elles ne sont **pas encore intégrées ni validées**.
+Aucune interface PDF, OCR ou indexation de PDF n’est implémentée à ce stade.
+Candidat d’encodeur (pas de modèle génératif local) : Xenova/multilingual-e5-small,
+révision 761b726dd34fb83930e26aab4e9ac3899aa1fa78, model_quantized.onnx 118308185 octets.
+Sa licence et son comportement doivent encore être vérifiés ; ce n’est pas une sélection
+validée. Ne pas réinstaller des poids de génération de 950 Mo.
+
+Piste d’architecture, **pas une réalisation** : lecture PDF + OCR + embeddings/retrieval
+sur session navigateur pour éviter le stockage des documents ; génération NVIDIA
+uniquement serveur et après consentement. Prévoir des limites de pages/texte/chunks et
+un arrêt effectif. Le coût obligatoire reste 0 €, sans achat/auto-recharge/carte/upgrade,
+et ne toucher qu’au projet dédié. La garde serverless doit rester fermée sans compteur
+atomique durable gratuit raccordé et testé. La documentation Vercel consultée confirme
+les écritures Blob conditionnelles par ETag/ifMatch (optimistic concurrency), mais aucun
+store Blob n’a été créé, aucun CAS/compteur n’a été implémenté ou validé, aucune gratuité
+n’en est attestée. Ne pas annoncer cette piste comme protection active.
+
+Projet Vercel : prj_bx0b78VzJb6VNA2OyyIOElDnBiEE,
+équipe team_0yx8bLSbYEsadJbCiwOd28l6, domaine lakehouse-rag-lab.vercel.app.
+La publication est autorisée par le propriétaire, mais les fonctions NVIDIA doivent
+rester indisponibles honnêtement tant que les prérequis ne sont pas satisfaits.
+Préserver le travail, informer régulièrement et montrer des captures de vrais parcours
+PDF texte et OCR, desktop/mobile, en distinguant tests réels et simulés.

@@ -10,7 +10,7 @@ import {
   ENDPOINT,
   MODEL,
 } from "../server/pdf-answer.js";
-import { readJSON, RequestError } from "../server/http.js";
+import { readJSON, RequestError, ORIGIN } from "../server/http.js";
 import { ready } from "../server/config.js";
 const body = () => ({
   question: "Combien de jours de conges ?",
@@ -177,4 +177,34 @@ test("readiness no longer depends on any counter, store or request cap", () => {
     }),
     true,
   );
+});
+
+test("canonical production origin is accepted and localhost is rejected in production", async () => {
+  assert.equal(ORIGIN, "https://hands-on-rag-lab.vercel.app");
+  const previous = process.env.VERCEL;
+  process.env.VERCEL = "1";
+  try {
+    assert.deepEqual(
+      await readJSON({
+        method: "POST",
+        headers: { "content-type": "application/json", origin: ORIGIN },
+        body: { ok: true },
+      }),
+      { ok: true },
+    );
+    await assert.rejects(
+      readJSON({
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          origin: "http://localhost:8000",
+        },
+        body: { ok: true },
+      }),
+      (e) => e instanceof RequestError && e.status === 403,
+    );
+  } finally {
+    if (previous === undefined) delete process.env.VERCEL;
+    else process.env.VERCEL = previous;
+  }
 });

@@ -1,4 +1,4 @@
-export const ORIGIN = "https://lakehouse-rag-lab.vercel.app";
+export const ORIGIN = "https://hands-on-rag-lab.vercel.app";
 export class RequestError extends Error {
   constructor(status) {
     super("Invalid request");

@@ -1,9 +1,0 @@
-artifact_location: file:///workspace/lakehouse-rag-lab/work/mlruns/387774936544361927
-creation_time: 1792957898306
-effective_trace_archival_retention: null
-experiment_id: '387774936544361927'
-last_update_time: 1792957898306
-lifecycle_stage: active
-name: Lakehouse RAG Lab — editorial baseline
-trace_location: null
-workspace: default

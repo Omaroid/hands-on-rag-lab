@@ -10,8 +10,6 @@ frontend/dist/
 .mypy_cache/
 .ruff_cache/
 work/
-mlruns/
-.qdrant/
 .vercel/
 playwright-report/
 test-results/
@@ -26,3 +24,9 @@ frontend/public/onnx/
 
 frontend/public/ocr/
 frontend/public/licenses/
+
+# Private credentials and certificate containers
+*.pem
+*.key
+*.p12
+*.pfx

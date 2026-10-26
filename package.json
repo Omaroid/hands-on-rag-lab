@@ -1,8 +1,12 @@
 {
-  "name": "pdf-rag-server",
+  "name": "hands-on-rag-lab",
   "private": true,
   "type": "module",
   "scripts": {
     "test:server": "node --test --test-isolation=none tests/server-*.test.mjs"
-  }
+  },
+  "engines": {
+    "node": ">=24.19.0 <25"
+  },
+  "packageManager": "npm@11.9.0"
 }

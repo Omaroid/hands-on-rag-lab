@@ -1,7 +1,7 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": null,
-  "buildCommand": "VITE_RUNTIME=browser npm run build --prefix frontend",
+  "buildCommand": "npm run test:server && npm run build --prefix frontend",
   "installCommand": "npm ci --ignore-scripts && npm ci --ignore-scripts --prefix frontend",
   "outputDirectory": "frontend/dist",
   "headers": [

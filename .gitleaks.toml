@@ -1,0 +1,8 @@
+title = "Source repository and history security policy"
+[extend]
+useDefault = true
+[[rules]]
+id = "nvidia-api-key"
+description = "NVIDIA API credential"
+regex = '''\bnvapi-[A-Za-z0-9_-]{20,}'''
+keywords = ["nvapi-"]

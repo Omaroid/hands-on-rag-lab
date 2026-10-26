@@ -1,7 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { createAnswerHandler } from "../server/answer-handler.js";
-import { QuotaExceeded } from "../server/quota.js";
 const question = () => ({
   question: "How many days of leave?",
   language: "en",
@@ -32,12 +31,10 @@ function res() {
     },
   };
 }
-process.env.RAG_QUOTA_SALT = "test-only-salt-".repeat(4);
-test("route validates consent and context before quota or provider", async () => {
+test("route validates consent and context before provider", async () => {
   let calls = 0;
   const handler = createAnswerHandler({
     isReady: () => true,
-    reserve: () => calls++,
     generate: () => calls++,
   });
   for (const bad of [
@@ -50,46 +47,26 @@ test("route validates consent and context before quota or provider", async () =>
   }
   assert.equal(calls, 0);
 });
-test("quota reservation precedes the only provider call", async () => {
-  const order = [];
+test("valid requests are never capped by application request counts", async () => {
+  let calls = 0;
   const handler = createAnswerHandler({
     isReady: () => true,
-    reserve: async () => order.push("quota"),
     generate: async () => {
-      order.push("provider");
+      calls++;
       return { answer: "25 days [1]." };
     },
   });
-  const out = res();
-  await handler(req(question()), out);
-  assert.deepEqual(order, ["quota", "provider"]);
-  assert.equal(out.statusCode, 200);
-});
-test("exceeded or unavailable durable quotas never contact NVIDIA", async () => {
-  for (const error of [
-    new QuotaExceeded("limit"),
-    new Error("private storage details"),
-  ]) {
-    let calls = 0;
-    const handler = createAnswerHandler({
-      isReady: () => true,
-      reserve: async () => {
-        throw error;
-      },
-      generate: () => calls++,
-    });
+  for (let i = 0; i < 25; i++) {
     const out = res();
     await handler(req(question()), out);
-    assert.equal(out.statusCode, error instanceof QuotaExceeded ? 429 : 503);
-    assert.equal(calls, 0);
-    assert.equal(JSON.stringify(out.body).includes("private storage"), false);
+    assert.equal(out.statusCode, 200);
   }
+  assert.equal(calls, 25);
 });
-test("closed policy does not parse input or reserve quota", async () => {
+test("closed policy does not parse input or call provider", async () => {
   let calls = 0;
   const handler = createAnswerHandler({
     isReady: () => false,
-    reserve: () => calls++,
     generate: () => calls++,
   });
   const out = res();
@@ -101,7 +78,6 @@ test("diagnostic fields never include provider messages, body, IP or credentials
   const events = [];
   const handler = createAnswerHandler({
     isReady: () => true,
-    reserve: async () => {},
     generate: async () => {
       throw new Error("private text and key");
     },

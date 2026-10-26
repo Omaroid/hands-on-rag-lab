@@ -19,11 +19,9 @@ const words = {
     generating: "Rédaction en cours…",
     stop: "Arrêter l’attente",
     stopNote:
-      "Arrêter l’attente ne garantit pas l’annulation côté fournisseur. La tentative reste comptée ; aucun nouvel essai automatique.",
+      "Arrêter l’attente ne garantit pas l’annulation côté fournisseur. Aucun nouvel essai automatique.",
     failure:
       "La génération n’a pas abouti. Les sources restent consultables. Aucun nouvel essai automatique.",
-    quota:
-      "La limite de demandes est atteinte. Réessayez plus tard ; aucun appel NVIDIA supplémentaire n’a été lancé.",
     cancelled: "Attente arrêtée.",
     statuses: {
       supported: "Réponse étayée par les extraits",
@@ -47,11 +45,9 @@ const words = {
     generating: "Writing…",
     stop: "Stop waiting",
     stopNote:
-      "Stopping does not guarantee cancellation at the provider. The attempt still counts; no automatic retry.",
+      "Stopping does not guarantee cancellation at the provider. No automatic retry.",
     failure:
       "Generation did not complete. Sources remain available. No automatic retry.",
-    quota:
-      "The request limit has been reached. Try again later; no additional NVIDIA call was started.",
     cancelled: "Stopped waiting.",
     statuses: {
       supported: "Answer supported by the excerpts",
@@ -120,10 +116,6 @@ export default function PdfGeneration({
           })),
         }),
       });
-      if (r.status === 429) {
-        setError(t.quota);
-        return;
-      }
       if (!r.ok) throw Error("unavailable");
       const d = await r.json();
       if (

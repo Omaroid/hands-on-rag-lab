@@ -148,7 +148,7 @@ test("cross-origin and unexpected methods rejected before parsing", async () => 
       (e) => e.status === code,
     );
 });
-test("generation gate remains closed for missing policy, proxy placeholders and wrong store", () => {
+test("generation gate rejects missing configuration and proxy references", () => {
   assert.equal(ready({}), false);
   assert.equal(ready({ NVIDIA_API_KEY: "[proxy]" }), false);
 });
@@ -167,4 +167,14 @@ test("completed NVIDIA answers accept an empty tool_calls array but reject actua
       }),
       ProviderUnavailable,
     );
+});
+
+test("readiness no longer depends on any counter, store or request cap", () => {
+  assert.equal(
+    ready({
+      RAG_PUBLIC_GENERATION: "true",
+      NVIDIA_API_KEY: "test-only-valid-server-key",
+    }),
+    true,
+  );
 });

@@ -1,5 +1,3 @@
-// No provider call, secret access or request-body parsing while the global gate is closed.
-export default function handler(_req, res) {
-  res.setHeader("Cache-Control", "no-store");
-  res.status(503).json({ error: "generation_unavailable" });
-}
+import { createAnswerHandler } from "../../server/answer-handler.js";
+// Neither the request nor PDF content can override these server dependencies or the quota gate.
+export default createAnswerHandler();

@@ -268,3 +268,73 @@ test("BM25 ranking, independent scores, RRF and scope invariants", () => {
   expect(terms("Quels sont les CONGÉS ?")).toEqual(["conges"]);
   expect(normalize("  bonjour\n monde ")).toBe("bonjour monde");
 });
+
+test("generation consent and source payload, response citations, reset and sanitized failure", async ({
+  page,
+}) => {
+  test.setTimeout(150000);
+  await modelCache(page);
+  await page.route("**/api/ai/status", (route) =>
+    route.fulfill({ json: { ready: true } }),
+  );
+  const requests: unknown[] = [];
+  await page.route("**/api/ai/answer", async (route) => {
+    const d = route.request().postDataJSON();
+    requests.push(d);
+    await route.fulfill({
+      json: {
+        status: "incomplete",
+        answer: "25 jours [1]. La date limite ne figure pas dans ce passage.",
+        citations: [{ number: 1, ...d.passages[0] }],
+        model: "openai/gpt-oss-20b",
+      },
+    });
+  });
+  await page.goto("/");
+  await upload(page, ["guide.pdf"]);
+  await ready(page);
+  await ask(page, "Combien de jours de conges et quelle date limite ?");
+  const generate = page.getByRole("button", {
+    name: "Générer une réponse sourcée",
+  });
+  await expect(generate).toBeDisabled();
+  expect(requests).toHaveLength(0);
+  await page.locator(".nvidia input").check();
+  await expect(generate).toBeEnabled();
+  await generate.click();
+  await expect(page.locator(".generated-answer")).toContainText(
+    "Réponse partielle",
+  );
+  const sent = requests[0] as {
+    passages: Record<string, unknown>[];
+    consent: boolean;
+  };
+  expect(sent.consent).toBe(true);
+  expect(Object.keys(sent.passages[0]).sort()).toEqual([
+    "file",
+    "id",
+    "page",
+    "text",
+  ]);
+  expect(JSON.stringify(sent)).not.toContain("vector");
+  await page.locator(".generated-citations button").click();
+  await expect(page.getByRole("dialog")).toContainText("guide.pdf");
+  await page.getByRole("button", { name: "Fermer ×" }).click();
+  expect(
+    (await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa"]).analyze())
+      .violations,
+  ).toEqual([]);
+  await page.route("**/api/ai/answer", (route) =>
+    route.fulfill({
+      status: 503,
+      json: { error: "private provider error not for UI" },
+    }),
+  );
+  await generate.click();
+  await expect(page.getByRole("alert")).toContainText("n’a pas abouti");
+  await expect(page.locator(".nvidia")).not.toContainText("private provider");
+  await page
+    .getByRole("button", { name: "Supprimer et réinitialiser" })
+    .click();
+  await expect(page.locator(".generated-answer")).toHaveCount(0);
+});

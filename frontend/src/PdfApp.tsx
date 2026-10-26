@@ -8,6 +8,7 @@ import {
   type PageText,
 } from "./pdf-retrieval";
 import "./pdf.css";
+import PdfGeneration from "./PdfGeneration";
 const labels = {
   fr: {
     title: "Vos documents.",
@@ -225,7 +226,6 @@ export default function PdfApp() {
     [filter, setFilter] = useState(""),
     [result, setResult] = useState<ReturnType<typeof retrieve> | null>(null),
     [picked, setPicked] = useState<Hit | null>(null),
-    [consent, setConsent] = useState(false),
     [drag, setDrag] = useState(false);
   const t = labels[lang],
     worker = useRef<Worker | null>(null),
@@ -257,7 +257,6 @@ export default function PdfApp() {
     dialog.current?.close();
     setQuestion("");
     setFilter("");
-    setConsent(false);
     setStatus("");
     setError("");
     if (input.current) input.current.value = "";
@@ -709,24 +708,12 @@ export default function PdfApp() {
                   {result.context.length > 0 && (
                     <p className="coverage">{t.coverage}</p>
                   )}
-                  <div className="nvidia">
-                    <h3>
-                      {t.ai}
-                      <span className="chip">openai/gpt-oss-20b</span>
-                    </h3>
-                    <p>{t.unavailable}</p>
-                    <label className="consent">
-                      <input
-                        type="checkbox"
-                        checked={consent}
-                        onChange={(e) => setConsent(e.target.checked)}
-                      />
-                      {t.consent}
-                    </label>
-                    <button className="primary" disabled>
-                      {t.generate}
-                    </button>
-                  </div>
+                  <PdfGeneration
+                    lang={lang}
+                    question={result.normalized}
+                    context={result.context}
+                    onCitation={show}
+                  />
                 </section>
                 <section className="panel inspector">
                   <h2>{t.engine}</h2>

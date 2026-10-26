@@ -852,3 +852,29 @@
 .pdf-app .dialog-heading {
   flex-wrap: wrap;
 }
+.pdf-app .generated-answer {
+  border: 1px solid #c3d6c6;
+  border-radius: 8px;
+  margin-top: 22px;
+  padding: 18px;
+  background: #f6faf2;
+}
+.pdf-app .generated-text {
+  font-size: 14px;
+  line-height: 1.9;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  color: var(--ink);
+}
+.pdf-app .generated-citations {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+.pdf-app .generated-citations button {
+  white-space: normal;
+  text-align: left;
+  overflow-wrap: anywhere;
+  max-width: 100%;
+}

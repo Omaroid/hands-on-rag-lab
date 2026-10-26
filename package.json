@@ -1,0 +1,14 @@
+{
+  "name": "pdf-rag-server",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test:server": "node --test tests/server-*.test.mjs"
+  },
+  "dependencies": {
+    "@vercel/blob": "2.8.2"
+  },
+  "overrides": {
+    "zod": "4.6.6"
+  }
+}

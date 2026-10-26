@@ -1,12 +1,14 @@
+import './theme.css';
 import React,{useEffect,useState} from 'react';
 import {createRoot} from 'react-dom/client';
 import {browserAnswer} from './browser-engine';
 import corpus from './corpus.json';
 import {modes,type Mode,type Result,type Hit} from './types';
-import './style.css';
+
 import {ServerAI} from './ServerAI';
 import PdfApp from './PdfApp';
 const browserMode=import.meta.env.VITE_RUNTIME==='browser';
+if(!browserMode)void import('./style.css');
 function Icon({name,size=20}:{name:string;size?:number}){const paths:Record<string,React.ReactNode>={layers:<><path d="m3 7 9-5 9 5-9 5Z"/><path d="m3 12 9 5 9-5M3 17l9 5 9-5"/></>,chat:<><path d="M21 11a8 8 0 0 1-8 8H6l-4 3V11a9 9 0 0 1 19 0Z"/><path d="M7 9h10M7 13h6"/></>,explore:<><circle cx="12" cy="12" r="9"/><path d="m16 8-3 5-5 3 3-5Z"/></>,compare:<><path d="M8 3v18M16 3v18M3 7h10M11 17h10"/><circle cx="8" cy="7" r="3"/><circle cx="16" cy="17" r="3"/></>,architecture:<><rect x="8" y="2" width="8" height="6" rx="1"/><rect x="2" y="16" width="7" height="6" rx="1"/><rect x="15" y="16" width="7" height="6" rx="1"/><path d="M12 8v4H5v4M12 12h7v4"/></>,book:<><path d="M12 5v16M12 5C9 2 5 2 2 3v16c4-1 7-1 10 2 3-3 6-3 10-2V3c-4-1-7-1-10 2Z"/></>,arrow:<><path d="M5 12h14m-6-6 6 6-6 6"/></>,external:<><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H3v18h18v-7"/></>,shield:<><path d="m12 2 9 4v6c0 5-9 10-9 10S3 17 3 12V6Z"/><path d="m8 12 3 3 5-6"/></>,check:<path d="m5 12 4 4L19 6"/>,bolt:<path d="m13 2-9 12h7l-1 8 10-12h-7Z"/>,search:<><circle cx="10" cy="10" r="7"/><path d="m15 15 6 6"/></>,code:<><path d="m8 6-6 6 6 6m8-12 6 6-6 6m-3-15-2 18"/></>};return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{paths[name]||paths.layers}</svg>}
 const products=['Databricks','Unity Catalog','Delta Lake','Azure','Gouvernance'];
 const examples=[['Unity Catalog','Comment Unity Catalog gère les permissions ?'],['Delta Lake','Comment fonctionnent les transactions ACID de Delta Lake ?'],['Architecture','Quelles sont les couches de l’architecture médaillon ?'],['FinOps','Comment maîtriser les coûts Databricks ?']];

@@ -30,7 +30,7 @@ def main() -> None:
 
         def translate_path(self, path: str) -> str:
             name = unquote(urlsplit(path).path)
-            if name == "/architecture":
+            if name in {"/architecture", "/theory"}:
                 return str(ROOT / "frontend/dist/index.html")
             prefix = "/_test-model/"
             if name.startswith(prefix):

@@ -14,6 +14,12 @@ vecteurs calculés, recherche à deux voies et panier de passages. Chaque étape
 cliquable, avec des exemples tirés des PDF en session et un petit défi pédagogique.
 Aucune progression n’est simulée et aucun appel NVIDIA n’est lancé pendant l’indexation.
 
+L’interface utilise désormais shadcn/ui, Radix UI et Tailwind CSS : navigation Documents /
+[Théorie](https://lakehouse-rag-lab.vercel.app/theory) / Architecture, palette sobre et
+transitions respectant la réduction des animations. La théorie FR/EN explique le RAG,
+propose trois questions pédagogiques sans appel fournisseur et détaille l’objectif et
+l’assemblage de chaque technologie. L’atelier est repliable et s’ouvre pendant le traitement.
+
 Build : `VITE_RUNTIME=browser npm run build --prefix frontend`.
 Les dépendances sont verrouillées ; les assets OCR/WASM sont préparés au build.
 Les fonctionnalités historiques Lakehouse restent décrites ci-dessous.

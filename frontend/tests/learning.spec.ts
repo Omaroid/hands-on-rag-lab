@@ -22,6 +22,7 @@ test("workshop explains actual indexing and retrieval, quiz and responsive acces
     });
   });
   await page.goto("/");
+  await page.getByRole("button", { name: /L’atelier des preuves/ }).click();
   await expect(page.locator(".lab-stats")).toContainText("0");
   await page.locator(".lab-track button").nth(1).click();
   await expect(page.locator(".lab-object")).toContainText(

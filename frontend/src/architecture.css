@@ -8,7 +8,7 @@
   padding: 9px 15px;
   border-radius: 24px;
   text-decoration: none;
-  color: var(--muted);
+  color: var(--text-muted);
   font-size: 13px;
 }
 .pdf-topnav a[aria-current="page"] {
@@ -49,7 +49,7 @@
   font-size: 17px;
   line-height: 1.8;
   max-width: 700px;
-  color: var(--muted);
+  color: var(--text-muted);
 }
 .arch-pills {
   display: flex;
@@ -86,7 +86,7 @@
 .arch-section-head p,
 .arch-flow-note,
 .arch-footnote {
-  color: var(--muted);
+  color: var(--text-muted);
   font-size: 14px;
   line-height: 1.7;
 }
@@ -118,7 +118,7 @@
   display: block;
 }
 .arch-lane-title small {
-  color: var(--muted);
+  color: var(--text-muted);
   font-size: 11px;
   margin-top: 5px;
 }
@@ -161,7 +161,7 @@
 .arch-node small {
   font-size: 11px;
   line-height: 1.5;
-  color: var(--muted);
+  color: var(--text-muted);
 }
 .arch-node-arrow {
   position: absolute;
@@ -183,7 +183,7 @@
 }
 .arch-boundary small {
   display: block;
-  color: var(--muted);
+  color: var(--text-muted);
 }
 .arch-return {
   font-size: 12px;
@@ -247,7 +247,7 @@
   background: transparent;
   border-radius: 7px;
   padding: 10px 15px;
-  color: var(--muted);
+  color: var(--text-muted);
   cursor: pointer;
 }
 .arch-formula-tabs button[aria-pressed="true"],
@@ -280,7 +280,7 @@
 .arch-equation-heading p {
   font-size: 13px;
   line-height: 1.6;
-  color: var(--muted);
+  color: var(--text-muted);
 }
 .arch-equation {
   display: flex;
@@ -333,7 +333,7 @@
 .arch-vector-display p {
   font-size: 12px;
   line-height: 1.7;
-  color: var(--muted);
+  color: var(--text-muted);
 }
 .arch-calculation {
   background: #f2f5ee;
@@ -350,7 +350,7 @@
   font-size: 15px;
 }
 .arch-calculation > p {
-  color: var(--muted);
+  color: var(--text-muted);
   font-size: 12px;
 }
 .arch-total {
@@ -449,14 +449,14 @@
   margin: 8px 0;
   font-size: 12px;
   line-height: 1.6;
-  color: var(--muted);
+  color: var(--text-muted);
 }
 .arch-no-live {
   margin: 22px 0 0;
   padding-top: 16px;
   border-top: 1px solid var(--line);
   font-size: 12px;
-  color: var(--muted);
+  color: var(--text-muted);
 }
 .arch-rule-grid {
   display: grid;
@@ -482,7 +482,7 @@
 .arch-rule-grid p {
   font-size: 12px;
   line-height: 1.8;
-  color: var(--muted);
+  color: var(--text-muted);
 }
 .arch-refusal {
   background: #eaf0e5;
@@ -508,7 +508,7 @@
 .arch-technical > p {
   font-size: 12px;
   line-height: 1.7;
-  color: var(--muted);
+  color: var(--text-muted);
 }
 .arch-technical dl > div {
   display: grid;
@@ -521,7 +521,7 @@
 }
 .arch-technical dd {
   margin: 0;
-  color: var(--muted);
+  color: var(--text-muted);
   overflow-wrap: anywhere;
 }
 .arch-privacy-grid {
@@ -546,7 +546,7 @@
 .arch-payload small {
   font-size: 11px;
   line-height: 1.8;
-  color: var(--muted);
+  color: var(--text-muted);
 }
 .arch-payload {
   border: 1px solid var(--line);
@@ -583,7 +583,7 @@
 .arch-closing p {
   font-size: 14px;
   line-height: 1.8;
-  color: var(--muted);
+  color: var(--text-muted);
   margin-bottom: 25px;
 }
 .architecture-view button:focus-visible,

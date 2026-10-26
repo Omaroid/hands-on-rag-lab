@@ -110,7 +110,7 @@ test("real PDF and encoder search remains available across architecture navigati
     await route.fulfill({
       status: 307,
       headers: {
-        location: "http://localhost:8001/_test-model/" + file,
+        location: new URL("/_test-model/" + file, page.url()).href,
         "access-control-allow-origin": "*",
       },
     });

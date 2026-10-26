@@ -1,0 +1,174 @@
+{
+  "checked_at": "2026-10-26T13:09:46.473341+00:00",
+  "browser_cases_passed": 24,
+  "node_cases_passed": 13,
+  "cases": [
+    {
+      "project": "desktop",
+      "file": "architecture.spec.ts",
+      "name": "published architecture route, interactive maths, accessible responsive layout and navigation",
+      "status": "passed"
+    },
+    {
+      "project": "desktop",
+      "file": "architecture.spec.ts",
+      "name": "math uses filtered corpus and preserves numerical retrieval scores",
+      "status": "passed"
+    },
+    {
+      "project": "desktop",
+      "file": "architecture.spec.ts",
+      "name": "real PDF and encoder search remains available across architecture navigation",
+      "status": "passed"
+    },
+    {
+      "project": "mobile",
+      "file": "architecture.spec.ts",
+      "name": "published architecture route, interactive maths, accessible responsive layout and navigation",
+      "status": "passed"
+    },
+    {
+      "project": "mobile",
+      "file": "architecture.spec.ts",
+      "name": "math uses filtered corpus and preserves numerical retrieval scores",
+      "status": "passed"
+    },
+    {
+      "project": "mobile",
+      "file": "architecture.spec.ts",
+      "name": "real PDF and encoder search remains available across architecture navigation",
+      "status": "passed"
+    },
+    {
+      "project": "desktop",
+      "file": "learning.spec.ts",
+      "name": "workshop explains actual indexing and retrieval, quiz and responsive accessibility",
+      "status": "passed"
+    },
+    {
+      "project": "mobile",
+      "file": "learning.spec.ts",
+      "name": "workshop explains actual indexing and retrieval, quiz and responsive accessibility",
+      "status": "passed"
+    },
+    {
+      "project": "desktop",
+      "file": "pdf.spec.ts",
+      "name": "home, languages, accessibility and mobile layout",
+      "status": "passed"
+    },
+    {
+      "project": "desktop",
+      "file": "pdf.spec.ts",
+      "name": "combined size, format, corrupt, password and page limits",
+      "status": "passed"
+    },
+    {
+      "project": "desktop",
+      "file": "pdf.spec.ts",
+      "name": "real PDF extraction, E5 inference, hybrid retrieval, citations, refusal and reset",
+      "status": "passed"
+    },
+    {
+      "project": "desktop",
+      "file": "pdf.spec.ts",
+      "name": "real scan OCR and effective cancellation",
+      "status": "passed"
+    },
+    {
+      "project": "desktop",
+      "file": "pdf.spec.ts",
+      "name": "long passages split without silent token truncation and document injection stays inert",
+      "status": "passed"
+    },
+    {
+      "project": "desktop",
+      "file": "pdf.spec.ts",
+      "name": "BM25 ranking, independent scores, RRF and scope invariants",
+      "status": "passed"
+    },
+    {
+      "project": "desktop",
+      "file": "pdf.spec.ts",
+      "name": "generation consent and source payload, response citations, reset and sanitized failure",
+      "status": "passed"
+    },
+    {
+      "project": "mobile",
+      "file": "pdf.spec.ts",
+      "name": "home, languages, accessibility and mobile layout",
+      "status": "passed"
+    },
+    {
+      "project": "mobile",
+      "file": "pdf.spec.ts",
+      "name": "combined size, format, corrupt, password and page limits",
+      "status": "passed"
+    },
+    {
+      "project": "mobile",
+      "file": "pdf.spec.ts",
+      "name": "real PDF extraction, E5 inference, hybrid retrieval, citations, refusal and reset",
+      "status": "passed"
+    },
+    {
+      "project": "mobile",
+      "file": "pdf.spec.ts",
+      "name": "real scan OCR and effective cancellation",
+      "status": "passed"
+    },
+    {
+      "project": "mobile",
+      "file": "pdf.spec.ts",
+      "name": "long passages split without silent token truncation and document injection stays inert",
+      "status": "passed"
+    },
+    {
+      "project": "mobile",
+      "file": "pdf.spec.ts",
+      "name": "BM25 ranking, independent scores, RRF and scope invariants",
+      "status": "passed"
+    },
+    {
+      "project": "mobile",
+      "file": "pdf.spec.ts",
+      "name": "generation consent and source payload, response citations, reset and sanitized failure",
+      "status": "passed"
+    },
+    {
+      "project": "desktop",
+      "file": "theory.spec.ts",
+      "name": "theory is bilingual, interactive, accessible and makes no generation calls",
+      "status": "passed"
+    },
+    {
+      "project": "mobile",
+      "file": "theory.spec.ts",
+      "name": "theory is bilingual, interactive, accessible and makes no generation calls",
+      "status": "passed"
+    }
+  ],
+  "method": "Full suite plus targeted rechecks after contrast and navigation fixes; the latest result per scenario is retained.",
+  "real_pdf_ocr_encoder": true,
+  "theory_generation_calls": 0,
+  "theory_is_educational": true,
+  "generation_ui_mocks_distinguished": true,
+  "application_request_caps": false,
+  "dependency_audit": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  },
+  "shadcn_source": "https://github.com/shadcn-ui/ui/tree/main/apps/v4/registry/new-york-v4/ui",
+  "shadcn_components": [
+    "Button",
+    "Card",
+    "Tabs",
+    "Accordion",
+    "Badge"
+  ],
+  "reduced_motion_verified": true
+}

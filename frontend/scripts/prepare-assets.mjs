@@ -38,5 +38,7 @@ for (const [pkg, label] of [
   );
 }
 
-await copyFile("notices/onnxruntime.txt","public/licenses/onnxruntime.txt");
-await copyFile("notices/THIRD_PARTY.md","public/licenses/THIRD_PARTY.md");
+await copyFile("notices/onnxruntime.txt", "public/licenses/onnxruntime.txt");
+await copyFile("notices/THIRD_PARTY.md", "public/licenses/THIRD_PARTY.md");
+
+await copyFile("notices/shadcn-ui.txt", "public/licenses/shadcn-ui.txt");

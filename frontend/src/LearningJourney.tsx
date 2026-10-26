@@ -378,7 +378,7 @@ export default function LearningJourney({
                       width="13"
                       height={(Math.abs(n) / max) * 48}
                       rx="2"
-                      fill={n >= 0 ? "#176b58" : "#b68349"}
+                      fill={n >= 0 ? "#315bd6" : "#8c9bb6"}
                     />
                   ))}
                 </svg>

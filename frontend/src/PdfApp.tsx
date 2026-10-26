@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, lazy, Suspense } from "react";
 import { validateFiles } from "./pdf-limits";
 import {
   normalize,
@@ -9,7 +9,26 @@ import {
 } from "./pdf-retrieval";
 import "./pdf.css";
 import PdfGeneration from "./PdfGeneration";
-import ArchitecturePage from "./ArchitecturePage";
+const ArchitecturePage = lazy(() => import("./ArchitecturePage"));
+const TheoryPage = lazy(() => import("./TheoryPage"));
+import { Button } from "./components/ui/button";
+import { Card } from "./components/ui/card";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "./components/ui/accordion";
+import {
+  Layers,
+  Upload,
+  ShieldCheck,
+  Workflow,
+  ArrowUpRight,
+  ArrowRight,
+  Plus,
+} from "lucide-react";
+import "./professional.css";
 import LearningJourney, {
   emptyActivity,
   type Activity,
@@ -218,27 +237,25 @@ const labels = {
   },
 };
 export default function PdfApp() {
-  const [view, setView] = useState(
-    location.pathname.startsWith("/architecture")
-      ? "architecture"
-      : "documents",
-  );
+  const routeView = () =>
+    location.pathname.startsWith("/theory")
+      ? "theory"
+      : location.pathname.startsWith("/architecture")
+        ? "architecture"
+        : "documents";
+  const [view, setView] = useState(routeView);
+  const [workshop, setWorkshop] = useState("");
   useEffect(() => {
-    const sync = () =>
-      setView(
-        location.pathname.startsWith("/architecture")
-          ? "architecture"
-          : "documents",
-      );
+    const sync = () => setView(routeView());
     window.addEventListener("popstate", sync);
     return () => window.removeEventListener("popstate", sync);
   }, []);
   function navigate(next: string) {
-    history.pushState({}, "", next === "architecture" ? "/architecture" : "/");
+    if (next !== view)
+      history.pushState({}, "", next === "documents" ? "/" : "/" + next);
     setView(next);
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: "instant" });
   }
-
   const [activity, setActivity] = useState<Activity>(emptyActivity);
   const [lang, setLang] = useState<"fr" | "en">("fr"),
     [files, setFiles] = useState<File[]>([]),
@@ -254,6 +271,9 @@ export default function PdfApp() {
     [result, setResult] = useState<ReturnType<typeof retrieve> | null>(null),
     [picked, setPicked] = useState<Hit | null>(null),
     [drag, setDrag] = useState(false);
+  useEffect(() => {
+    if (busy || queryBusy) setWorkshop("workshop");
+  }, [busy, queryBusy]);
   const t = labels[lang],
     worker = useRef<Worker | null>(null),
     controller = useRef<AbortController | null>(null),
@@ -270,7 +290,8 @@ export default function PdfApp() {
   useEffect(() => () => clean(), []);
   useEffect(() => {
     document.documentElement.lang = lang;
-  }, [lang]);
+    document.title = `Source — ${view === "theory" ? (lang === "fr" ? "Théorie du RAG" : "RAG theory") : view === "architecture" ? "Architecture" : lang === "fr" ? "Documents et réponses" : "Documents and answers"}`;
+  }, [lang, view]);
   function reset() {
     setActivity(emptyActivity);
     generation.current++;
@@ -491,7 +512,7 @@ export default function PdfApp() {
   }
   const total = files.reduce((s, f) => s + f.size, 0);
   return (
-    <div className="pdf-app">
+    <div className="pdf-app refined-app">
       <a className="skip-link" href="#content">
         {lang === "fr" ? "Aller au contenu" : "Skip to content"}
       </a>
@@ -504,7 +525,10 @@ export default function PdfApp() {
             navigate("documents");
           }}
         >
-          <span className="brand-symbol">≋</span>Source
+          <span className="brand-symbol">
+            <Layers size={19} />
+          </span>
+          Source
           <span className="brand-dot">.</span>
         </a>
         <nav
@@ -513,10 +537,10 @@ export default function PdfApp() {
             lang === "fr" ? "Navigation principale" : "Main navigation"
           }
         >
-          {["documents", "architecture"].map((v) => (
+          {["documents", "theory", "architecture"].map((v) => (
             <a
               key={v}
-              href={v === "documents" ? "/" : "/architecture"}
+              href={v === "documents" ? "/" : "/" + v}
               aria-current={view === v ? "page" : undefined}
               onClick={(e) => {
                 if (!e.metaKey && !e.ctrlKey && !e.shiftKey) {
@@ -525,7 +549,13 @@ export default function PdfApp() {
                 }
               }}
             >
-              {v === "documents" ? "Documents" : "Architecture"}
+              {v === "documents"
+                ? "Documents"
+                : v === "theory"
+                  ? lang === "fr"
+                    ? "Théorie"
+                    : "Theory"
+                  : "Architecture"}
             </a>
           ))}
         </nav>
@@ -534,12 +564,22 @@ export default function PdfApp() {
           {t.local}
         </span>
         <div className="language" aria-label="Language">
-          <button onClick={() => setLang("fr")} aria-pressed={lang === "fr"}>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setLang("fr")}
+            aria-pressed={lang === "fr"}
+          >
             FR
-          </button>
-          <button onClick={() => setLang("en")} aria-pressed={lang === "en"}>
+          </Button>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setLang("en")}
+            aria-pressed={lang === "en"}
+          >
             EN
-          </button>
+          </Button>
         </div>
       </header>
       <main id="content">
@@ -547,7 +587,7 @@ export default function PdfApp() {
           <section className="hero">
             <div className="eyebrow">
               <span />
-              {lang === "fr" ? "LE RAG, À LIVRE OUVERT" : "RAG, AN OPEN BOOK"}
+              {lang === "fr" ? "ESPACE DE TRAVAIL" : "WORKSPACE"}
             </div>
             <h1>
               {t.title}
@@ -555,7 +595,19 @@ export default function PdfApp() {
               <em>{t.accent}</em>
             </h1>
             <p>{t.intro}</p>
-            <div className="privacy">◈ {t.privacy}</div>
+            <div className="privacy">
+              <ShieldCheck size={15} /> {t.privacy}
+            </div>
+            <Button
+              variant="ghost"
+              className="hero-theory"
+              onClick={() => navigate("theory")}
+            >
+              {lang === "fr"
+                ? "Comment fonctionne le RAG ?"
+                : "How does RAG work?"}
+              <ArrowUpRight size={14} />
+            </Button>
           </section>
           <div className="app-layout">
             <aside className="learning">
@@ -580,7 +632,7 @@ export default function PdfApp() {
               </div>
             </aside>
             <div className="panels">
-              <section className="panel">
+              <Card className="panel">
                 <div className="panel-heading">
                   <h2>{t.source}</h2>
                   <span className="chip">PDF · FR / EN</span>
@@ -599,17 +651,18 @@ export default function PdfApp() {
                   }}
                 >
                   <div className="upload-icon" aria-hidden="true">
-                    ↑
+                    <Upload size={23} />
                   </div>
                   <h3>{t.drop}</h3>
                   <p>{t.limits}</p>
-                  <button
+                  <Button
+                    variant="outline"
                     className="secondary"
                     disabled={busy || queryBusy}
                     onClick={() => input.current?.click()}
                   >
-                    {t.choose} ＋
-                  </button>
+                    {t.choose} <Plus size={14} />
+                  </Button>
                   <input
                     ref={input}
                     id="pdf-files"
@@ -653,13 +706,13 @@ export default function PdfApp() {
                 )}
                 <p className="model-notice">{t.model}</p>
                 <div className="actions">
-                  <button
+                  <Button
                     className="primary"
                     onClick={() => void index()}
                     disabled={!files.length || busy || queryBusy}
                   >
-                    {t.index} →
-                  </button>
+                    {t.index} <ArrowRight size={14} />
+                  </Button>
                   {busy || queryBusy ? (
                     <button className="danger" onClick={stop}>
                       {t.stop}
@@ -681,16 +734,8 @@ export default function PdfApp() {
                     </span>
                   )}
                 </div>
-              </section>
-              <LearningJourney
-                lang={lang}
-                activity={activity}
-                pages={pages}
-                chunks={chunks}
-                result={result}
-                busy={busy || queryBusy}
-                onArchitecture={() => navigate("architecture")}
-              />
+              </Card>
+
               {chunks.length > 0 && (
                 <section className="panel transformations">
                   <h2>
@@ -755,7 +800,7 @@ export default function PdfApp() {
                   {error}
                 </div>
               )}
-              <section className="panel">
+              <Card className="panel">
                 <div className="panel-heading">
                   <h2>{t.ask}</h2>
                   <span className="chip">BM25 + E5 + RRF</span>
@@ -797,7 +842,7 @@ export default function PdfApp() {
                         ))}
                       </select>
                     </label>
-                    <button
+                    <Button
                       className="primary"
                       type="submit"
                       disabled={
@@ -806,12 +851,47 @@ export default function PdfApp() {
                         queryBusy
                       }
                     >
-                      {queryBusy ? "…" : t.search} ↗
-                    </button>
+                      {queryBusy ? "…" : t.search} <ArrowUpRight size={14} />
+                    </Button>
                   </div>
                   {!chunks.length && <p className="muted">{t.noDocs}</p>}
                 </form>
-              </section>
+              </Card>
+              <Accordion
+                type="single"
+                collapsible
+                value={workshop}
+                onValueChange={setWorkshop}
+                className="workspace-workshop"
+              >
+                <AccordionItem value="workshop">
+                  <AccordionTrigger>
+                    <span>
+                      <Workflow size={17} />
+                      {lang === "fr"
+                        ? "L’atelier des preuves"
+                        : "The evidence workshop"}
+                      <small>
+                        {lang === "fr"
+                          ? "Suivre et comprendre le traitement"
+                          : "Follow and understand the processing"}
+                      </small>
+                    </span>
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    {" "}
+                    <LearningJourney
+                      lang={lang}
+                      activity={activity}
+                      pages={pages}
+                      chunks={chunks}
+                      result={result}
+                      busy={busy || queryBusy}
+                      onArchitecture={() => navigate("architecture")}
+                    />
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
               {result && (
                 <>
                   <section className="panel answer-panel">
@@ -939,13 +1019,28 @@ export default function PdfApp() {
             </div>
           </div>
         </div>
-        {view === "architecture" && (
-          <ArchitecturePage
-            lang={lang}
-            result={result}
-            onBack={() => navigate("documents")}
-          />
-        )}
+        <Suspense
+          fallback={
+            <p className="route-loading">
+              {lang === "fr" ? "Chargement…" : "Loading…"}
+            </p>
+          }
+        >
+          {view === "theory" && (
+            <TheoryPage
+              lang={lang}
+              onDocuments={() => navigate("documents")}
+              onArchitecture={() => navigate("architecture")}
+            />
+          )}
+          {view === "architecture" && (
+            <ArchitecturePage
+              lang={lang}
+              result={result}
+              onBack={() => navigate("documents")}
+            />
+          )}
+        </Suspense>
         <footer>
           <span className="pdf-brand">Source.</span>
           <span>{t.footer}</span>

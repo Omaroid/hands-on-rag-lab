@@ -1,6 +1,6 @@
 .pdf-app {
   --ink: #203d38;
-  --muted: #546862;
+  --text-muted: #546862;
   --teal: #176b58;
   --line: #dce4dc;
   font-family: Inter, ui-sans-serif, system-ui, sans-serif;
@@ -67,7 +67,7 @@
 }
 .top-note {
   margin-left: auto;
-  color: var(--muted);
+  color: var(--text-muted);
   display: flex;
   align-items: center;
   gap: 8px;
@@ -92,7 +92,7 @@
   border: 0;
   background: transparent;
   padding: 3px 9px;
-  color: var(--muted);
+  color: var(--text-muted);
   font-size: 11px;
 }
 .language button[aria-pressed="true"] {
@@ -140,13 +140,13 @@
   font-size: 16px;
   max-width: 630px;
   margin: 20px 0;
-  color: var(--muted);
+  color: var(--text-muted);
   line-height: 1.8;
 }
 .privacy {
   font-size: 11px;
   max-width: 680px;
-  color: var(--muted);
+  color: var(--text-muted);
 }
 .app-layout {
   display: grid;
@@ -164,7 +164,7 @@
   font-size: 10px;
   letter-spacing: 1.6px;
   font-weight: 750;
-  color: var(--muted);
+  color: var(--text-muted);
 }
 .learning ol {
   list-style: none;
@@ -190,7 +190,7 @@
   background: transparent;
   border: 0;
   padding: 9px 0;
-  color: var(--muted);
+  color: var(--text-muted);
   font-size: 12px;
   text-align: left;
 }
@@ -249,7 +249,7 @@
 }
 .chip {
   font-size: 9px;
-  color: var(--muted);
+  color: var(--text-muted);
   background: #f3f5ef;
   border: 1px solid #e4e8df;
   border-radius: 4px;
@@ -286,7 +286,7 @@
 }
 .dropzone p {
   font-size: 11px;
-  color: var(--muted);
+  color: var(--text-muted);
   margin: 4px 0 16px;
 }
 .pdf-app .secondary {
@@ -300,7 +300,7 @@
 .model-notice {
   font-size: 10px;
   line-height: 1.8;
-  color: var(--muted);
+  color: var(--text-muted);
   margin: 17px 0 !important;
 }
 .actions {
@@ -329,7 +329,7 @@
 .danger {
   border: 0;
   background: transparent;
-  color: var(--muted);
+  color: var(--text-muted);
   font-size: 11px;
 }
 .danger {
@@ -343,7 +343,7 @@
   align-items: center;
   gap: 8px;
   font-size: 10px;
-  color: var(--muted);
+  color: var(--text-muted);
   overflow-wrap: anywhere;
   flex-wrap: wrap;
 }
@@ -382,7 +382,7 @@
 .file-list small {
   margin-left: auto;
   white-space: nowrap;
-  color: var(--muted);
+  color: var(--text-muted);
 }
 .file-icon {
   font-size: 8px;
@@ -396,7 +396,7 @@
   display: flex;
   justify-content: space-between;
   font-size: 10px;
-  color: var(--muted);
+  color: var(--text-muted);
 }
 .pdf-app meter {
   width: 100%;
@@ -405,7 +405,7 @@
 }
 .muted {
   font-size: 11px;
-  color: var(--muted);
+  color: var(--text-muted);
   margin-top: 9px !important;
 }
 .pdf-app form > label {
@@ -459,7 +459,7 @@
   margin-top: 14px;
 }
 .answer-panel > p {
-  color: var(--muted);
+  color: var(--text-muted);
   font-size: 12px;
   margin-top: 12px;
 }
@@ -521,7 +521,7 @@
 }
 .nvidia p {
   font-size: 11px;
-  color: var(--muted);
+  color: var(--text-muted);
   margin: 10px 0;
 }
 .consent {
@@ -552,7 +552,7 @@
 }
 .score-note {
   font-size: 11px;
-  color: var(--muted);
+  color: var(--text-muted);
   margin-bottom: 18px !important;
 }
 .table-scroll {
@@ -572,7 +572,7 @@
 }
 .pdf-app th {
   font-weight: 650;
-  color: var(--muted);
+  color: var(--text-muted);
   font-size: 10px;
   padding: 10px 6px;
   background: #f7f9f4;
@@ -598,13 +598,13 @@
 .pdf-app :is(td, th) small {
   display: block;
   font-size: 9px;
-  color: var(--muted);
+  color: var(--text-muted);
   font-weight: 400;
   margin-top: 3px;
 }
 .selection {
   font-size: 9px;
-  color: var(--muted);
+  color: var(--text-muted);
   white-space: nowrap;
 }
 .selection.yes {
@@ -615,7 +615,7 @@
 }
 .context-budget {
   font-size: 10px;
-  color: var(--muted);
+  color: var(--text-muted);
   margin-top: 16px !important;
 }
 .pdf-app footer {
@@ -626,7 +626,7 @@
   border-top: 1px solid var(--line);
   margin: 60px 0 0;
   padding: 24px 0;
-  color: var(--muted);
+  color: var(--text-muted);
   font-size: 10px;
 }
 .pdf-app footer .pdf-brand {

@@ -15,3 +15,11 @@ Public multilingual E5 model files are fetched from Hugging Face on demand, not 
 Original model card declares MIT: https://huggingface.co/intfloat/multilingual-e5-small.
 Conversion revision and file checksums: docs/PDF_RAG.md and evidence/pdf-model-manifest.json.
 No generative model weights are distributed.
+
+## shadcn/ui
+
+Button, Card, Tabs, Accordion and Badge are adapted from the official shadcn/ui
+new-york-v4 registry (MIT license), fetched from
+https://github.com/shadcn-ui/ui/tree/main/apps/v4/registry/new-york-v4/ui .
+Copyright (c) 2023 shadcn. Component source is owned and maintained in src/components/ui.
+Radix UI supplies accessible interaction primitives; Lucide supplies MIT-licensed icons.

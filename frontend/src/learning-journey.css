@@ -20,7 +20,7 @@
 }
 .lab-heading p {
   font-size: 13px;
-  color: var(--muted);
+  color: var(--text-muted);
   margin: 0;
 }
 .lab-live {
@@ -70,7 +70,7 @@
 }
 .lab-track small {
   display: block;
-  color: var(--muted);
+  color: var(--text-muted);
   font-size: 10px;
   margin-top: 6px;
 }
@@ -84,7 +84,7 @@
   padding: 8px 0 18px;
 }
 .lab-now small {
-  color: var(--muted);
+  color: var(--text-muted);
   overflow-wrap: anywhere;
 }
 .lab-now progress {
@@ -113,7 +113,7 @@
 }
 .lab-stats span {
   font-size: 11px;
-  color: var(--muted);
+  color: var(--text-muted);
 }
 .lab-explorer {
   display: grid;
@@ -187,12 +187,12 @@
 }
 .lab-text-card small {
   font-size: 10px;
-  color: var(--muted);
+  color: var(--text-muted);
 }
 .lab-object .lab-note {
   font-size: 11px;
   line-height: 1.8;
-  color: var(--muted);
+  color: var(--text-muted);
   margin-bottom: 0;
 }
 .lab-empty {
@@ -213,7 +213,7 @@
 .lab-empty p {
   font-size: 12px;
   line-height: 1.8;
-  color: var(--muted);
+  color: var(--text-muted);
 }
 .lab-vector {
   display: block;
@@ -250,7 +250,7 @@
   font-size: 10px;
   display: block;
   margin-top: 5px;
-  color: var(--muted);
+  color: var(--text-muted);
 }
 .lab-basket {
   font:
@@ -260,7 +260,7 @@
 }
 .lab-basket small {
   font: 13px system-ui;
-  color: var(--muted);
+  color: var(--text-muted);
 }
 .lab-object > p {
   font-size: 12px;

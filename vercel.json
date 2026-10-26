@@ -47,6 +47,10 @@
     {
       "source": "/architecture",
       "destination": "/index.html"
+    },
+    {
+      "source": "/theory",
+      "destination": "/index.html"
     }
   ]
 }

@@ -121,3 +121,22 @@ reprend les vrais rangs E5/BM25 et scores RRF ; le panier reprend les passages e
 sélectionnés. Les explications restent consultables après une étape très rapide. Un petit
 défi distingue encodage/recherche et rédaction NVIDIA. Le bouton Architecture ouvre les
 formules sans perdre la session. Réinitialiser/arrêter efface aussi les aperçus et compteurs.
+
+## Interface et théorie FR/EN
+
+Le parcours public emploie les composants source officiels shadcn/ui (MIT), Radix UI,
+Tailwind 4 et Lucide. Les sources adaptées sont dans `frontend/src/components/ui` ;
+la licence est publiée dans `/licenses/shadcn-ui.txt`. Le registre ui.shadcn.com étant
+inaccessible depuis le réseau de travail, les fichiers officiels ont été récupérés
+sur le dépôt GitHub shadcn-ui/ui, puis adaptés aux imports locaux.
+
+`/theory` explique les trois opérations du RAG et leur frontière navigateur/serveur.
+L’exemple RH est entièrement pédagogique, ne calcule aucun faux score et n’appelle pas
+NVIDIA. Les onglets Préparer/Retrouver/Répondre utilisent les interactions clavier Radix.
+Les cas congés, formation et information absente montrent aussi l’abstention. Chaque couche
+technique présente son objectif et sa connexion à la suivante, dans les deux langues.
+
+Les routes Théorie et Architecture sont chargées à la demande ; la session Documents
+reste montée et masquée pendant leur consultation. Les transitions sont courtes et
+supprimées avec `prefers-reduced-motion: reduce`. L’ancienne feuille globale du backend
+n’est plus chargée dans l’édition PDF pour éviter les collisions de styles.

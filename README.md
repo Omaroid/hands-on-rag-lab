@@ -5,7 +5,7 @@ La vitrine navigateur est maintenant un espace temporaire bilingue FR/EN : impor
 multilingues, BM25 et fusion RRF inspectables, citations avec fichier et page.
 Les PDF complets et vecteurs restent locaux. La génération NVIDIA côté serveur est
 **activée**, après consentement pour l'envoi de la question et des passages sélectionnés,
-avec compteur Blob durable et quotas. Les réponses citées ont été réellement validées
+sans plafond applicatif de demandes. La page [Architecture](https://lakehouse-rag-lab.vercel.app/architecture) expose le parcours, les formules et les calculs de votre dernière recherche. Les réponses citées ont été réellement validées
 sur PDF texte et scan OCR. Voir [PDF_GENERATION.md](docs/PDF_GENERATION.md),
 [PDF_RAG.md](docs/PDF_RAG.md) et [RESUME.md](docs/RESUME.md) pour preuves et limites.
 

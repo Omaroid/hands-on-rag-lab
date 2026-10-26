@@ -3,6 +3,6 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test:server": "node --test tests/server-*.test.mjs"
+    "test:server": "node --test --test-isolation=none tests/server-*.test.mjs"
   }
 }

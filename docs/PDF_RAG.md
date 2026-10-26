@@ -81,18 +81,17 @@ Le contrat Chat Completions est maintenant documenté et un appel réel borné a
 injectée a réussi ; voir `evidence/nvidia-live-probe.json`. Le test emploie un passage
 synthétique et aucun document privé. Il ne démontre pas les conditions du compte exact.
 
-La vitrine publique reste **sans génération** : API status `ready:false`, API answer 503,
-bouton désactivé, explication explicite. Le consentement ne débloque pas la garde. Aucun
-secret NVIDIA n'est provisionné dans le navigateur ni nécessaire au build statique.
-Le serveur Python historique utilise le contrat Chat Completions, garde consentement,
-recalcul des sources historiques et quotas avant appel. Il n'ingère pas les PDF visiteurs.
+La génération publique est active après consentement. La clé réelle reste une variable
+serveur sensible dans le seul projet Vercel dédié ; elle n’est jamais intégrée au build.
+Tous les plafonds applicatifs de demandes ont été retirés à la demande du propriétaire.
+L’ancien compteur Blob est inactif. Les bornes de fichiers, tokens, contexte et validation
+restent nécessaires au traitement. Voir [PDF_GENERATION.md](PDF_GENERATION.md) pour
+l’état courant et les preuves publiques.
 
-Le raccordement de génération PDF et le compteur Blob privé sont maintenant implémentés.
-Le CAS a été vérifié par 12 demandes HTTP concurrentes sur les fonctions serverless,
-sans dépassement. Voir docs/PDF_GENERATION.md et evidence/blob-quota-current.json.
-L'ouverture reste fermée : la clé réelle doit être injectée directement dans Vercel ;
-la référence de proxy de tâche ne peut pas être exportée avec VERCEL_TOKEN.
-Aucun stockage d'un autre projet n'est réutilisé et aucun achat/plan n'est modifié.
+La page `/architecture` montre les huit étapes, la frontière de données, les règles de
+sélection et des calculs interactifs BM25/cosinus/RRF. Les exemples pédagogiques sont
+identifiés ; la dernière recherche permet d’inspecter ses données réelles en mémoire locale.
+Le backend Python historique reste distinct du parcours PDF public.
 
 ## Tests
 

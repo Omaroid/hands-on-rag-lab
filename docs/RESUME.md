@@ -1,3 +1,30 @@
+# Mise à jour — suppression des plafonds de demandes, 26 octobre 2026
+
+À la demande explicite du propriétaire, tous les quotas de demandes du parcours PDF public
+ont été supprimés : minute, jour, mois et client. Le message « La limite de demandes est
+atteinte » a été retiré de l’interface. `server/quota.js`, ses tests et la dépendance Blob
+ont été supprimés. Les anciennes variables de quota et le store restent inactifs : aucun
+accès au compteur ne précède désormais l’appel NVIDIA. Aucune ressource tierce n’a été supprimée.
+
+Le déploiement de correction `dpl_C7Je4sFXTpH2EmT3evxhCs4bFtXR`, code `b38111e`, est READY
+sur https://lakehouse-rag-lab.vercel.app. Un nouvel appel public consenti a renvoyé HTTP 200
+et une réponse réelle NVIDIA citée (« 25 jours de congés payés par an »).
+Le consentement, la validation des entrées et les bornes techniques des fichiers, du contexte
+et du modèle restent en place. Ce sont des contraintes de traitement, pas des quotas de demandes.
+La disponibilité et les éventuelles limites propres à NVIDIA/Vercel restent celles des fournisseurs ;
+la gratuité et l’absence de limite du compte NVIDIA sont déclarées par le propriétaire,
+non vérifiées indépendamment. Aucun achat ni changement de plan n’a été effectué.
+
+La nouvelle page `/architecture` présente la frontière navigateur/serveur, huit étapes
+inspectables et les formules BM25, cosinus et RRF. Son exemple pédagogique se distingue des
+données de la dernière recherche. BM25 partage la fonction de calcul avec le moteur ; les
+rangs, vecteurs et termes réels restent en mémoire locale. La navigation conserve la session PDF.
+
+Les sections suivantes sont un **historique** : les obligations de compteur et plafonds qu’elles
+décrivent ne s’appliquent plus au parcours PDF déployé depuis cette mise à jour.
+
+---
+
 # Reprise — génération NVIDIA publique activée, 26 octobre 2026
 
 ## État actuel opérationnel

@@ -42,5 +42,11 @@
     "api/ai/status.js": {
       "maxDuration": 10
     }
-  }
+  },
+  "rewrites": [
+    {
+      "source": "/architecture",
+      "destination": "/index.html"
+    }
+  ]
 }

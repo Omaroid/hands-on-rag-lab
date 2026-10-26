@@ -1,0 +1,27 @@
+{
+  "checked_at": "2026-10-26T12:27:24.238046+00:00",
+  "site": "https://lakehouse-rag-lab.vercel.app",
+  "http_status": 200,
+  "request_id": "65fc24e9-4bdc-410b-9994-a0cb4bdcef5f",
+  "response": {
+    "status": "supported",
+    "answer": "Les salariés disposent de 25 jours de congés payés par an.",
+    "citations": [
+      {
+        "number": 1,
+        "id": "1",
+        "file": "guide.pdf",
+        "page": 1,
+        "text": "Les salaries disposent de 25 jours de conges payes par an."
+      }
+    ],
+    "model": "openai/gpt-oss-20b"
+  },
+  "input": "synthetic PDF passage",
+  "request_count": 1,
+  "automatic_retries": 0,
+  "consent": true,
+  "elapsed_seconds": 1.95,
+  "application_request_caps": false,
+  "deployment": "dpl_C7Je4sFXTpH2EmT3evxhCs4bFtXR"
+}

@@ -16,7 +16,7 @@ async function modelCache(page: Page) {
     await route.fulfill({
       status: 307,
       headers: {
-        location: "http://localhost:8000/_test-model/" + file,
+        location: new URL("/_test-model/" + file, page.url()).href,
         "access-control-allow-origin": "*",
       },
     });

@@ -40,8 +40,16 @@ vérifier une vraie génération publique bornée. En attendant le flag reste fa
 Les conditions du compte NVIDIA restent déclaratives ; endpoint annoncé gratuit, usage
 illimité non vérifié indépendamment. Aucun achat/auto-recharge/carte/upgrade.
 
-Déploiement final à consigner après publication ; le domaine reste exclusivement
+Version finale fusionnée et poussée sur main, source produit
+`996ab965a4bca75ed4f99cfa9085c8a12d2b7e2f`, déploiement
+`dpl_HrXkrp1cMTHG5c6ZD7GDifiivBDL`, READY. Domaine exclusivement
 https://lakehouse-rag-lab.vercel.app / prj_bx0b78VzJb6VNA2OyyIOElDnBiEE.
+HTTP 200, HTML/CSP et 30 assets identiques au build testé ; API status false, answer 503,
+route temporaire de vérification 404. La variable opérateur temporaire est supprimée,
+ainsi que sa copie locale ; le sel de quota reste uniquement dans les secrets Vercel.
+Un dernier contrôle des métadonnées confirme l'absence de NVIDIA_API_KEY dans le projet.
+La validation des dates/totaux incohérents a été renforcée sans changer le CAS, avec
+17 tests serveur réussis. Preuve finale : evidence/generation-publication-current.json.
 Les tests navigateur publics restent limités par la CA du proxy, sans désactivation TLS.
 Voir docs/PDF_GENERATION.md pour le contrat, les limites et les conditions d'ouverture.
 

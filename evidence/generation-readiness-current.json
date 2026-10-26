@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-10-26T11:04:30.493545+00:00",
+  "checked_at": "2026-10-26T11:16:09.598131+00:00",
   "status": "counter_verified_generation_code_ready_project_key_missing",
   "real_blob_counter": "evidence/blob-quota-current.json",
   "server_tests_passed": 17,
@@ -35,5 +35,10 @@
   "proxy_reference_copied_to_project": false,
   "other_projects_modified": false,
   "purchases_or_plan_changes": false,
-  "corrupt_counter_periods_and_totals_fail_closed": true
+  "corrupt_counter_periods_and_totals_fail_closed": true,
+  "production_deployment_id": "dpl_HrXkrp1cMTHG5c6ZD7GDifiivBDL",
+  "source_commit": "996ab965a4bca75ed4f99cfa9085c8a12d2b7e2f",
+  "publication_evidence": "evidence/generation-publication-current.json",
+  "public_ai_answer_http": 503,
+  "static_assets_identical": 30
 }

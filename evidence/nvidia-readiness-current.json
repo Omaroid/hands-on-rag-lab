@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-10-26T11:04:30.493545+00:00",
+  "checked_at": "2026-10-26T11:16:09.598131+00:00",
   "status": "live_probe_verified_public_generation_closed",
   "provider": "NVIDIA",
   "model": "openai/gpt-oss-20b",
@@ -27,24 +27,25 @@
   "actual_nvidia_authentication_succeeded": true,
   "actual_vercel_project_read_succeeded": true,
   "python_tests_passed": 100,
-  "pdf_browser_tests_passed": 12,
+  "pdf_browser_tests_passed": 14,
   "blockers": [
     "Real NVIDIA_API_KEY must be injected directly into dedicated Vercel project; the task proxy reference cannot be exported using VERCEL_TOKEN",
     "Public activation and end-to-end generation remain pending the real project key"
   ],
   "live_site_changed": true,
   "site": "https://lakehouse-rag-lab.vercel.app",
-  "production_deployment_id": "dpl_DxdCEKHq43qewTpr8vkcSUnpTHHS",
+  "production_deployment_id": "dpl_HrXkrp1cMTHG5c6ZD7GDifiivBDL",
   "public_ai_status": {
     "ready": false
   },
   "public_ai_answer_http": 503,
   "public_api_secret_provisioned": false,
-  "publication_evidence": "evidence/pdf-publication-current.json",
+  "publication_evidence": "evidence/generation-publication-current.json",
   "blob_store_id": "store_etqnqyg3va5gtf18",
   "durable_quota_concurrency_test": "evidence/blob-quota-current.json",
   "pdf_generation_contract_implemented": true,
   "pdf_contract_live_probes": 4,
   "pdf_contract_probe_evidence": "evidence/nvidia-pdf-contract-current.json",
-  "vercel_nvidia_key_metadata_present": false
+  "vercel_nvidia_key_metadata_present": false,
+  "node_server_tests_passed": 17
 }

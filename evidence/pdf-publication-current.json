@@ -1,10 +1,10 @@
 {
-  "checked_at": "2026-10-26T10:26:11.878557+00:00",
+  "checked_at": "2026-10-26T11:13:48.612494+00:00",
   "site": "https://lakehouse-rag-lab.vercel.app",
   "target": "production",
   "state": "READY",
-  "deployment_id": "dpl_DxdCEKHq43qewTpr8vkcSUnpTHHS",
-  "source_commit": "3205a6624d5b303d869008f32b010d028101798a",
+  "deployment_id": "dpl_HrXkrp1cMTHG5c6ZD7GDifiivBDL",
+  "source_commit": "996ab965a4bca75ed4f99cfa9085c8a12d2b7e2f",
   "http_status": 200,
   "html_matches_local": true,
   "csp_matches": true,
@@ -18,13 +18,19 @@
     {
       "path": "/index.html",
       "bytes": 642,
-      "sha256": "ade9195d2d079d01857fd95cee538f6827939156559fbb0c9838f5734390dd1d",
+      "sha256": "7e02930da4cb6eb0cb8035622da5b3b0ce45df6ec88615a29a73761bb729035b",
       "matches_local": true
     },
     {
       "path": "/ocr/worker.min.js",
       "bytes": 111307,
       "sha256": "576b7df7e3393e137e51849357c9adb53fe7ac1bb69bfa06cf3d61520f182c6d",
+      "matches_local": true
+    },
+    {
+      "path": "/assets/pdf-import-CMgP5kmd.js",
+      "bytes": 431217,
+      "sha256": "13e9e15fa795f2d6c5777eacb0c4c312a624421cb2936f4f77e1417927cc47d5",
       "matches_local": true
     },
     {
@@ -40,15 +46,9 @@
       "matches_local": true
     },
     {
-      "path": "/assets/pdf-import-DgXOu3or.js",
-      "bytes": 431217,
-      "sha256": "7bba4be19c2c26b7ef44e42673379ff717be2d0ee1c9cbe59b84215b7c168329",
-      "matches_local": true
-    },
-    {
-      "path": "/assets/index-B7rMTcq4.css",
-      "bytes": 31946,
-      "sha256": "dddcb774a3fb4eb064fe5ebb1cf58c0ec38f54bfdb4b2277bebcb31da253383a",
+      "path": "/assets/index-C8XsYmwb.js",
+      "bytes": 269357,
+      "sha256": "e07644789caecdcfa7bcdb268998f22bd802fbe9387e9c5d428b0eebd43318dc",
       "matches_local": true
     },
     {
@@ -58,9 +58,9 @@
       "matches_local": true
     },
     {
-      "path": "/assets/index-DY40lQJe.js",
-      "bytes": 264695,
-      "sha256": "54f3dfe209023db33e70a7d336e413cde2124d085b08022a5263130adaaa81a0",
+      "path": "/assets/index-BpSFQc2l.css",
+      "bytes": 32373,
+      "sha256": "80554c2a66c315dfb7c534282855c61766f85a498d6e6832145780c4ea9e4008",
       "matches_local": true
     },
     {
@@ -192,39 +192,39 @@
   ],
   "ai_status": {
     "ready": false,
-    "reason": "durable_quota_unavailable"
+    "reason": "configuration_or_quota_unavailable"
   },
   "answer_http": 503,
   "answer_body": {
     "error": "generation_unavailable"
   },
   "public_generation_enabled": false,
-  "durable_quota_connected": false,
-  "local_pdf_browser_tests_passed": 12,
-  "python_tests_passed": 100,
+  "temporary_verification_route_http": 404,
+  "durable_quota_connected": true,
+  "local_pdf_browser_tests_passed": 14,
+  "python_tests_last_passed": 100,
+  "node_server_tests_passed": 17,
   "model_cache_fixture_deployed": false,
   "nvidia_live_probe": "evidence/nvidia-live-probe.json",
+  "project_id": "prj_bx0b78VzJb6VNA2OyyIOElDnBiEE",
+  "team_id": "team_0yx8bLSbYEsadJbCiwOd28l6",
+  "quota_evidence": "evidence/blob-quota-current.json",
+  "nvidia_pdf_contract": "evidence/nvidia-pdf-contract-current.json",
+  "project_nvidia_key_metadata_present": false,
+  "public_generation_flag": false,
+  "quota_receipt_configured": true,
+  "temporary_operator_variable_removed": true,
   "public_browser": {
-    "status": "blocked_by_sandbox_proxy_CA",
-    "error": "ERR_CERT_AUTHORITY_INVALID",
-    "desktop_attempted": true,
-    "mobile_attempted": true,
+    "status": "not repeated for final build; prior browser attempt blocked by sandbox proxy CA",
+    "prior_error": "ERR_CERT_AUTHORITY_INVALID",
     "tls_verification_disabled": false
   },
-  "deployment_method": "Source files uploaded by SHA1 using Vercel REST API, deployment created using connected Vercel tool. Locked remote build; all 30 resulting static files matched the local tested build.",
-  "vercel_cli": "Rejected injected proxy placeholder syntax; no credential changed or printed. Not used for deployment.",
-  "local_artifact_upload": "Large asset transfer reset by proxy; only source files uploaded for remote build.",
+  "provider_ui_tests": "Simulated responses in two browser tests; four actual NVIDIA synthetic contract probes recorded separately",
   "cost_actions": {
     "purchase": false,
-    "top_up": false,
+    "upgrade": false,
     "card_added": false,
-    "plan_changed": false,
-    "other_project_modified": false
-  },
-  "observability": {
-    "public_ai_status_verified": true,
-    "answer_route_verified_closed": true,
-    "external_provider_calls_from_public_site": 0,
-    "note": "No inference path exists in the deployed closed handlers; this is established by source inspection, not a provider usage dashboard."
+    "top_up": false,
+    "other_project_changed": false
   }
 }

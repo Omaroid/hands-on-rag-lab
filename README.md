@@ -1,10 +1,10 @@
-# Source · Lakehouse RAG Lab
+# Hands-on RAG Lab
 
 **Un laboratoire RAG pour interroger ses PDF et comprendre chaque étape de la réponse.**
 
-[![CI](https://github.com/Omaroid/lakehouse-rag-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/Omaroid/lakehouse-rag-lab/actions/workflows/ci.yml)
+[![CI](https://github.com/Omaroid/hands-on-rag-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/Omaroid/hands-on-rag-lab/actions/workflows/ci.yml)
 
-[Application](https://lakehouse-rag-lab.vercel.app) · [Théorie FR/EN](https://lakehouse-rag-lab.vercel.app/theory) · [Architecture et calculs](https://lakehouse-rag-lab.vercel.app/architecture) · [English](README.en.md)
+[Application](https://hands-on-rag-lab.vercel.app) · [Théorie FR/EN](https://hands-on-rag-lab.vercel.app/theory) · [Architecture et calculs](https://hands-on-rag-lab.vercel.app/architecture) · [English](README.en.md)
 
 ![Interface Source](evidence/refined-home-desktop.png)
 
@@ -17,8 +17,6 @@
 5. **Générer sur demande** : après consentement, le serveur transmet la question et les seuls passages sélectionnés à NVIDIA GPT-OSS. La réponse contient des références consultables.
 
 L’interface FR/EN comprend un atelier interactif, une page de théorie avec un exemple guidé et une page d’architecture avec les calculs réels de la dernière recherche. Elle utilise **React, TypeScript et shadcn/ui** et respecte la réduction des animations.
-
-> Ce dépôt contient aussi un **laboratoire Python Lakehouse historique**. Il est indépendant du parcours PDF publié sur Vercel. Son guide est dans [docs/LEGACY_LAB.md](docs/LEGACY_LAB.md).
 
 ## Architecture et circulation des données
 
@@ -63,41 +61,41 @@ Les poids E5 sont téléchargés depuis Hugging Face à une révision fixée. Le
 Prérequis : **Node.js 24.19+ dans la branche 24**, **npm 11.9**. Python 3.12 est utile pour les outils de vérification, mais n’est pas requis pour ouvrir l’interface.
 
 ```bash
-git clone https://github.com/Omaroid/lakehouse-rag-lab.git
-cd lakehouse-rag-lab
+git clone https://github.com/Omaroid/hands-on-rag-lab.git
+cd hands-on-rag-lab
 npm ci --ignore-scripts
 npm ci --ignore-scripts --prefix frontend
-VITE_RUNTIME=browser npm run dev --prefix frontend
+npm run dev --prefix frontend
 ```
 
 Ouvrir l’URL affichée par Vite. L’import, l’OCR, l’indexation, la recherche et les pages pédagogiques fonctionnent sans clé fournisseur. Le premier encodage télécharge environ **118 Mo de poids**, plus le tokenizer.
 
-**La génération locale nécessite les fonctions serveur Vercel et leur configuration.** Le serveur de développement Vite seul ne fournit pas l’API NVIDIA ; cela n’empêche pas la recherche locale. Le backend Python historique n’est pas le serveur de génération des PDF.
+**La génération locale nécessite les fonctions serveur Vercel et leur configuration.** Le serveur de développement Vite seul ne fournit pas l’API NVIDIA ; cela n’empêche pas la recherche locale.
 
 ### Construire et vérifier
 
 ```bash
 npm run test:server
-VITE_RUNTIME=browser npm run build --prefix frontend
+npm run build --prefix frontend
 python3 scripts/check_bundle.py
 npm exec --prefix frontend -- playwright install chromium
 python3 scripts/verify_pdf.py --skip-build
 ```
 
-Le dernier outil démarre et arrête son propre serveur local. Il teste réellement les PDF, l’OCR et E5 sur ordinateur et mobile émulé. Le modèle est téléchargé dans `work/e5`, ignoré par Git. **Les cas d’interface de génération sont simulés : la CI n’appelle aucun fournisseur et n’a aucun secret de production.** Les vérifications réelles NVIDIA sont documentées séparément dans les [preuves de publication](evidence/generation-publication-current.json).
+Le dernier outil démarre et arrête son propre serveur local. Il teste réellement les PDF, l’OCR et E5 sur ordinateur et mobile émulé. Le modèle est téléchargé dans `work/e5`, ignoré par Git. **Les cas d’interface de génération sont simulés : la CI n’appelle aucun fournisseur et n’a aucun secret de production.** Les vérifications réelles NVIDIA sont documentées séparément dans les [contrôles de déploiement](DEPLOYMENT.md).
 
-Pour les contrôles Python historiques et les commandes complètes : [CONTRIBUTING.md](CONTRIBUTING.md).
+Pour les outils de maintenance et les commandes complètes : [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Déployer sur Vercel
 
-Le projet existant `lakehouse-rag-lab` est relié au dépôt GitHub ; **`main` est la branche de production**. La configuration versionnée est dans [vercel.json](vercel.json).
+Le projet existant `rag-lab` est relié au dépôt GitHub ; **`main` est la branche de production**. La configuration versionnée est dans [vercel.json](vercel.json).
 
 | Réglage | Valeur |
 | --- | --- |
 | Racine du projet | Racine du dépôt |
 | Runtime | Node.js 24 |
 | Installation | `npm ci --ignore-scripts && npm ci --ignore-scripts --prefix frontend` |
-| Build | `npm run test:server && VITE_RUNTIME=browser npm run build --prefix frontend` |
+| Build | `npm run test:server && npm run build --prefix frontend` |
 | Fichiers statiques | `frontend/dist` |
 | Fonctions | `api/ai/answer.js`, `api/ai/status.js` |
 
@@ -118,14 +116,12 @@ Ce contrôle public vérifie les routes, les en-têtes de sécurité, le favicon
 
 ## Qualité et sécurité
 
-La CI couvre l’historique Git avec Gitleaks, les fichiers suivis avec secretlint, les audits npm/Python, les tests de l’API Node, les builds, les tests navigateur réels et le laboratoire Python. Les actions sont fixées par commit ; les installations npm désactivent les scripts de dépendances ; les permissions GitHub sont en lecture seule.
+La CI couvre l’historique Git avec Gitleaks, les fichiers suivis avec secretlint, les audits npm, les tests de l’API Node, les builds et les tests navigateur réels. Les actions sont fixées par commit ; les installations npm désactivent les scripts de dépendances ; les permissions GitHub sont en lecture seule.
 
-- [Contrôles de préparation à la publication](evidence/public-release-readiness.json)
 - [Politique de sécurité et signalement](SECURITY.md)
 - [Contribuer et lancer les vérifications](CONTRIBUTING.md)
 - [Architecture détaillée du parcours PDF](docs/PDF_RAG.md)
-- [Génération et historique de ses contrôles](docs/PDF_GENERATION.md)
-- [Laboratoire Python optionnel](docs/LEGACY_LAB.md)
+- [Contrat de génération côté serveur](docs/PDF_GENERATION.md)
 - [Licences et attributions des composants tiers](frontend/notices/THIRD_PARTY.md)
 
 Les audits détectent des signatures et vulnérabilités connues ; ils ne constituent pas une garantie absolue. Ne joignez jamais de clé, PDF privé ou capture sensible à une issue.

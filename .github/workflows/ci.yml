@@ -32,6 +32,12 @@ jobs:
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with:
           python-version: "3.12"
+      - name: Verify Python maintenance tools
+        run: |
+          python -m pip install uv==0.12.23
+          uv sync --frozen
+          uv run ruff format --check scripts
+          uv run ruff check scripts
       - name: Scan complete Git history (redacted, checksum-pinned scanner)
         run: python scripts/check_secrets.py
       - name: Install immutable dependencies without lifecycle scripts
@@ -47,7 +53,7 @@ jobs:
         run: npm run test:server
       - name: Build and scan the public browser bundle
         run: |
-          VITE_RUNTIME=browser npm run build --prefix frontend
+          npm run build --prefix frontend
           python scripts/check_bundle.py
       - name: Use the browser supplied by the official Ubuntu runner
         run: |
@@ -65,50 +71,3 @@ jobs:
           path: work/pdf-verification.json
           if-no-files-found: ignore
           retention-days: 7
-
-  python-lab:
-    name: Legacy Python lab quality and container
-    runs-on: ubuntu-24.04
-    timeout-minutes: 20
-    env:
-      PYTHONPATH: backend
-      MLFLOW_ALLOW_FILE_STORE: "true"
-      MLFLOW_DISABLE_AGENT_HINT: "1"
-    steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-        with:
-          persist-credentials: false
-      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
-        with:
-          python-version: "3.12"
-      - name: Install locked Python tools and dependencies
-        run: |
-          python -m pip install uv==0.12.23
-          uv sync --frozen --group evaluation --group semantic
-      - name: Format, lint, types and schemas
-        run: |
-          uv run ruff format --check backend tests scripts app.py
-          uv run ruff check backend tests scripts app.py
-          uv run mypy backend
-          uv run python scripts/check_schema.py
-      - name: Unit, retrieval, refusal, injection and MCP tests
-        run: uv run --group semantic pytest -q
-      - name: Evaluation and local MLflow
-        run: uv run --group evaluation python scripts/evaluate.py --mlflow
-      - name: Audit Python dependencies
-        run: uv run --frozen --all-groups pip-audit
-      - name: Build the Python wheel
-        run: uv build --no-sources
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
-        with:
-          node-version: "24.19.0"
-      - name: Verify the optional legacy web interface
-        run: |
-          npm ci --ignore-scripts --prefix frontend
-          browser_path="$(command -v google-chrome)"
-          test -x "$browser_path"
-          CHROMIUM_PATH="$browser_path" uv run python scripts/verify_web.py --runtime backend --port 8766
-      - name: Validate Compose and build the non-root legacy container
-        run: |
-          ANONYMIZATION_SECRET=ci-placeholder-never-use-in-production docker compose config --quiet
-          docker build -t lakehouse-rag-lab:ci .

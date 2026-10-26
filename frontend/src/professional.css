@@ -601,7 +601,7 @@
   }
 }
 .refined-app [data-slot="accordion-content"][data-state="open"] {
-  animation: accordion-down 0.22s ease-out;
+  animation: source-enter 0.22s ease-out;
 }
 .refined-app [data-slot="accordion-content"][data-state="closed"] {
   animation: accordion-up 0.18s ease-in;

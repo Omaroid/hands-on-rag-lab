@@ -2,9 +2,9 @@
 
 ## Projet actuel
 
-- Application : https://lakehouse-rag-lab.vercel.app
-- Dépôt : https://github.com/Omaroid/lakehouse-rag-lab
-- Projet Vercel existant : `lakehouse-rag-lab`, équipe `omar-laraquis-projects`.
+- Application : https://hands-on-rag-lab.vercel.app
+- Dépôt : https://github.com/Omaroid/hands-on-rag-lab
+- Projet Vercel : [rag-lab](https://vercel.com/omar-laraquis-projects/rag-lab), équipe `omar-laraquis-projects`.
 - Branche de production : `main`.
 - Runtime : Node.js 24 ; interface statique et fonctions `api/ai/*`.
 
@@ -16,7 +16,7 @@ Le projet est relié à GitHub. Les modifications Git sont déployées par l’i
 
 ```text
 Install: npm ci --ignore-scripts && npm ci --ignore-scripts --prefix frontend
-Build:   npm run test:server && VITE_RUNTIME=browser npm run build --prefix frontend
+Build:   npm run test:server && npm run build --prefix frontend
 Output:  frontend/dist
 ```
 
@@ -36,7 +36,7 @@ Sans activation et clé valide, l’API indique `ready:false`. L’indexation/re
 La workflow `.github/workflows/ci.yml` s’exécute sur les pull requests et les pushes sur `main` :
 
 - **PDF/API/sécurité** : historique Git, secretlint, audits npm, API Node, compilation TypeScript/Vite, scan du bundle et vrais tests PDF/OCR/E5 sur desktop/mobile émulé.
-- **Laboratoire Python** : formatage, lint, types, schémas, tests, évaluation locale, audit des dépendances, wheel et conteneur non-root.
+- **Outils de maintenance** : formatage et lint des scripts Python standard, sans backend Python ni dépendance Python de production.
 
 La génération d’interface est simulée dans la CI ; aucun appel NVIDIA réel n’y est effectué. Les scénarios réels fournisseur sont validés séparément avec des documents de test et un accord explicite.
 

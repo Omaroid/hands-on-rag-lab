@@ -1,5 +1,5 @@
 {
-  "name": "pdf-rag-server",
+  "name": "hands-on-rag-lab",
   "private": true,
   "type": "module",
   "scripts": {

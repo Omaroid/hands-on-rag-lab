@@ -1,6 +1,6 @@
 # Contribuer
 
-Le parcours public est une application PDF React/TypeScript avec une API Node. Le laboratoire Python est optionnel et possède son propre périmètre de tests. Commencez par le [README](README.md) et la [politique de sécurité](SECURITY.md).
+Le projet est une application PDF React/TypeScript avec une API Node. Commencez par le [README](README.md) et la [politique de sécurité](SECURITY.md).
 
 ## Préparer un changement
 
@@ -17,7 +17,7 @@ Ne joindre aucun secret ou PDF privé aux fichiers, issues, captures ou artefact
 npm ci --ignore-scripts
 npm ci --ignore-scripts --prefix frontend
 npm run test:server
-VITE_RUNTIME=browser npm run build --prefix frontend
+npm run build --prefix frontend
 python3 scripts/check_bundle.py
 npm exec --prefix frontend -- playwright install chromium
 python3 scripts/verify_pdf.py --skip-build
@@ -38,24 +38,16 @@ npm audit --prefix frontend
 
 Le scanner d’historique est fixé par version et SHA-256, nécessite Linux x86_64 et rédige un rapport local masqué dans `work/`. N’ajoutez pas d’exclusion large : chaque exception doit être justifiée et précise. Aucun secret de production n’est requis en CI.
 
-## Laboratoire Python optionnel
+## Outils de maintenance
 
-Prérequis : Python 3.12 et uv 0.12.23.
+Les scripts Python utilisent la bibliothèque standard ; aucun backend Python n’est nécessaire.
+Pour leur formatage et lint :
 
 ```bash
-uv sync --frozen --group evaluation --group semantic
-uv run ruff format --check backend tests scripts app.py
-uv run ruff check backend tests scripts app.py
-uv run mypy backend
-uv run python scripts/check_schema.py
-uv run --group semantic pytest -q
-uv run --group evaluation python scripts/evaluate.py --mlflow
-uv run --frozen --all-groups pip-audit
-uv build --no-sources
-uv run python scripts/verify_web.py --runtime backend
+uv sync --frozen
+uv run ruff format --check scripts
+uv run ruff check scripts
 ```
-
-La dernière commande reconstruit et vérifie l’interface historique avec le backend local. Elle ne doit pas contacter Qdrant Cloud ni NVIDIA. Son serveur de fixture isole les réservations locales et augmente uniquement les limites de test pour éviter les interférences entre scénarios ; les limites du backend restent couvertes par les tests unitaires. `scripts/verify_web.py --runtime both` vérifie ensuite aussi l’application PDF actuelle.
 
 ## Relire et fusionner
 

@@ -28,7 +28,10 @@ test("workshop explains actual indexing and retrieval, quiz and responsive acces
   await expect(page.locator(".lab-object")).toContainText(
     "préparation du tokenizer",
   );
-  await page.locator(".lab-quiz summary").click();
+  const quiz = page.locator(".lab-quiz");
+  await quiz.locator("summary").focus();
+  await page.keyboard.press("Enter");
+  await expect(quiz).toHaveJSProperty("open", true);
   await page
     .getByRole("button", { name: "Il rédige déjà la réponse", exact: true })
     .click();

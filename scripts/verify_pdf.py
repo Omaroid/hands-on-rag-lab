@@ -26,7 +26,6 @@ def run_pdf(port: int = 8765, *, build: bool = True) -> None:
         )
     }
     env.update(
-        VITE_RUNTIME="browser",
         E2E_PDF="1",
         BASE_URL=f"http://localhost:{port}",
         E2E_REPORT="../work/pdf-verification.json",

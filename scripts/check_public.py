@@ -35,7 +35,7 @@ def fetch(url: str, *, body: bytes | None = None) -> tuple[int, dict[str, str], 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--url", default="https://lakehouse-rag-lab.vercel.app")
+    parser.add_argument("--url", default="https://hands-on-rag-lab.vercel.app")
     parser.add_argument("--compare-dist", action="store_true")
     parser.add_argument("--expect-generation-ready", action="store_true")
     args = parser.parse_args()

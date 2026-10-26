@@ -1,8 +1,8 @@
-# Source · Lakehouse RAG Lab
+# Hands-on RAG Lab
 
 **Explore your PDFs, retrieve evidence and understand how a RAG answer is built.**
 
-[Live application](https://lakehouse-rag-lab.vercel.app) · [RAG theory](https://lakehouse-rag-lab.vercel.app/theory) · [Architecture](https://lakehouse-rag-lab.vercel.app/architecture) · [Français](README.md)
+[Live application](https://hands-on-rag-lab.vercel.app) · [RAG theory](https://hands-on-rag-lab.vercel.app/theory) · [Architecture](https://hands-on-rag-lab.vercel.app/architecture) · [Français](README.md)
 
 ![Source workspace](evidence/refined-home-desktop.png)
 
@@ -14,7 +14,7 @@
 - Show extracted text, vectors, scores, source files/pages and selection rules.
 - After explicit consent, ask NVIDIA `openai/gpt-oss-20b` to write an answer from selected excerpts. Verify its citations against the original passages.
 
-The bilingual React/TypeScript interface uses shadcn/ui, an interactive processing workshop, a worked RAG example and inspectable formulas. The optional [legacy Python lab](docs/LEGACY_LAB.md) is a separate FastAPI/LangGraph/Qdrant application; it is not the public PDF backend.
+The bilingual React/TypeScript interface uses shadcn/ui, an interactive processing workshop, a worked RAG example and inspectable formulas.
 
 ## Data and boundaries
 
@@ -29,30 +29,30 @@ Import bounds: **5 MB total, 10 files, 40 pages**. Context selection: **up to 4 
 Requirements: Node.js **24.19+ on the 24.x line**, npm **11.9**. Python 3.12 is used by verification tools.
 
 ```bash
-git clone https://github.com/Omaroid/lakehouse-rag-lab.git
-cd lakehouse-rag-lab
+git clone https://github.com/Omaroid/hands-on-rag-lab.git
+cd hands-on-rag-lab
 npm ci --ignore-scripts
 npm ci --ignore-scripts --prefix frontend
-VITE_RUNTIME=browser npm run dev --prefix frontend
+npm run dev --prefix frontend
 ```
 
 Open the URL printed by Vite. Local PDF reading, OCR, indexing, retrieval and learning pages need no provider key. The first encoder load downloads about 118 MB of weights plus the tokenizer.
 
-Vite alone does not provide the NVIDIA API. Generation requires the Vercel server functions and their server-side configuration. Starting the legacy Python backend does not enable PDF generation.
+Vite alone does not provide the NVIDIA API. Generation requires the Vercel server functions and their server-side configuration.
 
 ## Verify
 
 ```bash
 npm run test:server
-VITE_RUNTIME=browser npm run build --prefix frontend
+npm run build --prefix frontend
 python3 scripts/check_bundle.py
 npm exec --prefix frontend -- playwright install chromium
 python3 scripts/verify_pdf.py --skip-build
 ```
 
-The browser suite uses actual PDF extraction, OCR and checksum-verified E5 inference on desktop/mobile emulation. **Generation UI cases are mocked; CI has no production credentials and makes no live provider calls.** Real NVIDIA checks are recorded separately in the [publication evidence](evidence/generation-publication-current.json).
+The browser suite uses actual PDF extraction, OCR and checksum-verified E5 inference on desktop/mobile emulation. **Generation UI cases are mocked; CI has no production credentials and makes no live provider calls.** Real NVIDIA checks are recorded separately in the [deployment checks](DEPLOYMENT.md).
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for Python checks and the full development workflow.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for maintenance tools and the full development workflow.
 
 ## GitHub → Vercel
 
@@ -81,7 +81,6 @@ This checks public routes, security headers, favicon, API readiness and optional
 | `frontend/src/pdf-retrieval.ts` | BM25, cosine, RRF and context selection |
 | `frontend/src/components/ui` | Maintained shadcn/ui component source |
 | `server`, `api/ai` | Validated Node generation boundary |
-| `frontend/src/legacy`, `backend` | Optional historical Python lab |
 | `scripts`, `tests`, `frontend/tests` | Reproducible checks and test fixtures |
 
 Read the [security policy](SECURITY.md), [deployment guide](DEPLOYMENT.md), [PDF architecture](docs/PDF_RAG.md) and [third-party notices](frontend/notices/THIRD_PARTY.md). Audits detect known patterns and advisories; they do not provide an absolute security guarantee. Never attach a private PDF or credential to an issue.

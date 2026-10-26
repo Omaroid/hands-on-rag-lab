@@ -1,3 +1,42 @@
+# Version publiée — interface shadcn/ui et théorie bilingue
+
+Production READY : `dpl_6Qz2bhAkdVS7B8uH59azzab6BLUR`, source `f0d036b`, main.
+https://lakehouse-rag-lab.vercel.app et `/theory`, `/architecture` répondent 200.
+Les **34 assets publics**, le HTML et la CSP sont identiques au build local testé.
+Le scan Tailwind est explicitement limité à src pour éviter qu’un fichier de build
+ou de test change les utilitaires générés entre local et Vercel.
+
+Nouvelle direction visuelle : typographie sans empattement, palette neutre/bleue,
+hiérarchie plus compacte, composants source officiels shadcn/ui + Radix + Tailwind.
+L’atelier est repliable et s’ouvre pendant le traitement. Les transitions courtes
+respectent la réduction des animations. Théorie et Architecture se chargent à la
+demande sans effacer la session Documents.
+
+L’onglet Théorie FR/EN explique préparation/recherche/génération, propose un exemple
+RH fictif avec trois questions et détaille l’objectif et l’imbrication des technologies.
+L’exemple n’appelle aucun fournisseur et n’invente pas de scores. Il montre aussi
+le refus quand l’information est absente. La licence shadcn/ui est servie sous /licenses.
+
+**24 scénarios navigateur validés** (suite et reprises ciblées après corrections de
+contraste/navigation), **13 tests serveur**, audit dépendances sans vulnérabilité connue.
+Dernière reprise de présentation après scan Tailwind déterministe : 4 cas réussis.
+Les contrôles incluent clavier Radix, accessibilité, FR/EN, absence de débordement,
+réduction des animations, vrais PDF/OCR/E5 et recherche/citations.
+
+Un nouveau parcours réel deux PDF → recherche → consentement → API publique → NVIDIA
+HTTP 200 → citation guide.pdf page 1 a réussi. La limite TLS du Chromium du sandbox
+est documentée dans evidence/refined-ui-live-desktop.json : interface locale identique
+aux assets publics, modèle réel au cache vérifié et relais HTTPS avec TLS vérifié.
+Aucune réponse fournisseur simulée pour cette preuve. Les cas UI simulés restent distincts.
+Statut ready:true, entrée invalide 422, ancienne route opérateur 404. Aucun compteur
+applicatif réintroduit, aucune clé lue/exposée, aucun achat ni changement de plan.
+
+Preuves courantes : evidence/generation-publication-current.json,
+refined-ui-validation.json, refined-ui-live-desktop.json, refined-home-*.png,
+refined-theory-*.png et pdf-screenshots/refined-ui-live-*.
+
+---
+
 # Version publiée — atelier ludique et architecture
 
 Déploiement production READY `dpl_3JB2cWHctBsiM4Z6npPzrufo4C6R`, code `9a3e62d`,

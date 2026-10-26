@@ -1,24 +1,24 @@
 {
-  "checked_at": "2026-10-26T12:45:09.763615+00:00",
+  "checked_at": "2026-10-26T13:14:55.461563+00:00",
   "site": "https://lakehouse-rag-lab.vercel.app",
   "target": "production",
   "state": "READY",
-  "deployment_id": "dpl_3JB2cWHctBsiM4Z6npPzrufo4C6R",
-  "source_commit": "9a3e62d52ca88cb26679518fe93338747f926fde",
+  "deployment_id": "dpl_6Qz2bhAkdVS7B8uH59azzab6BLUR",
+  "source_commit": "f0d036bc90539b91b35e540b0c641d95ee3938e3",
   "http_status": 200,
   "html_matches_local": true,
   "csp_matches": true,
   "assets": [
     {
       "path": "/favicon.svg",
-      "bytes": 235,
-      "sha256": "2d6ac803939f012060e9b8e4c8094c7ad905b2bcdd4032bbe053c07cb1251e49",
+      "bytes": 294,
+      "sha256": "b5b6e666ab6e21ffefc2c1e2ee547b32196041523ef47a71849adef8e41fc6f9",
       "matches_local": true
     },
     {
       "path": "/index.html",
       "bytes": 642,
-      "sha256": "112f82d072aca342896d76ecd173da5d477bcd5eeb8860c1444e633bc27c9ba0",
+      "sha256": "3044f8cd19b34a2f345ab0433e27b4294344b678341d00ac29cb86fe63412b5b",
       "matches_local": true
     },
     {
@@ -28,15 +28,21 @@
       "matches_local": true
     },
     {
+      "path": "/assets/pdf-import-BZHBKBnI.js",
+      "bytes": 431316,
+      "sha256": "5412e8e06fb17c598dfc17aead25f7ff27358be8f6dae2f1d3c94d9631fb62ec",
+      "matches_local": true
+    },
+    {
       "path": "/assets/pdf.worker.min-CjEcRF4W.mjs",
       "bytes": 1264342,
       "sha256": "9536359f1b8367850d485731ca1d5e45c159a7b7a0912325e539937aa21ceb18",
       "matches_local": true
     },
     {
-      "path": "/assets/pdf-import-CXanoKI0.js",
-      "bytes": 431316,
-      "sha256": "e0ce22108ef624aa524a52267d7c2acc5e86a70453ce220b53328520160d6716",
+      "path": "/assets/index-Dj9jAism.js",
+      "bytes": 347759,
+      "sha256": "983fc97e12ad52ca740e33716557d7be7c528baeabcb62bd57d14101098ecb87",
       "matches_local": true
     },
     {
@@ -46,9 +52,27 @@
       "matches_local": true
     },
     {
+      "path": "/assets/index-CcPcxy4G.css",
+      "bytes": 67696,
+      "sha256": "fc58ae8182b305f565f6b58eedf092203653342df8308d2787f303af3a3f025b",
+      "matches_local": true
+    },
+    {
       "path": "/assets/ocr.worker-DNbwE4x-.js",
       "bytes": 18796,
       "sha256": "8b56233c2fa64e7ce614b7e6a579da8f49830602bb93cdfb9e788506d34ea861",
+      "matches_local": true
+    },
+    {
+      "path": "/assets/ArchitecturePage-D1WGXdYt.js",
+      "bytes": 32357,
+      "sha256": "481e8154a1bd5da357197c724d0e78170ef1c49056265b973510d54d2d96860d",
+      "matches_local": true
+    },
+    {
+      "path": "/assets/ArchitecturePage-B37FIxeR.css",
+      "bytes": 10353,
+      "sha256": "77279c401a7f683c6519377b1d2dcf6397378433d84fcc8e1738b79115d11812",
       "matches_local": true
     },
     {
@@ -58,15 +82,9 @@
       "matches_local": true
     },
     {
-      "path": "/assets/index-lMdtOx9k.css",
-      "bytes": 47504,
-      "sha256": "b3dded5d10c555c6f725db73659685e66a67a47530a9c350a1b1e0d91dcad07d",
-      "matches_local": true
-    },
-    {
-      "path": "/assets/index-CxkddFJk.js",
-      "bytes": 315694,
-      "sha256": "070bef81b683f38a14aba5bd99f06d98c4122dc72c1defd02d0c0043b967da02",
+      "path": "/assets/TheoryPage-BKh8U4Lb.js",
+      "bytes": 32255,
+      "sha256": "69e2eb9ac1741893c1d2263267065780c9cbab4cd4fa4bd5ef3b5d781dfcb687",
       "matches_local": true
     },
     {
@@ -107,8 +125,8 @@
     },
     {
       "path": "/licenses/THIRD_PARTY.md",
-      "bytes": 972,
-      "sha256": "dcdefb7afad41276bb34605c75ce89d7101e67d54df5a5da9d09e92f979a5e34",
+      "bytes": 1371,
+      "sha256": "ef480d0dbce89de9fb7f93d5dba0495ffd7bcafd78bb12dbd008e3ab02c4dd66",
       "matches_local": true
     },
     {
@@ -139,6 +157,12 @@
       "path": "/licenses/transformers.txt",
       "bytes": 11358,
       "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "matches_local": true
+    },
+    {
+      "path": "/licenses/shadcn-ui.txt",
+      "bytes": 1063,
+      "sha256": "1564074e13439397221ffd522e2e504d56561994a23d371aa5e3ad43e4f5423f",
       "matches_local": true
     },
     {
@@ -203,11 +227,14 @@
   "application_request_caps": false,
   "architecture_browser_tests_passed": 6,
   "workshop_browser_tests_passed": 2,
+  "theory_browser_tests_passed": 2,
   "local_pdf_browser_tests_passed": 14,
   "python_tests_last_passed": 100,
   "node_server_tests_passed": 13,
   "model_cache_fixture_deployed": false,
   "nvidia_live_probe": "evidence/nvidia-live-probe.json",
   "architecture_http": 200,
-  "architecture_matches_html": true
+  "architecture_matches_html": true,
+  "theory_http": 200,
+  "theory_matches_html": true
 }

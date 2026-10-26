@@ -170,5 +170,10 @@
     "Accordion",
     "Badge"
   ],
-  "reduced_motion_verified": true
+  "reduced_motion_verified": true,
+  "publication_deployment": "dpl_6Qz2bhAkdVS7B8uH59azzab6BLUR",
+  "source_commit": "f0d036bc90539b91b35e540b0c641d95ee3938e3",
+  "final_layout_recheck_passed": 4,
+  "public_assets_identical": 34,
+  "live_provider_verified": true
 }

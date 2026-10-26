@@ -1,0 +1,38 @@
+{
+  "checked_at": "2026-10-26T11:04:30.493545+00:00",
+  "status": "counter_verified_generation_code_ready_project_key_missing",
+  "real_blob_counter": "evidence/blob-quota-current.json",
+  "server_tests_passed": 16,
+  "browser_tests_passed": 14,
+  "browser_generation_provider_responses": "simulated, explicitly distinct from four real synthetic NVIDIA contract probes",
+  "nvidia_contract_real_probes": 4,
+  "nvidia_contract": "evidence/nvidia-pdf-contract-current.json",
+  "server_npm_audit": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  },
+  "frontend_npm_audit": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  },
+  "dependency_override": "zod 4.6.6 fixes GHSA-mrhx-c7xc-m3w5",
+  "consent_required": true,
+  "pdfs_or_vectors_uploaded": false,
+  "temporary_verification_route_removed": true,
+  "temporary_verification_env_removed": true,
+  "quota_verified_receipt_configured": true,
+  "public_generation_flag": false,
+  "project_nvidia_key_present": false,
+  "task_nvidia_key_is_proxy_reference": true,
+  "proxy_reference_copied_to_project": false,
+  "other_projects_modified": false,
+  "purchases_or_plan_changes": false
+}

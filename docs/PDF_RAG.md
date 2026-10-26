@@ -82,10 +82,12 @@ secret NVIDIA n'est provisionné dans le navigateur ni nécessaire au build stat
 Le serveur Python historique utilise le contrat Chat Completions, garde consentement,
 recalcul des sources historiques et quotas avant appel. Il n'ingère pas les PDF visiteurs.
 
-Le raccordement futur de la génération PDF reste à faire avec un compteur durable atomique
-gratuit testé. Il devra valider/borner les passages reçus du navigateur comme des données
-non fiables, sans affirmer qu'un serveur peut vérifier leur fidélité à un PDF qu'il n'a
-jamais reçu. Aucun stockage d'un autre projet n'est réutilisé. Aucun achat ni plan modifié.
+Le raccordement de génération PDF et le compteur Blob privé sont maintenant implémentés.
+Le CAS a été vérifié par 12 demandes HTTP concurrentes sur les fonctions serverless,
+sans dépassement. Voir docs/PDF_GENERATION.md et evidence/blob-quota-current.json.
+L'ouverture reste fermée : la clé réelle doit être injectée directement dans Vercel ;
+la référence de proxy de tâche ne peut pas être exportée avec VERCEL_TOKEN.
+Aucun stockage d'un autre projet n'est réutilisé et aucun achat/plan n'est modifié.
 
 ## Tests
 

@@ -41,9 +41,6 @@
     },
     "api/ai/status.js": {
       "maxDuration": 10
-    },
-    "api/ai/quota-verification.js": {
-      "maxDuration": 15
     }
   }
 }

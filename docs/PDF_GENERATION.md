@@ -33,7 +33,7 @@ l'avis GHSA-mrhx-c7xc-m3w5 trouvé lors de l'audit. Aucun downgrade du SDK n'a �
 Le raccordement n'est déclaré testé que dans la preuve de concurrence réelle, séparée
 des tests utilisant un CAS mémoire simulé. La route temporaire `quota-verification` utilise
 un jeton opérateur sensible et des chemins/limites fixes ; aucun appel NVIDIA ni paramètre
-permettant de changer le compteur global. Elle doit être supprimée après vérification.
+permettant de changer le compteur global. Elle a été supprimée du code après vérification.
 
 ## Contrat de génération
 
@@ -84,3 +84,19 @@ aucun retry ; sorties passées dans le même validateur JS de citations. Voir
 `evidence/nvidia-pdf-contract-current.json`. Cela ne constitue pas un parcours public complet
 navigateur → compteur Blob → NVIDIA. Les conditions du compte NVIDIA restent déclaratives,
 avec endpoint publiquement annoncé gratuit, sans vérification indépendante d'usage illimité.
+
+## Preuve du compteur et blocage restant
+
+Le test réel a été effectué sur dpl_AqMpedFQgnFxaL9EwDERdWgZmVHG : 12 demandes HTTP
+avec 6 clients concurrents, plafond 3. Résultats : 3 HTTP 200, 8 HTTP 429, 1 HTTP 503
+sous contention. État durable final : nombre=3, révision=3 ; compteur de production=0.
+La contention ferme le service, sans dépassement et sans appel NVIDIA. Voir
+`evidence/blob-quota-current.json`. Le reçu serveur RAG_QUOTA_VERIFIED a été posé après
+ce test, pas avant. La route opérateur temporaire est retirée de la version finale.
+
+La clé NVIDIA réelle n'est toujours pas déclarée dans les métadonnées du projet Vercel.
+Le propriétaire a demandé de copier via VERCEL_TOKEN. La tentative n'est pas effectuée :
+ce jeton donne le droit d'écrire mais ne donne pas accès à la valeur de la clé NVIDIA
+référencée par le proxy de tâche. Aucun placeholder n'a été enregistré comme secret NVIDIA
+Vercel. RAG_PUBLIC_GENERATION reste false. Une injection directe sécurisée de la clé dans
+Vercel est nécessaire avant activation, redéploiement et test public borné.

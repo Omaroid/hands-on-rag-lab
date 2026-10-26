@@ -3,9 +3,9 @@
 La vitrine navigateur est maintenant un espace temporaire bilingue FR/EN : import de PDF
 (5 Mo cumulés), extraction ou OCR local, passages bornés par le tokenizer, embeddings E5
 multilingues, BM25 et fusion RRF inspectables, citations avec fichier et page.
-Les textes et vecteurs ne quittent pas l'onglet. La génération NVIDIA publique reste
-explicitement indisponible sans compteur durable atomique gratuit ; un probe NVIDIA réel
-séparé a réussi. Voir [PDF_RAG.md](docs/PDF_RAG.md), [NVIDIA_AI.md](docs/NVIDIA_AI.md)
+Les textes et vecteurs ne quittent pas l'onglet. Le compteur Blob durable a été validé et l'API de génération PDF est prête ; la génération
+reste indisponible tant que la clé réelle NVIDIA n'est pas injectée dans Vercel. Quatre
+probes NVIDIA structurés réels ont réussi séparément. Voir [PDF_RAG.md](docs/PDF_RAG.md), [NVIDIA_AI.md](docs/NVIDIA_AI.md)
 et [RESUME.md](docs/RESUME.md) pour les preuves, limites et la reprise.
 
 Build : `VITE_RUNTIME=browser npm run build --prefix frontend`.

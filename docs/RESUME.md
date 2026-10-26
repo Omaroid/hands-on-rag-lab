@@ -1,3 +1,52 @@
+# Reprise — génération PDF, état vérifié le 26 octobre 2026
+
+## Compteur durable validé ; clé NVIDIA Vercel absente
+
+Le store Blob privé `store_etqnqyg3va5gtf18` a été créé pour le seul projet dédié,
+équipe Hobby vérifiée. La documentation Hobby confirme gratuité et arrêt au dépassement,
+sans dépassement facturé. Aucun autre store/base/projet réutilisé, achat ou changement de plan.
+Aucun PDF, question, extrait ou vecteur stocké : seulement compteurs et identifiants HMAC.
+
+Compteur réel testé sur 12 demandes HTTP à des fonctions serverless, 6 en concurrence,
+plafond 3 : exactement 3 succès, 8 refus quota, 1 fermeture sous contention, compteur final
+3 et révision 3, compteur public resté à 0. Lecture origine non cachée + ETag/ifMatch,
+4 tentatives CAS maximum, échec fermé. Preuve `evidence/blob-quota-current.json`.
+Limites de production fixes : 3/minute, 20/jour, 200/mois, 6/jour/client. Aucun compteur
+mémoire ou /tmp ne remplace Blob. Le reçu RAG_QUOTA_VERIFIED est posé après le test réel.
+La route et le jeton temporaires de vérification sont supprimés de la version finale.
+
+L'API PDF est implémentée : corps et passages bornés, consentement, quota avant appel,
+endpoint/modèle NVIDIA fixes, aucun outil/retry/redirection ; JSON de réponse contrôlé,
+statuts supported/incomplete/absent, citations fichier/page depuis les données validées.
+Le serveur ne prétend pas vérifier la fidélité de passages à un PDF qu'il n'a pas reçu.
+L'interface génère seulement après consentement, montre les statuts, ouvre les citations,
+nettoie les erreurs et efface réponse/consentement à la réinitialisation.
+
+Quatre appels NVIDIA réels séparés sur textes synthétiques ont validé réponse étayée,
+incomplète, absence et refus d'injection, avec le constructeur de requête et le validateur
+JS réellement employés par le serveur. Ce n'est pas un test public complet PDF→NVIDIA.
+Les 16 tests serveur passent ; 14 parcours navigateur passent, avec OCR/E5 réels et
+réponses fournisseur simulées dans les deux cas UI de génération. Backend Python inchangé,
+dernière validation 100 tests. Audits npm root/frontend à 0 après correction Zod transitive.
+Preuves : nvidia-pdf-contract-current.json et generation-readiness-current.json.
+
+Blocage restant : NVIDIA_API_KEY n'est pas dans les métadonnées du projet Vercel. La tâche
+reçoit une référence de proxy, pas une clé exportable. VERCEL_TOKEN donne le droit d'écrire
+les variables mais ne révèle pas cette valeur ; copier la référence serait inutilisable.
+Aucun placeholder NVIDIA n'a été copié dans Vercel. Aucune ancienne clé recherchée ou utilisée.
+Le propriétaire doit injecter la clé réelle directement par une configuration sécurisée
+Vercel (jamais en chat), puis nous pourrons activer RAG_PUBLIC_GENERATION, redéployer et
+vérifier une vraie génération publique bornée. En attendant le flag reste false et l'API 503.
+Les conditions du compte NVIDIA restent déclaratives ; endpoint annoncé gratuit, usage
+illimité non vérifié indépendamment. Aucun achat/auto-recharge/carte/upgrade.
+
+Déploiement final à consigner après publication ; le domaine reste exclusivement
+https://lakehouse-rag-lab.vercel.app / prj_bx0b78VzJb6VNA2OyyIOElDnBiEE.
+Les tests navigateur publics restent limités par la CA du proxy, sans désactivation TLS.
+Voir docs/PDF_GENERATION.md pour le contrat, les limites et les conditions d'ouverture.
+
+---
+
 # Reprise — état vérifié le 26 octobre 2026
 
 ## État actuel : vitrine PDF publiée

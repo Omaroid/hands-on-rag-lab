@@ -43,17 +43,17 @@ Aucun achat, recharge, carte ou changement de plan n'a été effectué.
 
 ## Fermeture publique
 
-Aucun compteur atomique durable gratuit n'est raccordé/testé. SQLite ou un compteur mémoire
+Un compteur Blob privé gratuit a depuis été raccordé et testé, voir PDF_GENERATION.md. SQLite ou un compteur mémoire
 ne protège pas plusieurs instances serverless. La garde Python d'origine reste intacte.
 Les routes Vercel ajoutées sont explicitement fermées : GET `/api/ai/status` renvoie
-`ready:false`, POST `/api/ai/answer` renvoie 503, sans accès à une clé ni appel externe.
+`ready:false`, POST `/api/ai/answer` renvoie 503, sans appel fournisseur tant que les prérequis serveur ne sont pas réunis.
 La vitrine PDF présente cette indisponibilité et un bouton désactivé. Cocher le consentement
 ne l'active pas. Les extraits restent locaux et consultables.
 
-Aucun store Blob n'a été créé et aucune autre ressource réutilisée. Les écritures conditionnelles
-Blob restent une piste documentaire, pas une protection implémentée. Avant ouverture publique,
-il faut établir une solution gratuite, la raccorder, tester sa concurrence et ses erreurs,
-puis implémenter le contrat spécifique aux passages PDF locaux avec validation stricte.
+Le store Blob privé dédié a été créé et les écritures conditionnelles ont été réellement
+testées sous concurrence. Le contrat PDF est maintenant implémenté. L'ouverture publique
+reste bloquée par l'absence de clé NVIDIA réelle dans les variables Vercel ; la référence
+de proxy de tâche n'est pas exportable. Voir docs/PDF_GENERATION.md et les preuves actuelles.
 Voir `docs/PDF_RAG.md` pour l'architecture PDF et ses limites.
 
 Les tests Python de l'adaptateur utilisent des réponses simulées ; le probe JSON est la preuve

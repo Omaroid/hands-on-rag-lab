@@ -1,4 +1,3 @@
-import { timingSafeEqual, createHash } from "node:crypto";
 export const ORIGIN = "https://lakehouse-rag-lab.vercel.app";
 export class RequestError extends Error {
   constructor(status) {
@@ -46,15 +45,4 @@ export async function readJSON(req, max = 24000) {
   } catch {
     throw new RequestError(400);
   }
-}
-export function operatorAuthorized(req) {
-  const expected = process.env.RAG_QUOTA_VERIFY_TOKEN;
-  if (!expected || expected.length < 32) return false;
-  const supplied = String(req.headers.authorization || "");
-  return timingSafeEqual(
-    createHash("sha256").update(supplied).digest(),
-    createHash("sha256")
-      .update("Bearer " + expected)
-      .digest(),
-  );
 }
